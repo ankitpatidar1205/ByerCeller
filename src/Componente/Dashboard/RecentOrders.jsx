@@ -1,8 +1,7 @@
 
-import React, { useEffect, useState } from "react";
-import { FaTrash, FaEye } from "react-icons/fa";
+import  { useEffect, useState } from "react";
+import {  FaEye } from "react-icons/fa";
 import axiosInstance from "../../Utilities/axiosInstance";
-
 const RecentOrders = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [users, setUsers] = useState([]);
@@ -53,9 +52,6 @@ const RecentOrders = () => {
 
   return (
     <div className="p-4">
-     
-
-     
       <div className="table-responsive bg-white rounded shadow-sm p-3">
         {loading ? (
           <div className="text-center py-4">Loading users...</div>
@@ -84,22 +80,11 @@ const RecentOrders = () => {
                     <td>{user.role}</td>
                     <td>
                       <div className="d-flex gap-2">
-                        <button
-                          className="btn btn-sm btn-outline-primary"
-                          title="View User"
-                          onClick={() => setSelectedUser(user)}
-                          data-bs-toggle="modal"
-                          data-bs-target="#userModal"
-                        >
+                        <button className="btn btn-sm btn-outline-primary" title="View User"
+                          onClick={() => setSelectedUser(user)} data-bs-toggle="modal" data-bs-target="#userModal">
                           <FaEye size={14} />
                         </button>
-                        {/* <button
-                          className="btn btn-sm btn-outline-danger"
-                          title="Delete User"
-                          onClick={() => handleDelete(user.id)}
-                        >
-                          <FaTrash size={14} />
-                        </button> */}
+                       
                       </div>
                     </td>
                   </tr>
@@ -121,14 +106,8 @@ const RecentOrders = () => {
         <nav className="mt-4 d-flex justify-content-end">
           <ul className="pagination">
             {Array.from({ length: totalPages }, (_, i) => (
-              <li
-                key={i}
-                className={`page-item ${currentPage === i + 1 ? "active" : ""}`}
-              >
-                <button
-                  className="page-link"
-                  onClick={() => setCurrentPage(i + 1)}
-                >
+              <li  key={i}  className={`page-item ${currentPage === i + 1 ? "active" : ""}`}>
+                <button className="page-link" onClick={() => setCurrentPage(i + 1)}>
                   {i + 1}
                 </button>
               </li>
@@ -138,23 +117,12 @@ const RecentOrders = () => {
       )}
 
       {/* Modal for Viewing User */}
-      <div
-        className="modal fade"
-        id="userModal"
-        tabIndex="-1"
-        aria-labelledby="userModalLabel"
-        aria-hidden="true"
-      >
+      <div  className="modal fade"  id="userModal"  tabIndex="-1"  aria-labelledby="userModalLabel"  aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="userModalLabel">User Details</h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+              <button  type="button"  className="btn-close"  data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             {selectedUser && (
               <div className="modal-body">
@@ -162,16 +130,9 @@ const RecentOrders = () => {
                 <p><strong>Email:</strong> {selectedUser.email}</p>
                 <p><strong>Role:</strong> {selectedUser.role}</p>
                 <p><strong>ID:</strong> {selectedUser.id}</p>
-              </div>
-            )}
+              </div>)}
             <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
             </div>
           </div>
         </div>
