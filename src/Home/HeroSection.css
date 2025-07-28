@@ -1,0 +1,50 @@
+/* Rounded border and clean layout */
+.carousel {
+  border-radius: 20px;
+  
+}
+
+/* Show arrows only on mobile */
+@media (min-width: 768px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    display: none !important;
+  }
+}
+
+/* ✅ Mobile-specific fixed banner size */
+@media (max-width: 767px) {
+  .carousel-item img {
+    width: 366px;
+    height: 100px;
+    object-fit: cover;
+    margin: 0 auto; /* center the image horizontally */
+  }
+}
+
+/* ✅ Desktop-specific fixed height and auto width */
+@media (min-width: 768px) {
+  .carousel-item img {
+    height: 350px;
+    width: auto;
+    object-fit: cover;
+    margin: 0 auto; /* optional: center image if width is not 100% */
+  }
+}
+
+/* Carousel Indicators (dots) style */
+.carousel-indicators {
+  bottom: 10px;
+}
+.carousel-indicators [data-bs-target] {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+.carousel-indicators .active {
+  opacity: 1;
+  background-color: #fd7e14; /* orange dot for active */
+}
