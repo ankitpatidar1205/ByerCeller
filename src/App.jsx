@@ -81,6 +81,11 @@ function App() {
 
                 <Route path="/inventory" element={<Inventory />} />
                 <Route path="/Admin-Profile" element={<AdminProfile />} />
+
+                 
+
+
+
               </Routes>
             </div>
           </div>
