@@ -122,13 +122,14 @@ const addtocart = async () => {
             {/* Product Info */}
             <div className="col-lg-6">
               <h1 className="fw-bold mb-2">{product?.name}</h1>
-              <p className="text-muted mb-2">SKU: {product.sku}</p>
-              <p className="text-muted mb-2">Category : {product.category_name}</p>
-                <p className="text-muted small mb-0">  {product?.description} {product?.category_name} </p>
+              <p className="text-muted mb-2">Model No: {product.modelNo}</p>
+              <p className="text-muted mb-2">Code : {product.code}</p>
+                <p className="text-muted  mb-2"> Material: {product?.material} </p>
+                <p className="text-muted small mb-0">  {product?.description} </p>
                  
               <div className="mb-3 mt-2">
                 <span className="fs-3 fw-bold text-primary">
-                  ${parseFloat(product.price).toFixed(2)}
+                  ¥ {parseFloat(product.price).toFixed(2)}
                 </span>
               </div>
 

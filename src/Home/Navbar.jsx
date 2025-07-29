@@ -72,6 +72,7 @@ const Navbar = () => {
             <div className="flex space-x-8">
               <Link to="/" className="text-gray-800 hover:text-blue-600 px-3 py-2 text-sm font-bold">Home</Link>
               <Link to="/electricalproducts" className="text-gray-800 hover:text-blue-600 px-3 py-2 text-sm font-bold">Products</Link>
+              <Link to="/pricing" className="text-gray-800 hover:text-blue-600 px-3 py-2 text-sm font-bold">Pricing </Link>
               <Link to="/contactus" className="text-gray-800 hover:text-blue-600 px-3 py-2 text-sm font-bold">Contact Us</Link>
             </div>
           </div>
@@ -131,6 +132,9 @@ const Navbar = () => {
           <Link   to="/electricalproducts" 
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
           onClick={toggleMenu} >  Products </Link>
+            <Link   to="/pricing" 
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+          onClick={toggleMenu} >  Pricing </Link>
           <Link   to="/contactus" 
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
            onClick={toggleMenu} >  Contact Us </Link>

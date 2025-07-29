@@ -33,6 +33,7 @@ import UserProduct from "./UserProfile/UserProduct";
 import MyOrders from "./UserProfile/MyOrders";
 import RequestBroker from "./UserProfile/RequestBroker";
 import AdminPlans from "./Componente/AdminPlans/AdminPlans";
+import Pricing from "./Home/Pricing";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -43,7 +44,7 @@ function App() {
     setIsSidebarCollapsed((prev) => !prev);
   };
   const location = useLocation();
-  const hideLayout = location.pathname === "/" || location.pathname === "/electricalproducts"  || location.pathname === "/contactus" || location.pathname === "/productpage" || location.pathname === "/shoppingcart" || location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/aboutus" || location.pathname === "/privacypolicy" || location.pathname === "/terms" || location.pathname === "/refund" || location.pathname.startsWith("/productpage" );
+  const hideLayout = location.pathname === "/" || location.pathname === "/electricalproducts"  || location.pathname === "/contactus" || location.pathname === "/productpage" || location.pathname==="/pricing" || location.pathname === "/shoppingcart" || location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/aboutus" || location.pathname === "/privacypolicy" || location.pathname === "/terms" || location.pathname === "/refund" || location.pathname.startsWith("/productpage" );
   return (
     <>
       <ScrollToTop />
@@ -62,6 +63,7 @@ function App() {
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/refund" element={<RefundPolicy />} />
+          <Route path="/pricing" element={<Pricing />} />
         </Routes>
       ) : (
         // Pages with Layout
@@ -69,7 +71,7 @@ function App() {
           <Navbar toggleSidebar={toggleSidebar} />
           <div className="main-content">
             <Sidebar  collapsed={isSidebarCollapsed}  menuItemClick={menusidebarcollaps}/>
-            <div   className={`right-side-content ${isSidebarCollapsed ? "collapsed" : "" }`} >
+            <div className={`right-side-content ${isSidebarCollapsed ? "collapsed" : "" }`} >
               <Routes>
                 {/* admin */}
                 <Route path="/admin/dashboard" element={<Dashboard />} />
@@ -91,7 +93,6 @@ function App() {
                <Route path="/UserProduct" element={<UserProduct />} />
                <Route path="/MyOrders" element={<MyOrders />} />
                <Route path="/Request-Broker" element={<RequestBroker />} />
-
               </Routes>
             </div>
           </div>

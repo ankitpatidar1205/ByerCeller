@@ -97,8 +97,7 @@ const ElectricalProducts = () => {
                     <h3 className="h6 fw-semibold mb-3">Categories</h3>
                     {categories.map((category, index) => (
                       <div className="form-check mb-2" key={index}>
-                        <input
-                          className="form-check-input"
+                        <input  className="form-check-input"
                           type="checkbox"
                           checked={selectedCategories.includes(category.name)}
                           onChange={() => toggleCategory(category.name)}

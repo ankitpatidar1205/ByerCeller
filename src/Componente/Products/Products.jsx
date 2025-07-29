@@ -123,11 +123,7 @@ const Productes = () => {
                       title="View Details" >
                       <FaEye size={14} />
                     </button>
-                <Link to={`/editproducts/${product.id}`} className="btn btn-sm btn-outline-primary">
-  <FaEdit size={14} />
-</Link>
-
-                   
+                   <Link to={`/editproducts/${product.id}`} className="btn btn-sm btn-outline-primary"> <FaEdit size={14} /></Link>
                           <button  className="btn btn-sm btn-outline-danger"  data-bs-toggle="modal"
                             data-bs-target="#deleteProductModal" onClick={() => setDeleteProduct(product.id)}  title="Delete" >
                             <FaTrash size={14} />

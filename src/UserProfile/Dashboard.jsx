@@ -18,7 +18,7 @@ const UserDashboard = () => {
 
   return (
     <div className="container my-4">
-      <h2 className="fw-bold mb-4">Buyer Dashboard</h2>
+      <h1 className="fw-bold mb-4">Buyer Dashboard</h1>
 
       {/* Stats Cards */}
       <div className="row g-3 mb-4">
