@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axiosInstance from '../../Utilities/axiosInstance';
 
-const EditProductForm = () => {
+const SEditProductForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
@@ -239,4 +239,4 @@ updatedData.append('material', formData.material);
   );
 };
 
-export default EditProductForm;
+export default SEditProductForm;
