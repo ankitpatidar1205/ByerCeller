@@ -22,7 +22,7 @@ const Footer = () => {
           {/* Brand Info */}
           <div>
             <img
-              src="https://i.postimg.cc/h4VQcD7D/2-removebg-preview-2.png"
+              src="https://i.postimg.cc/C1qfJ36B/Whats-App-Image-2025-07-29-at-19-23-57-7a0f5cac-removebg-preview.png"
               alt="ElectroSupply Logo"
               className="h-14 mb-3"
             />
@@ -108,7 +108,7 @@ const Footer = () => {
               </p>
               <p className="flex items-center gap-2">
                 <FaEnvelope className="text-red-500" />
-                support@electrosupply.com
+                support@buyerseller.com
               </p>
             </div>
 
@@ -125,7 +125,7 @@ const Footer = () => {
         <hr className="border-gray-700 my-6" />
 
         <p className="text-center text-sm text-gray-500">
-          © 2025 ElectroSupply. All rights reserved.
+          © 2025 Buyerseller. All rights reserved.
         </p>
       </div>
     </footer>

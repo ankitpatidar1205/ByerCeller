@@ -110,7 +110,7 @@ const RequestBroker = () => {
               ></textarea>
             </div>
 
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn custom-button">
               Submit Request
             </button>
           </form>

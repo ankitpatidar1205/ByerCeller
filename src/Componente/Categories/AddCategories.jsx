@@ -212,7 +212,7 @@ const AddCategories = () => {
                     >
                       Cancel
                     </button>
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn custom-button">
                       {editingCategory ? 'Update' : 'Add'} Category
                     </button>
                   </div>

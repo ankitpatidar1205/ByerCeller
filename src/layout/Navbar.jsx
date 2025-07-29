@@ -18,9 +18,9 @@ const Navbar = ({ toggleSidebar }) => {
           {/* Left: Logo + Toggle */}
           <div className="d-flex align-items-center gap-3">
 
-           <Link to="/">
-          <span className="fw-bold fs-5">CRM Management</span>
-           </Link>
+                    <Link to="/">
+              <img  src="https://i.postimg.cc/C1qfJ36B/Whats-App-Image-2025-07-29-at-19-23-57-7a0f5cac-removebg-preview.png"  alt="logo"  className="h-14 " />
+            </Link>
             <button   className="btn btn-outline-secondary d-lg-none"    onClick={toggleSidebar} >
               <i className="bi bi-list fs-4"></i>
             </button>

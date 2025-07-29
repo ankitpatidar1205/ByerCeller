@@ -97,7 +97,7 @@ const ShoppingCart = () => {
                   <div className="text-center py-5">
                     <i className="bi bi-cart-x fs-1 text-muted"></i>
                     <p className="mt-3">Your cart is empty</p>
-                    <Link to="/electricalproducts" className="btn btn-primary mt-3">
+                    <Link to="/electricalproducts" className="btn custom-button mt-3">
                       Continue Shopping
                     </Link>
                   </div>
@@ -252,7 +252,7 @@ const CheckoutForm = ({ cartItems, totalAmount }) => {
   return (
     <form onSubmit={handleSubmit}>
       <CardElement className="form-control mb-3" />
-      <button className="btn btn-primary w-100" type="submit" disabled={!stripe || loading}>
+      <button className="btn custom-button w-100" type="submit" disabled={!stripe || loading}>
         {loading ? "Processing..." : `Pay $${totalAmount}`}
       </button>
     </form>

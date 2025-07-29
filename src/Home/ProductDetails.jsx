@@ -103,12 +103,12 @@ const RelatedProducts = ({ categoryId, currentProductId }) => {
                     </span>
                     {loading ? (
                       <div className="placeholder-glow w-50">
-                        <span className="placeholder btn btn-primary btn-sm rounded-pill col-12"></span>
+                        <span className="placeholder btn custom-button btn-sm rounded-pill col-12"></span>
                       </div>
                     ) : (
                       <Link
                         to={`/productpage/${product.id}`}
-                        className="btn btn-sm btn-primary rounded-pill"
+                        className="btn btn-sm custom-button rounded-pill"
                       >
                         View
                       </Link>

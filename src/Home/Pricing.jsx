@@ -87,7 +87,7 @@ const Pricing = () => {
 
                     {/* Button */}
                     <button
-                      className="btn btn-primary w-100 mt-auto fw-semibold rounded-pill"
+                      className="btn custom-button w-100 mt-auto fw-semibold rounded-pill"
                       onClick={() => navigate("/signup")}
                     >
                       Request Plan

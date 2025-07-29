@@ -91,7 +91,7 @@ const ForwardToSeller = () => {
         </select>
       </div>
 
-      <button className="btn btn-primary" onClick={handleForward}>
+      <button className="btn custom-button" onClick={handleForward}>
         Forward Order
       </button>
     </div>

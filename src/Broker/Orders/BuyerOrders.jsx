@@ -71,7 +71,7 @@ const BuyerOrders = () => {
                   <Link
                     to={`/orders/buyer/${order.order_id}`}
                     
-                    className="btn btn-sm btn-primary"
+                    className="btn btn-sm custom-button"
                   >
                     View
                   </Link>

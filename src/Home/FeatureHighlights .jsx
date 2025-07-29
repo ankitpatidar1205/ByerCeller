@@ -31,6 +31,24 @@ const FeatureHighlights = () => {
       style={{ backgroundColor: "#f0f7ff" }}
     >
       <div className="max-w-7xl mx-auto">
+        {/* Section Heading */}
+        <div className="text-center mb-10">
+          <h2
+            className="fw-bold"
+            style={{
+              fontSize: "2rem",
+              color: "#0d47a1",
+              marginBottom: "0.5rem",
+            }}
+          >
+            Why Choose Us?
+          </h2>
+          <p style={{ color: "#6b7280", fontSize: "1rem" }}>
+            Our platform offers best-in-class features for both buyers and sellers.
+          </p>
+        </div>
+
+        {/* Feature Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
           {features.map((feature, index) => (
             <div

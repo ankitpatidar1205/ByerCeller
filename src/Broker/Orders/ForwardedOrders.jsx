@@ -51,7 +51,7 @@ const ForwardedOrders = () => {
                 </td>
                 <td>
                   
-                  <button className="btn-primary" onClick={() => navigate(`/orders/forwardeddetails/${order.order_id}`)} >
+                  <button className="custom-button" onClick={() => navigate(`/orders/forwardeddetails/${order.order_id}`)} >
                     View
                   </button>
                 </td>

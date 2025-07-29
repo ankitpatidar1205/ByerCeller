@@ -115,7 +115,7 @@ const InventoryModal = ({ isOpen, onClose, item, mode, onSave }) => {
                 <button type="button" className="btn btn-secondary" onClick={onClose}>
                   Close
                 </button>
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn custom-button">
                   {mode === "add" ? "Add Item" : "Save Changes"}
                 </button>
               </div>

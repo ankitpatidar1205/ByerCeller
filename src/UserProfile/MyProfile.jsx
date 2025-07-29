@@ -115,7 +115,7 @@ const MyProfile = () => {
 
       <div className="mt-4">
         {!editMode ? (
-          <button className="btn btn-primary" onClick={() => setEditMode(true)}>
+          <button className="btn custom-button" onClick={() => setEditMode(true)}>
             Edit Profile
           </button>
         ) : (

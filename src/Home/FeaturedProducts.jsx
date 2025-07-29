@@ -22,7 +22,7 @@ const FeaturedProducts = () => {
  <section className="px-3" style={{backgroundColor:"#f0f7ff"}}>
   <div className="container">
     <div className="text-center mb-5">
-      <h2 className="h3 fw-bold text-dark">Featured Products</h2>
+      <h2 className="h3 fw-bold " style={{color:"#0d47a1"}} >Featured Products</h2>
       <p className="mt-2 text-muted small">
         Top-rated electrical supplies for professionals
       </p>
@@ -45,14 +45,20 @@ const FeaturedProducts = () => {
             >
               <div
                 className="card-img-top"
-                style={{
-                  backgroundImage: `url(${product.image[0]})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  height: '14rem',
-                  borderTopLeftRadius: '20px',
-                  borderTopRightRadius: '20px',
-                }}
+               style={{
+  backgroundImage: `url(${product.image[0]})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  width: '100%',
+  maxWidth: '100%',
+  height: '14rem',
+  borderTopLeftRadius: '20px',
+  borderTopRightRadius: '20px',
+  margin: '0 auto',
+  display: 'block',
+}}
+
               ></div>
 
               <div className="card-body d-flex flex-column p-3">

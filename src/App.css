@@ -86,12 +86,12 @@ main {
   margin-bottom: 20px;
 }
 
-.login-container .btn-primary {
+.login-container .custom-button {
   background-color: #578e7e;
   border-color: #578e7e;
 }
 
-.login-container .btn-primary:hover {
+.login-container .custom-button:hover {
   background-color: #578e7e;
   border-color: #578e7e;
 }

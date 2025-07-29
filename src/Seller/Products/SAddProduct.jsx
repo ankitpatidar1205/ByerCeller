@@ -216,7 +216,7 @@ const SAddProduct = () => {
             <button type="button" className="btn btn-outline-secondary" onClick={()=> navigate(-1)}>
               Cancel
             </button>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn custom-button">
               Add Product
             </button>
           </div>

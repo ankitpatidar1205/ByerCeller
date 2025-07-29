@@ -92,7 +92,7 @@ const MyOrders = () => {
                 Order section is empty. After placing order, you can track them
                 from here.
               </p>
-              <Link to="/electricalproducts" className="btn btn-primary">
+              <Link to="/electricalproducts" className="btn custom-button">
                 Continue Shopping
               </Link>
             </div>
