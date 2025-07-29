@@ -39,7 +39,7 @@ const Sidebar = ({ collapsed }) => {
   // Broker menu
   const brokerMenu = [
     { name: "Broker Dashboard", path: "/broker/dashboard", icon: "fa-solid fa-briefcase" },
-        { name: "Broker Products", path: "/broker/products", icon: "fa-solid fa-briefcase" },
+      { name: "Broker Products", path: "/broker/products", icon: "fa-solid fa-briefcase" },
     { name: "Buyer Deals", path: "/broker/buyerrequest", icon: "fa-solid fa-handshake" },
      { name: "Seller Deals", path: "/broker/sellerrequest", icon: "fa-solid fa-handshake" },
       {name: "Incoming Orders", path: "/broker/buyerorders" ,icon: "fa-solid fa-box-open "},

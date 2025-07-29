@@ -19,7 +19,7 @@ const MyOrders = () => {
       product: "Samsung Galaxy S24 Ultra",
       date: "2025-07-22",
       status: "Shipped",
-      price: "$1,199",
+      price: "¥1,199",
       address: "Shenzhen, China",
     },
     {

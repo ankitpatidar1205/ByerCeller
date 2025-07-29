@@ -44,16 +44,13 @@ import UserProduct from "./UserProfile/UserProduct";
 import MyOrders from "./UserProfile/MyOrders";
 import RequestBroker from "./UserProfile/RequestBroker";
 import AdminPlans from "./Componente/AdminPlans/AdminPlans";
-<<<<<<< HEAD
 import Pricing from "./Home/Pricing";
-=======
 import BuyerOrders from "./Broker/Orders/BuyerOrders";
 import BuyerOrderDetails from "./Broker/Orders/BuyerOrderDetails";
 import ForwardToSeller from "./Broker/Orders/ForwardToSeller";
 import ForwardedOrders from "./Broker/Orders/ForwardedOrders";
 import BrokerReports from "./Broker/Reports/BrokerReports";
 import BrokerProducts from "./Broker/Product/BrokerProduct";
->>>>>>> b6757d806e7686a0d06f385dd190e077bcbb1b24
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -113,42 +110,31 @@ function App() {
                <Route path="/UserProduct" element={<UserProduct />} />
                <Route path="/MyOrders" element={<MyOrders />} />
                <Route path="/Request-Broker" element={<RequestBroker />} />
-<<<<<<< HEAD
-=======
 
-
-               {/* Seller */}
-
-            <Route path="/seller/dashboard" element ={ <SellerDashboard />} />
+                 {/* Seller */}
+                  <Route path="/seller/dashboard" element ={ <SellerDashboard />} />
                   <Route path="/seller/categories" element={<AddCategories />} />
                    <Route path="/seller/addproducts" element ={ <AddProduct />} />
-              <Route path="/seller/products" element ={ <Productes />} />
-           <Route path="/seller/orders" element ={ <Orders />} />
-                    <Route path="/seller/profile" element ={ <AdminProfile />} />
+                   <Route path="/seller/products" element ={ <Productes />} />
+                   <Route path="/seller/orders" element ={ <Orders />} />
+                  <Route path="/seller/profile" element ={ <AdminProfile />} />
                   <Route path="/seller/inventory" element={<Inventory />} />
                   <Route path="/seller/brokerinvitation" element={<BrokerInvitations />} />
                   <Route path="/seller/broker-details" element={<BrokerInvitationDetails />} />
 
-
                   {/* Broker  */}
-          
-   {/* <Route path="/broker/dashboard" element ={ <BrokerDashboard />} /> */}
-
-    <Route path="/broker/dashboard" element={ <BrokerDashboard />} />
-
-          
-    <Route path="/broker/sellerrequest" element={ <SellerRequest />} />
-   <Route path="/broker/deal-details/:id" element={ <SellerdealsDetails />}  />
-       <Route path="/broker/buyerrequest" element={ <BuyerRequest />} />
+           <Route path="/broker/dashboard" element={ <BrokerDashboard />} />  
+           <Route path="/broker/sellerrequest" element={ <SellerRequest />} />
+           <Route path="/broker/deal-details/:id" element={ <SellerdealsDetails />}  />
+            <Route path="/broker/buyerrequest" element={ <BuyerRequest />} />
             <Route path="/broker/buyer-request-details/:id" element={ <BuyerRequestDetails />}  />
             <Route path="/broker/products" element={<BrokerProducts />} />
             <Route path="/broker/buyerorders" element={<BuyerOrders />} />
             <Route path="/orders/buyer/:id" element={<BuyerOrderDetails />} />
              <Route path="/orders/forward/:id" element={<ForwardToSeller />} />
             <Route path="/orders/forwarded" element={<ForwardedOrders />} />
-  <Route path="/broker/reports" element={<BrokerReports />} />
+            <Route path="/broker/reports" element={<BrokerReports />} />
 
->>>>>>> b6757d806e7686a0d06f385dd190e077bcbb1b24
               </Routes>
             </div>
           </div>

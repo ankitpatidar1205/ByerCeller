@@ -137,7 +137,7 @@ const AdminPlans = () => {
               <div className="card shadow-sm h-100">
                 <div className="card-body text-center">
                   <h2 className="card-title fw-bold">{plan.name}</h2>
-                  <h6 className="text-primary fw-bold fs-4">${plan.price}</h6>
+                  <h6 className="text-primary fw-bold fs-4">¥{plan.price}</h6>
                   <p className="text-muted small mb-2">
                     <strong>Plan Type:</strong> {plan.billingCycle}
                   </p>

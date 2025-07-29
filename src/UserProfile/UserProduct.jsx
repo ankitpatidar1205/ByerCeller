@@ -107,7 +107,7 @@ const UserProduct = () => {
                     {product?.name?.length > 40 ? "..." : ""}
                   </h5>
                   <p className="text-primary fw-semibold mb-2">
-                    ${product?.price}
+                    ¥{product?.price}
                   </p>
                   <p className="text-muted small mb-1">
                     <strong>Model:</strong> {product?.modelNo || "N/A"}
@@ -192,8 +192,11 @@ const UserProduct = () => {
                       <strong>ID:</strong> {selectedProduct.id}
                     </p>
                     <p>
-                      <strong>Price:</strong> ${selectedProduct.price}
+                      <strong>Price:</strong> ¥{selectedProduct.price}
                     </p>
+                     <p><strong>Code:</strong> {selectedProduct.code || "N/A"}</p>
+                      <p><strong>Model No:</strong> {selectedProduct.modelNo || "N/A"}</p>
+                    <p><strong>Material:</strong> {selectedProduct.material || "N/A"}</p>
                     <p>
                       <strong>Stock:</strong>{" "}
                       {selectedProduct.stockQuantity}

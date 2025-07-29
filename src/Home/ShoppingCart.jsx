@@ -119,7 +119,7 @@ const ShoppingCart = () => {
                             <p className="small text-muted mb-1">{item.description}</p>
                             <p className="small text-muted mb-0">{item.details}</p>
                             <div className="mt-2">
-                              <span className="fw-bold">${Number(item.price).toFixed(2)}</span>
+                              <span className="fw-bold">¥{Number(item.price).toFixed(2)}</span>
                               {item.originalPrice && (
                                 <span className="text-muted text-decoration-line-through ms-2">
                                   ${Number(item.originalPrice).toFixed(2)}
@@ -182,12 +182,12 @@ const ShoppingCart = () => {
                 <div className="mb-4">
                   <div className="d-flex justify-content-between mb-2">
                     <span className="text-muted">Subtotal</span>
-                    <span className="fw-bold">${calculateSubtotal().toFixed(2)}</span>
+                    <span className="fw-bold">¥{calculateSubtotal().toFixed(2)}</span>
                   </div>
                   <div className="border-top pt-3 mt-3">
                     <div className="d-flex justify-content-between align-items-center">
                       <span className="fw-bold">Total</span>
-                      <span className="h4 fw-bold">${calculateSubtotal().toFixed(2)}</span>
+                      <span className="h4 fw-bold">¥{calculateSubtotal().toFixed(2)}</span>
                     </div>
                   </div>
                 </div>

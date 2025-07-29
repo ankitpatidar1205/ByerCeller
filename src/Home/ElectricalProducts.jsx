@@ -176,7 +176,7 @@ const ElectricalProducts = () => {
                             ? product.description.slice(0, 100) + "..." : product.description}
                           </p>
                           <div className="d-flex justify-content-between align-items-center">
-                            <span className="fw-bold text-primary">${product.price}</span>
+                            <span className="fw-bold text-primary">¥{product.price}</span>
                             <button  className="btn btn-primary btn-sm">
                               View
                             </button>
