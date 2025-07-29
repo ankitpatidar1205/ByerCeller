@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { FaArrowLeft, FaPhoneAlt, FaBuilding, FaCalendarAlt, FaCheck } from "react-icons/fa";
+import {
+  FaArrowLeft,
+  FaPhoneAlt,
+  FaBuilding,
+  FaCalendarAlt,
+  FaCheck,
+} from "react-icons/fa";
 
+// Mock Data
 const mockDeal = {
   id: 101,
   seller_name: "AutoWorld FZE",
@@ -13,10 +20,31 @@ const mockDeal = {
   notes: "Requested urgent shipping of parts.",
 };
 
-const SellerdealsDetails = () => {
+// Mock Products
+const mockProducts = [
+  {
+    id: 1,
+    name: "Steel Zinc Platt Mounting",
+    code: "25005",
+    quantity: 20,
+    basePrice: 1600,
+    markup: 10,
+  },
+  {
+    id: 2,
+    name: "Brake Disc Plate",
+    code: "25610",
+    quantity: 10,
+    basePrice: 2100,
+    markup: 10,
+  },
+];
+
+const SellerDealsDetails = () => {
   const navigate = useNavigate();
-  // In real implementation: fetch data using deal ID from params
-  const { dealId } = useParams(); // currently not used with mockDeal
+  const { dealId } = useParams();
+
+  const [products, setProducts] = useState(mockProducts);
 
   const getBadgeClass = (status) => {
     switch (status) {
@@ -33,8 +61,17 @@ const SellerdealsDetails = () => {
     }
   };
 
+  const handleMarkupChange = (id, value) => {
+    const updated = products.map((product) =>
+      product.id === id
+        ? { ...product, markup: parseFloat(value) || 10 }
+        : product
+    );
+    setProducts(updated);
+  };
+
   return (
-    <div className="container-fluid py-4 px-3 px-md-4">
+    <div className="container-fluid py-4 px-3 px-md-5">
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
@@ -47,42 +84,86 @@ const SellerdealsDetails = () => {
         </button>
       </div>
 
-      {/* Detail Card */}
-      <div className="card shadow-sm border-0">
+      {/* Seller Info Card */}
+      <div className="card shadow-sm border-0 mb-4">
         <div className="card-body">
           <h5 className="mb-3">Seller Information</h5>
-          <div className="mb-3">
-            <strong>Name:</strong> {mockDeal.seller_name}
-          </div>
-          <div className="mb-3">
-            <FaPhoneAlt className="me-2 text-muted" />
+          <div className="mb-2"><strong>Name:</strong> {mockDeal.seller_name}</div>
+          <div className="mb-2">
+            {/* <FaPhoneAlt className="me-2 text-muted" /> */}
             <strong>Phone:</strong> {mockDeal.phone}
           </div>
-          <div className="mb-3">
-            <FaBuilding className="me-2 text-muted" />
+          <div className="mb-2">
+            {/* <FaBuilding className="me-2 text-muted" /> */}
             <strong>Company:</strong> {mockDeal.company}
           </div>
-          <div className="mb-3">
-            <FaCalendarAlt className="me-2 text-muted" />
+          <div className="mb-2">
+            {/* <FaCalendarAlt className="me-2 text-muted" /> */}
             <strong>Request Date:</strong> {mockDeal.request_date}
           </div>
-          <div className="mb-3">
+          <div className="mb-2">
             <strong>Status:</strong>{" "}
             <span className={getBadgeClass(mockDeal.status)}>{mockDeal.status}</span>
           </div>
-          <div className="mb-3">
-            <strong>Address:</strong> {mockDeal.address}
-          </div>
-          <div className="mb-3">
-            <strong>Notes:</strong> {mockDeal.notes}
-          </div>
+          <div className="mb-2"><strong>Address:</strong> {mockDeal.address}</div>
+          <div><strong>Notes:</strong> {mockDeal.notes}</div>
 
           <div className="mt-4">
             <button className="btn btn-success me-3">
-              <FaCheck className="me-2" />
+              {/* <FaCheck className="me-2" /> */}
               Mark as Completed
             </button>
             <button className="btn btn-outline-primary">Contact Seller</button>
+          </div>
+        </div>
+      </div>
+
+      {/* Product List */}
+      <div className="card shadow-sm border-0">
+        <div className="card-body">
+          <h5 className="mb-3">Similar Product Listings</h5>
+          <div className="table-responsive">
+            <table className="table align-middle table-bordered">
+              <thead className="table-light">
+                <tr>
+                  <th>Product Name</th>
+                  <th>Code</th>
+                  <th>Qty</th>
+                  <th>Base Price</th>
+                  <th>Markup (%)</th>
+                  <th>Final Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.name}</td>
+                    <td>{item.code}</td>
+                    <td>{item.quantity}</td>
+                    <td>¥{item.basePrice.toLocaleString()}</td>
+                    <td style={{ width: "150px" }}>
+                      <input
+                        type="number"
+                        className="form-control"
+                        value={item.markup}
+                        min="0"
+                        max="100"
+                        onChange={(e) =>
+                          handleMarkupChange(item.id, e.target.value)
+                        }
+                      />
+                    </td>
+                    <td className="fw-bold text-success">
+                      ¥
+                      {(
+                        item.basePrice +
+                        (item.basePrice * item.markup) / 100
+                      ).toLocaleString()}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -90,4 +171,4 @@ const SellerdealsDetails = () => {
   );
 };
 
-export default SellerdealsDetails;
+export default SellerDealsDetails;

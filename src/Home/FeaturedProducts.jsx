@@ -52,8 +52,10 @@ const FeaturedProducts = () => {
                       {product.category_name}
                     </span>
                   </div>
-                  <h5 className="card-title mb-1 text-dark fw-semibold">{product.name}</h5>
-                  <p className="card-text text-muted small mb-3">{product.description}</p>
+                  <h5 className="card-title mb-1 fw-bold text-dark fw-semibold">{product.name}</h5>
+            <p className="card-text text-muted small mb-3">  {product.description?.length > 80 ? product.description.slice(0, 100) + "..."
+                     : product.description}</p>
+
 
                   <div className="mt-auto d-flex justify-content-between align-items-center">
                     <span className="text-primary fw-bold">${product.price}</span>

@@ -40,6 +40,16 @@ import BuyerRequestDetails from "./Broker/Deals/BuyerRequestDetails";
 import UpdateMarkupPrice from "./Broker/Product/BrokerProduct";
 
 
+import UserProduct from "./UserProfile/UserProduct";
+import MyOrders from "./UserProfile/MyOrders";
+import RequestBroker from "./UserProfile/RequestBroker";
+import AdminPlans from "./Componente/AdminPlans/AdminPlans";
+import BuyerOrders from "./Broker/Orders/BuyerOrders";
+import BuyerOrderDetails from "./Broker/Orders/BuyerOrderDetails";
+import ForwardToSeller from "./Broker/Orders/ForwardToSeller";
+import ForwardedOrders from "./Broker/Orders/ForwardedOrders";
+import BrokerReports from "./Broker/Reports/BrokerReports";
+import BrokerProducts from "./Broker/Product/BrokerProduct";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -89,10 +99,15 @@ function App() {
                 <Route path="/editproducts/:id" element={<EditProductForm />} />
                 <Route path="/MainReport" element={<MainReport />} />
                 <Route path="/inventory" element={<Inventory />} />
+                <Route path="/AdminPlans" element={<AdminPlans />} />
                 <Route path="/Admin-Profile" element={<AdminProfile />} />
+                
                 {/* user */}
                <Route path="/UserDashboard" element={< UserDashboard/>} />
                <Route path="/MyProfile" element={<MyProfile />} />
+               <Route path="/UserProduct" element={<UserProduct />} />
+               <Route path="/MyOrders" element={<MyOrders />} />
+               <Route path="/Request-Broker" element={<RequestBroker />} />
 
 
                {/* Seller */}
@@ -119,7 +134,12 @@ function App() {
    <Route path="/broker/deal-details/:id" element={ <SellerdealsDetails />}  />
        <Route path="/broker/buyerrequest" element={ <BuyerRequest />} />
             <Route path="/broker/buyer-request-details/:id" element={ <BuyerRequestDetails />}  />
-            <Route path="/broker/products" element={<UpdateMarkupPrice />} />
+            <Route path="/broker/products" element={<BrokerProducts />} />
+            <Route path="/broker/buyerorders" element={<BuyerOrders />} />
+            <Route path="/orders/buyer/:id" element={<BuyerOrderDetails />} />
+             <Route path="/orders/forward/:id" element={<ForwardToSeller />} />
+            <Route path="/orders/forwarded" element={<ForwardedOrders />} />
+  <Route path="/broker/reports" element={<BrokerReports />} />
 
               </Routes>
             </div>

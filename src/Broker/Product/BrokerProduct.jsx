@@ -1,101 +1,130 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { FaEye, FaSearch, FaTimes } from "react-icons/fa";
+import axiosInstance from "../../Utilities/axiosInstance";
 
-const UpdateMarkupPrice = () => {
+const BrokerProducts = () => {
   const [products, setProducts] = useState([]);
-  const [selectedId, setSelectedId] = useState("");
-  const [markupPrice, setMarkupPrice] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetch all products on mount
   useEffect(() => {
-    fetchProducts();
+    fetchBrokerProducts();
   }, []);
 
-  const fetchProducts = async () => {
+  const fetchBrokerProducts = async () => {
     try {
-      const response = await axiosInstance.get(`/product/getAllProducts`);
-      setProducts(response.data.data);
-      // setFilteredProducts(response.data.data); 
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
-
-  const handleSelect = (e) => {
-    const id = e.target.value;
-    setSelectedId(id);
-    const product = products.find(p => p.product_id === parseInt(id));
-    setMarkupPrice(product?.markupPrice || "");
-    setMessage(null);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!selectedId || markupPrice === "") {
-      return setMessage({ type: "danger", text: "Please select a product and enter markup price." });
-    }
-
-    try {
-      setLoading(true);
-      await axios.put(`/product/updateMarkup/${selectedId}`, { markupPrice });
-      setMessage({ type: "success", text: "Markup price updated successfully!" });
+      const res = await axiosInstance.get("/product/getAllProducts");
+      const updatedProducts = res.data.data.map((product) => ({
+        ...product,
+        markup: 20, // Default markup percentage
+      }));
+      setProducts(updatedProducts);
     } catch (err) {
-      setMessage({ type: "danger", text: "Failed to update markup price." });
-    } finally {
-      setLoading(false);
+      console.error("Error fetching broker products:", err);
     }
+  };
+
+  const filteredProducts = products.filter((product) =>
+    product?.name?.toLowerCase()?.includes(searchTerm.toLowerCase().trim())
+  );
+const calculateFinalPrice = (price, markup) => {
+  const numericPrice = parseFloat(price);
+  const numericMarkup = parseFloat(markup);
+
+  if (isNaN(numericPrice) || isNaN(numericMarkup)) return "N/A";
+
+  return (numericPrice + numericPrice * (numericMarkup / 100)).toFixed(2);
+};
+
+
+  const handleClearSearch = () => {
+    setSearchTerm("");
   };
 
   return (
-    <div className="container py-4">
-      <h4 className="fw-bold mb-3">Update Markup Price</h4>
-
-      {message && (
-        <div className={`alert alert-${message.type}`} role="alert">
-          {message.text}
+    <div className="container-fluid p-4">
+      {/* Header */}
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="h4 fw-bold mb-0">Broker Product Listings</h2>
+        <div className="input-group w-25">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by product name..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          {searchTerm && (
+            <button
+              className="btn btn-outline-secondary"
+              onClick={handleClearSearch}
+              title="Clear"
+            >
+              <FaTimes />
+            </button>
+          )}
         </div>
-      )}
+      </div>
 
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="productSelect" className="form-label">Select Product</label>
-          <select
-            id="productSelect"
-            className="form-select"
-            value={selectedId}
-            onChange={handleSelect}
-          >
-            <option value="">-- Select a product --</option>
-            {products.map((product) => (
-              <option key={product.product_id} value={product.product_id}>
-                {product.product_name} (#{product.product_code})
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {selectedId && (
-          <div className="mb-3">
-            <label htmlFor="markupPrice" className="form-label">Markup Price (USD)</label>
-            <input
-              type="number"
-              className="form-control"
-              id="markupPrice"
-              value={markupPrice}
-              onChange={(e) => setMarkupPrice(e.target.value)}
-              required
-            />
-          </div>
-        )}
-
-        <button className="btn btn-primary" type="submit" disabled={loading}>
-          {loading ? "Updating..." : "Update Markup"}
-        </button>
-      </form>
+      {/* Table */}
+      <div className="table-responsive">
+        <table className="table table-bordered align-middle">
+          <thead className="table-light">
+            <tr>
+              <th>SL</th>
+              <th>Product Name</th>
+              <th>Seller Price (¥)</th>
+              <th>Markup (%)</th>
+              <th>Final Price (¥)</th>
+              <th>Model No</th>
+              <th>Material</th>
+              <th>Image</th>
+              <th className="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredProducts?.length > 0 ? (
+              filteredProducts.map((product, index) => (
+                <tr key={product.id || index}>
+                  <td>{index + 1}</td>
+                  <td>{product.name?.slice(0, 40)}</td>
+                  <td>{Number(product.price || 0).toFixed(2)}</td>
+                  <td>{product.markup}%</td>
+                  <td>	{calculateFinalPrice(product.price, product.markup)}</td>
+                  <td>{product.modelNo || "N/A"}</td>
+                  <td>{product.material || "N/A"}</td>
+                  <td>
+                    {product.image?.length > 0 ? (
+                      <img
+                        src={product.image[0]}
+                        alt="product"
+                        style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                      />
+                    ) : (
+                      <span className="text-muted">No Image</span>
+                    )}
+                  </td>
+                  <td className="text-end">
+                    <button
+                      className="btn btn-sm btn-outline-secondary"
+                      title="View"
+                    >
+                      <FaEye />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="9" className="text-center text-muted">
+                  No products found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
 
-export default UpdateMarkupPrice;
+export default BrokerProducts;
