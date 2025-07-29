@@ -29,7 +29,7 @@ const BrokerInvitationDetails = () => {
   return (
     <div className="container my-4">
       <div className="card shadow-sm">
-        <button className="btn btn-primary w-[1/10] me-2 mb-2" onClick={() => navigate(-1)}>back</button>
+      
         <div className="card-body">
           <h3 className="fw-bold mb-3">{brokerDetails.company_name}</h3>
 
@@ -95,6 +95,7 @@ const BrokerInvitationDetails = () => {
           </div>
 
           <div className="text-end mt-4">
+            <button className="btn btn-secondary me-2" onClick={() => navigate(-1)}>Cancel</button>
             <button className="btn btn-success px-4">Accept Invitation</button>
           </div>
         </div>

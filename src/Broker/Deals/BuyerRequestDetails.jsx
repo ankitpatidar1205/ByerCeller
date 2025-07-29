@@ -4,16 +4,16 @@ import { FaArrowLeft } from "react-icons/fa";
 
 const mockData = {
   id: 201,
-  buyer_name: "Universal Auto Buyers",
-  company: "Universal Imports LLC",
+   buyer_name: "Fadi samarah",
+    company: "BASAMCO company limited ",
   phone: "001234567890",
-  category: "Braking System",
+  category: "Trucks spare parts",
   status: "Pending",
   product: {
     name: "Steel Zinc Platt Mounting",
     code: "25005",
     quantity: 20,
-    price: "¥1,600.00",
+    price: "¥1,760.00",
   },
 };
 
@@ -26,7 +26,7 @@ const BuyerRequestDetails = () => {
 
   return (
     <div className="container-fluid py-4 px-3 px-md-4">
-      <button className="btn btn-light mb-3" onClick={() => navigate(-1)}>
+      <button className=" d-flex btn btn-light mb-3" onClick={() => navigate(-1)}>
         <FaArrowLeft className="me-2" />
         Back to Deals
       </button>

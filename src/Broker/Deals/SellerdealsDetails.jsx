@@ -11,12 +11,13 @@ import {
 // Mock Data
 const mockDeal = {
   id: 101,
-  seller_name: "AutoWorld FZE",
-  phone: "+971556678912",
-  company: "AutoWorld FZE Dubai",
+  seller_name: "RX002 yongjia Jill",
+    company: "YINGJIA MANUFACTURER TRUCKS PARTS COMPANY LIMITED",
+  phone: "0086158613121",
+
   request_date: "2025-07-26",
   status: "Sent",
-  address: "Warehouse 5, Ras Al Khor, Dubai, UAE",
+  address: "2401 , pingshan , Shenzhen city , Dongguan province , China ",
   notes: "Requested urgent shipping of parts.",
 };
 
@@ -30,14 +31,14 @@ const mockProducts = [
     basePrice: 1600,
     markup: 10,
   },
-  {
-    id: 2,
-    name: "Brake Disc Plate",
-    code: "25610",
-    quantity: 10,
-    basePrice: 2100,
-    markup: 10,
-  },
+  // {
+  //   id: 2,
+  //   name: "Brake Disc Plate",
+  //   code: "25610",
+  //   quantity: 10,
+  //   basePrice: 2100,
+  //   markup: 10,
+  // },
 ];
 
 const SellerDealsDetails = () => {
@@ -78,7 +79,7 @@ const SellerDealsDetails = () => {
           <h2 className="h4 fw-bold mb-1">Broker Deal Details</h2>
           <p className="text-muted">Request ID: #{mockDeal.id}</p>
         </div>
-        <button className="btn btn-outline-secondary" onClick={() => navigate(-1)}>
+        <button className="d-flex btn btn-outline-secondary" onClick={() => navigate(-1)}>
           <FaArrowLeft className="me-2" />
           Back
         </button>

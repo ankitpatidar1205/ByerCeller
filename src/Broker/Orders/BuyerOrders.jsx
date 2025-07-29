@@ -13,13 +13,13 @@ const BuyerOrders = () => {
         product_name: "Steel Zinc Platt Mounting",
         product_code: "25005",
         quantity: 20,
-        price: 1600.0,
+        price: 1760.0,
         status: "Received", // or "Completed"
       },
       {
         order_id: 2,
         buyer_name: "BASAMCO Company Limited",
-        product_name: "Truck Brake Disc",
+        product_name: "Steel Zinc Platt Mounting",
         product_code: "TRK3901",
         quantity: 10,
         price: 1200.0,
