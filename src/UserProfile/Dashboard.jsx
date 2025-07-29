@@ -95,7 +95,7 @@ const UserDashboard = () => {
             </table>
           </div>
           <div className="text-end">
-            <Link to="/myorders" className="btn btn-primary">
+            <Link to="/myorders" className="btn custom-button">
               View All Orders
             </Link>
           </div>

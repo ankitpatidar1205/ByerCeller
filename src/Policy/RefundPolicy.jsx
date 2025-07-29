@@ -45,7 +45,7 @@ const RefundPolicy = () => {
             to help!
           </p>
 
-          <a href="/contactus" className="btn btn-primary rounded-pill px-4">
+          <a href="/contactus" className="btn custom-button rounded-pill px-4">
             Contact Us
           </a>
         </div>

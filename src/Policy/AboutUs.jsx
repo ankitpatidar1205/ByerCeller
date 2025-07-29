@@ -25,7 +25,7 @@ const AboutUs = () => {
           <p className="mb-4">
             Thank you for choosing ElectroSupply. We look forward to powering your projects and building a brighter future together.
           </p>
-          <a href="/contactus" className="btn btn-primary rounded-pill px-4">
+          <a href="/contactus" className="btn custom-button rounded-pill px-4">
             Contact Us
           </a>
         </div>

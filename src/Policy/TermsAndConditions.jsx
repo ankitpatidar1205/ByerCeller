@@ -52,7 +52,7 @@ const TermsAndConditions = () => {
             We may update these Terms & Conditions at any time. Please review them regularly to stay informed.
           </p>
 
-          <a href="/contactus" className="btn btn-primary rounded-pill px-4">
+          <a href="/contactus" className="btn custom-button rounded-pill px-4">
             Contact Us
           </a>
         </div>

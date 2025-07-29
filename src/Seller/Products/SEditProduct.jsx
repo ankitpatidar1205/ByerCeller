@@ -230,7 +230,7 @@ updatedData.append('material', formData.material);
           Cancel
         </button>
         </Link>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn custom-button">
           Update Product
         </button>
       </div>
