@@ -2,35 +2,33 @@ import React, { useEffect, useState } from "react";
 import { FaSearch, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
+
+// Company name : BASAMCO company limited 
+// CONTACT NAME : Fadi samarah
+// Phone number : 00972598361988
+// Ione code : IONE00972598361988
+// ADDRESS : 48 Al ram , city Ramallah ,Jerusalem, Palestine 🇵🇸 
+// Categorized : Trucks spare parts 
+// Note : this customer can see all the categorized parts of trucks 
+// Categorize IOne : buyer 
+
 const mockBuyerDeals = [
   {
     id: 201,
-    buyer_name: "Universal Auto Buyers",
-    company: "Universal Imports LLC",
+    buyer_name: "Fadi samarah",
+    company: "BASAMCO company limited ",
+
     phone: "001234567890",
-    category: "Braking System",
+    category: "Trucks spare parts",
     status: "Pending",
     product: {
       name: "Steel Zinc Platt Mounting",
       code: "25005",
       quantity: 20,
-      price: "¥1,600.00",
+      price: "¥1,760.00",
     },
   },
-  {
-    id: 202,
-    buyer_name: "Nova Car Supplies",
-    company: "Nova Autotech Co.",
-    phone: "0091987654321",
-    category: "Body Panels",
-    status: "Sent",
-    product: {
-      name: "Front Fender LH",
-      code: "35577",
-      quantity: 10,
-      price: "¥2,200.00",
-    },
-  },
+
 ];
 
 const BuyerRequest = () => {

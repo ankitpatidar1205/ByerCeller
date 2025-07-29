@@ -9,20 +9,11 @@ const forwardedOrders = [
     product_name: "Steel Zinc Platt Mounting",
     quantity: 20,
     total_price: 32000,
-    seller_name: "Ahmed Musa",
-    company: "SpareParts LTD",
+    seller_name: "Steel Zinc Platt Mounting",
+    company: "YINGJIA MANUFACTURER TRUCKS PARTS COMPANY LIMITED",
     status: "Forwarded",
   },
-  {
-    order_id: "2",
-    buyer_name: "Omar Jalil",
-    product_name: "Axle Spacer Ring",
-    quantity: 10,
-    total_price: 9000,
-    seller_name: "Mohamed Said",
-    company: "Truck Solutions",
-    status: "Forwarded",
-  },
+  
 ];
 
 const ForwardedOrders = () => {
@@ -34,7 +25,7 @@ const ForwardedOrders = () => {
 
       <div className="table-responsive">
         <table className="table table-bordered table-striped">
-          <thead className="table-dark">
+          <thead>
             <tr>
               <th>Order ID</th>
               <th>Buyer</th>
@@ -60,7 +51,7 @@ const ForwardedOrders = () => {
                 </td>
                 <td>
                   
-                  <button onClick={() => navigate(`/orders/buyer/${order.order_id}`)} >
+                  <button className="btn-primary" onClick={() => navigate(`/orders/forwardeddetails/${order.order_id}`)} >
                     View
                   </button>
                 </td>

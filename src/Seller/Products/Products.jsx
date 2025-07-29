@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaFilePdf, FaPlusCircle, FaEye, FaEdit, FaTrash, FaSearch, FaTimes, } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axiosInstance from "../../Utilities/axiosInstance";
-const Productes = () => {
+const SellerProductes = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -54,7 +54,7 @@ const Productes = () => {
             <FaFilePdf />
             <span>Export PDF</span>
           </button> */}
-          <Link to="/addproducts">
+          <Link to="/seller/addproducts">
             <button className="btn btn-primary d-flex align-items-center gap-2">
               <FaPlusCircle />
               <span>Add Product</span>
@@ -230,4 +230,4 @@ const Productes = () => {
   );
 };
 
-export default Productes;
+export default SellerProductes;

@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft, FaCheck, FaTimes, FaPrint, FaDownload, FaPen, FaPaperPlane } from "react-icons/fa";
 
-const BuyerOrderDetails = () => {
+const OrderDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -12,17 +12,17 @@ const BuyerOrderDetails = () => {
     createdAt: "2025-07-27",
     status: "Processing", // or "Completed", "Received"
     buyer: {
-      name: "Fadi Samarah",
-      company: "BASAMCO Company Limited",
-      phone: "00972598361988",
+      name: ": KHALIL HISHAM ABDALLAH SHWAIKI",
+      company: "HK KANDIVAN INTERNATIONAL TRADING COMPANY LIMITED ",
+      phone: "008613332800284",
       category: "Trucks spare parts",
-      address: "48 Al Ram, City Ramallah, Jerusalem, Palestine 🇵🇸",
+      address: ":  H A192/193 ,Shenzhen Huaqiang North Manah A Building, manha, Shenzhen city , Dongguan province , China ",
     },
     product: {
       name: "Steel Zinc Platt Mounting",
       code: "25005",
       quantity: 20,
-      price: 1760,
+      price: 1600,
       currency: "¥",
     },
     notes: "This customer can see all the categorized parts of trucks.",
@@ -33,7 +33,7 @@ const BuyerOrderDetails = () => {
   return (
     <div className="container-fluid py-4 px-3 px-md-5 bg-light min-vh-100">
       {/* Back Button */}
-      <button className="d-flex btn btn-secondary mb-3" onClick={() => navigate(-1)}>
+      <button className="btn btn-light mb-3" onClick={() => navigate(-1)}>
         <FaArrowLeft className="me-2" /> Back to Orders
       </button>
 
@@ -43,7 +43,7 @@ const BuyerOrderDetails = () => {
 
       <div className="row gy-4">
         {/* Left Section */}
-        <div className="col-lg-8">
+        <div className="col-lg-12">
           {/* Buyer Info */}
           <div className="card shadow-sm mb-4">
             <div className="card-body">
@@ -80,63 +80,11 @@ const BuyerOrderDetails = () => {
         </div>
 
         {/* Right Section - Actions */}
-        <div className="col-lg-4">
-          <div className="card shadow-sm">
-            <div className="card-body">
-              <h5 className="fw-bold mb-3">Actions</h5>
-             <ul className="list-unstyled">
-  <li className="mb-3">
-    <button className="btn btn-outline-success w-100 d-flex align-items-center justify-content-center">
-      <FaCheck className="me-2" />
-      Confirm Order
-    </button>
-  </li>
-  
-  {/* <li className="mb-3">
-    <button className="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center">
-      <FaPen className="me-2" />
-      Update Order
-    </button>
-  </li> */}
-  
-<li className="mb-3">
- 
-    <button className="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center" onClick={() => navigate(`/orders/forward/${order.orderId}`)}>
-      <FaPaperPlane className="me-2" />
-      Forward to Seller
-    </button>
-  
-</li>
-
-  
-  {/* <li className="mb-3">
-    <button className="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center">
-      <FaDownload className="me-2" />
-      Download Invoice
-    </button>
-  </li>
-  
-  <li className="mb-3">
-    <button className="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center">
-      <FaPrint className="me-2" />
-      Print Order
-    </button>
-  </li> */}
-  
-  <li>
-    <button className="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center">
-      <FaTimes className="me-2" />
-      Cancel Order
-    </button>
-  </li>
-</ul>
-
-            </div>
-          </div>
-        </div>
+      
+        
       </div>
     </div>
   );
 };
 
-export default BuyerOrderDetails;
+export default OrderDetails;

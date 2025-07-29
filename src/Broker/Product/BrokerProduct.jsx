@@ -78,7 +78,7 @@ const calculateFinalPrice = (price, markup) => {
               <th>Model No</th>
               <th>Material</th>
               <th>Image</th>
-              <th className="text-end">Actions</th>
+              {/* <th className="text-end">Actions</th> */}
             </tr>
           </thead>
           <tbody>
@@ -103,14 +103,14 @@ const calculateFinalPrice = (price, markup) => {
                       <span className="text-muted">No Image</span>
                     )}
                   </td>
-                  <td className="text-end">
+                  {/* <td className="text-end">
                     <button
                       className="btn btn-sm btn-outline-secondary"
                       title="View"
                     >
                       <FaEye />
                     </button>
-                  </td>
+                  </td> */}
                 </tr>
               ))
             ) : (

@@ -1,24 +1,55 @@
-import React from "react";
-import StatsCards from "./StatsCards";
-import DashboardCharts from "./DashboardCharts";
-import RecentOrders from "./RecentOrders";
+import React from 'react';
+// import StatCard from './StatCard';
+import RevenueChart from './RevenueChart';
+import BrokerRequestChart from './BrokerRequestChart';
+// import BrokerRequestsTable from './BrokerRequestsTable';
+import StatCard from './StatsPCards';
+
 
 const SellerDashboard = () => {
   return (
     <div className="container-fluid p-4">
-      {/* Page Header */}
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <div>
-          <h2 className="h4 fw-bold mb-1">Dashboard Overview</h2>
-          <p className="text-muted mb-0">Welcome back! </p>
-        </div>
-      
+      <div className="row g-3 mb-4">
+          <StatCard
+        title="Total Products"
+        value="8"
+        subtitle="↑ 100% from last month"
+        iconClass="fas fa-box"
+        color="primary"
+      />
+      <StatCard
+        title="Active Deals"
+        value="1"
+        subtitle="↑ 1 new deals"
+        iconClass="fas fa-handshake"
+        color="danger"
+      />
+      <StatCard
+        title="Connected Brokers"
+        value="1"
+        subtitle="↑1 more from last month"
+        iconClass="fas fa-user-friends"
+        color="warning"
+      />
+      <StatCard
+        title="Total Revenue"
+        value="3200"
+        subtitle="↑ $3,200 from last month"
+        iconClass="fas fa-dollar-sign"
+        color="success"
+      />
       </div>
 
-      {/* Components */}
-      <StatsCards />
-      <DashboardCharts />
-      <RecentOrders />
+      <div className="row">
+        <div className="col-md-8">
+          <RevenueChart />
+        </div>
+        <div className="col-md-4">
+          <BrokerRequestChart />
+        </div>
+      </div>
+
+      {/* <BrokerRequestsTable /> */}
     </div>
   );
 };

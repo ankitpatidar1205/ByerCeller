@@ -8,10 +8,15 @@ import { useNavigate } from "react-router-dom";
 const mockDeals = [
   {
     id: 101,
-    seller_name: "Al-Madina Auto Parts",
-    company: "Al-Madina Trading Co.",
-    phone: "009715511223344",
-    category: "Trucks spare parts ",
+    seller_name: "RX002 yongjia Jill",
+    company: "YINGJIA MANUFACTURER TRUCKS PARTS COMPANY LIMITED",
+    contact_name: "RX002 yongjia Jill",
+    phone: "0086158613121",
+    ione_code: "IONE 0086158613121",
+    address: "2401, Pingshan, Shenzhen City, Dongguan Province, China 🇨🇳",
+    category: "Trucks spare parts",
+    categorize_ione: "seller",
+    note: "This seller can update all the categorized parts of trucks belonging to his factory.",
     status: "Sent",
     product: {
       name: "Steel Zinc Platt Mounting",
@@ -20,7 +25,6 @@ const mockDeals = [
       price: "¥1,600.00",
     },
   },
-  
 ];
 
 const SellerRequest = () => {

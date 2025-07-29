@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axiosInstance from "../../Utilities/axiosInstance";
+
 import { Modal, Button } from "react-bootstrap";
 import Loader from "../../Loader/Loader";
+import axiosInstance from "../../Utilities/axiosInstance";
 
-const AdminProfile = () => {
+
+const SellerProfile = () => {
   const [profile, setProfile] = useState({
     firstName: "",
     lastName: "",
@@ -18,14 +20,14 @@ const AdminProfile = () => {
 
   const fetchProfile = async () => {
     try {
-      const res = await axiosInstance.get(`/user/getUserById/${userId}`);
-      const data = res.data?.data;
+    //   const res = await axiosInstance.get(`/user/getUserById/${userId}`);
+    //   const data = res.data?.data;
 
       setProfile({
-        firstName: data.firstName || "",
-        lastName: data.lastName || "",
-        email: data.email || "",
-        password: "", // Do not pre-fill password
+        firstName:  "Seller",
+        lastName: "last Name",
+        email:  "seller@example.com",
+        password: "",
       });
       setLoading(false);
     } catch (error) {
@@ -44,7 +46,7 @@ const AdminProfile = () => {
 
   const handleUpdate = async () => {
     const updatedData = {
-      firstName: profile.firstName ,
+      firstName: profile.firstName,
       lastName: profile.lastName,
       email: profile.email,
     };
@@ -66,26 +68,31 @@ const AdminProfile = () => {
     }
   };
 
-  if (loading) return <div className="p-4"><Loader/></div>;
+  if (loading) return <div className="p-4"><Loader /></div>;
 
   return (
     <div className="container py-4">
-      <h2 className="mb-4 fw-bold">Admin Profile</h2>
+      <h2 className="mb-4 fw-bold"> Profile</h2>
       <div className="card p-4 shadow-sm">
-        <div className="row mb-3">
-          <div className="col-md-6">
-            <strong>First Name:</strong> {profile.firstName}
-          </div>
-          <div className="col-md-6">
-            <strong>Last Name:</strong> {profile.lastName}
+        <div className="row align-items-center">
+          
+          <div className="col-md-9">
+            <div className="row mb-2">
+              <div className="col-md-6">
+                <strong>First Name:</strong> {profile.firstName}
+              </div>
+              <div className="col-md-6">
+                <strong>Last Name:</strong> {profile.lastName}
+              </div>
+            </div>
+            <div className="mb-2">
+              <strong>Email:</strong> {profile.email}
+            </div>
+            <Button variant="primary" onClick={() => setShowModal(true)}>
+              Edit Profile
+            </Button>
           </div>
         </div>
-        <div className="mb-3">
-          <strong>Email:</strong> {profile.email}
-        </div>
-        <Button variant="primary" onClick={() => setShowModal(true)}>
-          Edit Profile
-        </Button>
       </div>
 
       {/* MODAL */}
@@ -151,4 +158,4 @@ const AdminProfile = () => {
   );
 };
 
-export default AdminProfile;
+export default SellerProfile;

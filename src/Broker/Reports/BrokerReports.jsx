@@ -11,11 +11,11 @@ const BrokerReports = () => {
     new Chart(barCtx, {
       type: "bar",
       data: {
-        labels: ["Sellers", "Buyers", "Expenses", "Revenue", "Orders"],
+        labels: ["Sellers", "Buyers", "Orders"],
         datasets: [
           {
             label: "Report Data",
-            data: [45, 70, 2500, 4800, 95],
+            data: [1, 1,  1],
             backgroundColor: [
               "#4e73df",
               "#1cc88a",
@@ -42,7 +42,7 @@ const BrokerReports = () => {
         labels: ["Revenue", "Expenses"],
         datasets: [
           {
-            data: [4800, 2500],
+            data: [35200, 32000],
             backgroundColor: ["#1cc88a", "#e74a3b"],
             hoverOffset: 4
           }
@@ -66,31 +66,31 @@ const BrokerReports = () => {
         <div className="col-md-3">
           <div className="bg-light rounded p-3 shadow-sm">
             <h6>Total Sellers Contacted</h6>
-            <h4 className="fw-bold text-primary">45</h4>
+            <h4 className="fw-bold text-primary">1</h4>
           </div>
         </div>
         <div className="col-md-3">
           <div className="bg-light rounded p-3 shadow-sm">
             <h6>Total Buyers</h6>
-            <h4 className="fw-bold text-success">70</h4>
+            <h4 className="fw-bold text-success">1</h4>
           </div>
         </div>
         <div className="col-md-2">
           <div className="bg-light rounded p-3 shadow-sm">
             <h6>Expenses</h6>
-            <h4 className="fw-bold text-danger">$2,500</h4>
+            <h4 className="fw-bold text-danger">¥ 32000</h4>
           </div>
         </div>
         <div className="col-md-2">
           <div className="bg-light rounded p-3 shadow-sm">
             <h6>Incoming Revenue</h6>
-            <h4 className="fw-bold text-info">$4,800</h4>
+            <h4 className="fw-bold text-info">¥35200</h4>
           </div>
         </div>
         <div className="col-md-2">
           <div className="bg-light rounded p-3 shadow-sm">
             <h6>Total Orders</h6>
-            <h4 className="fw-bold text-warning">95</h4>
+            <h4 className="fw-bold text-warning">1</h4>
           </div>
         </div>
       </div>
