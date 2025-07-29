@@ -17,7 +17,6 @@ import Signup from "./authtication/Signup";
 import AddCategories from "./Componente/Categories/AddCategories";
 import ProductPage from "./Home/ProductPage";
 import AddProduct from "./Componente/Products/AddProduct";
-import ProfilePage from "./UserProfile/ProfilePage";
 import AdminProfile from "./Componente/AdminProfile/AdminProfile";
 import ContactUs from "./Home/ContactUs";
 import RelatedProducts from "./Home/ProductDetails";
@@ -28,6 +27,18 @@ import RefundPolicy from "./Policy/RefundPolicy";
 import ScrollToTop from "./Utilities/ScrollToTop";
 import EditProductForm from "./Componente/Products/EditProduct";
 import MainReport from "./Componente/ReportAnalytics/MainReport";
+import MyProfile from "./UserProfile/MyProfile";
+import UserDashboard from "./UserProfile/Dashboard";
+import SellerDashboard from "./Seller/Dashboard/SellerDashboard";
+import BrokerInvitations from "./Seller/Broker/BrokerInvitation";
+import BrokerInvitationDetails from "./Seller/Broker/BrokerInvitationDetails";
+import BrokerDashboard from "./Broker/Dashboard.jsx/BrokerDashboard";
+import SellerRequest from "./Broker/Deals/SellerRequest";
+import SellerdealsDetails from "./Broker/Deals/sellerdealsDetails";
+import BuyerRequest from "./Broker/Deals/BuyerRequest";
+import BuyerRequestDetails from "./Broker/Deals/BuyerRequestDetails";
+
+
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -38,7 +49,7 @@ function App() {
     setIsSidebarCollapsed((prev) => !prev);
   };
   const location = useLocation();
-  const hideLayout = location.pathname === "/" || location.pathname === "/electricalproducts"  || location.pathname === "/contactus" || location.pathname === "/profilepage" || location.pathname === "/productpage" || location.pathname === "/shoppingcart" || location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/aboutus" || location.pathname === "/privacypolicy" || location.pathname === "/terms" || location.pathname === "/refund" || location.pathname.startsWith("/productpage" );
+  const hideLayout = location.pathname === "/" || location.pathname === "/electricalproducts"  || location.pathname === "/contactus" || location.pathname === "/productpage" || location.pathname === "/shoppingcart" || location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/aboutus" || location.pathname === "/privacypolicy" || location.pathname === "/terms" || location.pathname === "/refund" || location.pathname.startsWith("/productpage" );
   return (
     <>
       <ScrollToTop />
@@ -51,8 +62,6 @@ function App() {
           <Route path="/electricalproducts" element={<ElectricalProducts />} />
           <Route path="/shoppingcart" element={<ShoppingCart />} />
           <Route path="/productpage/:id" element={<ProductPage />} />
-           <Route path="/profilepage" element={<ProfilePage />} />
-          <Route path="/profilepage" element={<ProfilePage />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/productdetails" element={<RelatedProducts />} />
           <Route path="/aboutus" element={<AboutUs />} />
@@ -68,23 +77,47 @@ function App() {
             <Sidebar  collapsed={isSidebarCollapsed}  menuItemClick={menusidebarcollaps}/>
             <div   className={`right-side-content ${isSidebarCollapsed ? "collapsed" : "" }`} >
               <Routes>
+                {/* admin */}
                 <Route path="/admin/dashboard" element={<Dashboard />} />
                 <Route path="/categories" element={<AddCategories />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/bannermanager" element={<BannerManager />} />
-                {/* products */}
                 <Route path="/products" element={<Productes />} />
                 <Route path="/addproducts" element={<AddProduct />} />
                 <Route path="/editproducts/:id" element={<EditProductForm />} />
                 <Route path="/MainReport" element={<MainReport />} />
-
                 <Route path="/inventory" element={<Inventory />} />
                 <Route path="/Admin-Profile" element={<AdminProfile />} />
+                {/* user */}
+               <Route path="/UserDashboard" element={< UserDashboard/>} />
+               <Route path="/MyProfile" element={<MyProfile />} />
 
-                 
+
+               {/* Seller */}
+
+            <Route path="/seller/dashboard" element ={ <SellerDashboard />} />
+                  <Route path="/seller/categories" element={<AddCategories />} />
+                   <Route path="/seller/addproducts" element ={ <AddProduct />} />
+              <Route path="/seller/products" element ={ <Productes />} />
+           <Route path="/seller/orders" element ={ <Orders />} />
+                    <Route path="/seller/profile" element ={ <AdminProfile />} />
+                  <Route path="/seller/inventory" element={<Inventory />} />
+                  <Route path="/seller/brokerinvitation" element={<BrokerInvitations />} />
+                  <Route path="/seller/broker-details" element={<BrokerInvitationDetails />} />
 
 
+                  {/* Broker  */}
+          
+   {/* <Route path="/broker/dashboard" element ={ <BrokerDashboard />} /> */}
+
+    <Route path="/broker/dashboard" element={ <BrokerDashboard />} />
+
+          
+    <Route path="/broker/sellerrequest" element={ <SellerRequest />} />
+   <Route path="/broker/deal-details/:id" element={ <SellerdealsDetails />}  />
+       <Route path="/broker/buyerrequest" element={ <BuyerRequest />} />
+            <Route path="/broker/buyer-request-details/:id" element={ <BuyerRequestDetails />}  />
 
               </Routes>
             </div>
