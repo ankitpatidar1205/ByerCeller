@@ -11,14 +11,14 @@ const UserDashboard = () => {
 
   // Dummy Recent Orders
   const recentOrders = [
-    { id: "ORD1005", product: "Truck Engine Part", date: "2025-07-26", status: "Shipped", price: "$499" },
-    { id: "ORD1004", product: "iPhone 14 Pro Max", date: "2025-07-25", status: "Delivered", price: "$1,299" },
-    { id: "ORD1003", product: "Brake Pads", date: "2025-07-24", status: "Pending", price: "$199" },
+    { id: "ORD1005", product: "Truck Engine Part", date: "2025-07-26", status: "Shipped", price: "¥499" },
+    { id: "ORD1004", product: "iPhone 14 Pro Max", date: "2025-07-25", status: "Delivered", price: "¥1,299" },
+    { id: "ORD1003", product: "Brake Pads", date: "2025-07-24", status: "Pending", price: "¥199" },
   ];
 
   return (
     <div className="container my-4">
-      <h2 className="fw-bold mb-4">Buyer Dashboard</h2>
+      <h1 className="fw-bold mb-4">Buyer Dashboard</h1>
 
       {/* Stats Cards */}
       <div className="row g-3 mb-4">

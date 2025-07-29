@@ -35,7 +35,7 @@ const StatsCards = () => {
           },
           {
             title: "Total Revenue",
-            value: `$${data.totalRevenue?.count || 0}`,
+            value: `¥${data.totalRevenue?.count || 0}`,
             change: `${data.totalRevenue?.change || 0}% from last month`,
             icon: "bi-currency-dollar",
             color: "success",

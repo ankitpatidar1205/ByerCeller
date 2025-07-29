@@ -58,7 +58,7 @@ const FeaturedProducts = () => {
 
 
                   <div className="mt-auto d-flex justify-content-between align-items-center">
-                    <span className="text-primary fw-bold">${product.price}</span>
+                    <span className="text-primary fw-bold">¥{product.price}</span>
                     <button className="btn btn-primary btn-sm rounded-pill">
                       View
                     </button>

@@ -44,6 +44,7 @@ import UserProduct from "./UserProfile/UserProduct";
 import MyOrders from "./UserProfile/MyOrders";
 import RequestBroker from "./UserProfile/RequestBroker";
 import AdminPlans from "./Componente/AdminPlans/AdminPlans";
+import Pricing from "./Home/Pricing";
 import BuyerOrders from "./Broker/Orders/BuyerOrders";
 import BuyerOrderDetails from "./Broker/Orders/BuyerOrderDetails";
 import ForwardToSeller from "./Broker/Orders/ForwardToSeller";
@@ -67,7 +68,7 @@ function App() {
     setIsSidebarCollapsed((prev) => !prev);
   };
   const location = useLocation();
-  const hideLayout = location.pathname === "/" || location.pathname === "/electricalproducts"  || location.pathname === "/contactus" || location.pathname === "/productpage" || location.pathname === "/shoppingcart" || location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/aboutus" || location.pathname === "/privacypolicy" || location.pathname === "/terms" || location.pathname === "/refund" || location.pathname.startsWith("/productpage" );
+  const hideLayout = location.pathname === "/" || location.pathname === "/electricalproducts"  || location.pathname === "/contactus" || location.pathname === "/productpage" || location.pathname==="/pricing" || location.pathname === "/shoppingcart" || location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/aboutus" || location.pathname === "/privacypolicy" || location.pathname === "/terms" || location.pathname === "/refund" || location.pathname.startsWith("/productpage" );
   return (
     <>
       <ScrollToTop />
@@ -86,6 +87,7 @@ function App() {
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/refund" element={<RefundPolicy />} />
+          <Route path="/pricing" element={<Pricing />} />
         </Routes>
       ) : (
         // Pages with Layout
@@ -93,7 +95,7 @@ function App() {
           <Navbar toggleSidebar={toggleSidebar} />
           <div className="main-content">
             <Sidebar  collapsed={isSidebarCollapsed}  menuItemClick={menusidebarcollaps}/>
-            <div   className={`right-side-content ${isSidebarCollapsed ? "collapsed" : "" }`} >
+            <div className={`right-side-content ${isSidebarCollapsed ? "collapsed" : "" }`} >
               <Routes>
                 {/* admin */}
                 <Route path="/admin/dashboard" element={<Dashboard />} />
@@ -117,10 +119,8 @@ function App() {
                <Route path="/MyOrders" element={<MyOrders />} />
                <Route path="/Request-Broker" element={<RequestBroker />} />
 
-
-               {/* Seller */}
-
-            <Route path="/seller/dashboard" element ={ <SellerDashboard />} />
+                 {/* Seller */}
+                  <Route path="/seller/dashboard" element ={ <SellerDashboard />} />
                   <Route path="/seller/categories" element={<AddCategories />} />
                    <Route path="/seller/addproducts" element ={ <SAddProduct />} />
               <Route path="/seller/products" element ={ <SellerProductes />} />
@@ -131,17 +131,11 @@ function App() {
                   <Route path="/seller/brokerinvitation" element={<BrokerInvitations />} />
                   <Route path="/seller/broker-details" element={<BrokerInvitationDetails />} />
 
-
                   {/* Broker  */}
-          
-   {/* <Route path="/broker/dashboard" element ={ <BrokerDashboard />} /> */}
-
-    <Route path="/broker/dashboard" element={ <BrokerDashboard />} />
-
-          
-    <Route path="/broker/sellerrequest" element={ <SellerRequest />} />
-   <Route path="/broker/deal-details/:id" element={ <SellerdealsDetails />}  />
-       <Route path="/broker/buyerrequest" element={ <BuyerRequest />} />
+           <Route path="/broker/dashboard" element={ <BrokerDashboard />} />  
+           <Route path="/broker/sellerrequest" element={ <SellerRequest />} />
+           <Route path="/broker/deal-details/:id" element={ <SellerdealsDetails />}  />
+            <Route path="/broker/buyerrequest" element={ <BuyerRequest />} />
             <Route path="/broker/buyer-request-details/:id" element={ <BuyerRequestDetails />}  />
             <Route path="/broker/products" element={<BrokerProducts />} />
             <Route path="/broker/buyerorders" element={<BuyerOrders />} />
@@ -151,6 +145,7 @@ function App() {
             <Route path="/orders/forwardeddetails/:id" element={<ForwardOrderDetails />} />
             <Route path="/broker/reports" element={<BrokerReports />} />
             <Route path="/broker/profile" element={<BrokerProfile />} />
+           
 
               </Routes>
             </div>

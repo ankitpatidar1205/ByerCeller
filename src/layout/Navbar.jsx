@@ -19,8 +19,7 @@ const Navbar = ({ toggleSidebar }) => {
           <div className="d-flex align-items-center gap-3">
 
            <Link to="/">
-            <img  height={80}   width={130}
-              src="https://i.postimg.cc/qBKyqcWd/1-removebg-preview.png" alt="Logo" />
+          <span className="fw-bold fs-5">CRM Management</span>
            </Link>
             <button   className="btn btn-outline-secondary d-lg-none"    onClick={toggleSidebar} >
               <i className="bi bi-list fs-4"></i>

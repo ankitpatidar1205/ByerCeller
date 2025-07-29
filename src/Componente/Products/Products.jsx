@@ -103,7 +103,7 @@ const Productes = () => {
                 <td className="ps-4 fw-semibold">{index + 1}</td>
               <td>{product?.name?.slice(0, 40)}{product?.name?.length > 100 ? "..." : ""}</td>
 
-                <td>${product?.price}</td>
+                <td>¥{product?.price}</td>
                 <td>{product?.modelNo}</td>
                 <td>{product?.material || "N/A"}</td>
                 <td>
@@ -123,11 +123,7 @@ const Productes = () => {
                       title="View Details" >
                       <FaEye size={14} />
                     </button>
-                <Link to={`/editproducts/${product.id}`} className="btn btn-sm btn-outline-primary">
-  <FaEdit size={14} />
-</Link>
-
-                   
+                   <Link to={`/editproducts/${product.id}`} className="btn btn-sm btn-outline-primary"> <FaEdit size={14} /></Link>
                           <button  className="btn btn-sm btn-outline-danger"  data-bs-toggle="modal"
                             data-bs-target="#deleteProductModal" onClick={() => setDeleteProduct(product.id)}  title="Delete" >
                             <FaTrash size={14} />
@@ -187,7 +183,10 @@ const Productes = () => {
                   <div className="col-12">
                     <h4 className="fw-bold mt-4">{selectedProduct.name}</h4>
                     <p><strong>ID:</strong> {selectedProduct.id}</p>
-                    <p><strong>Price:</strong> ${selectedProduct.price}</p>
+                    <p><strong>Price:</strong> ¥{selectedProduct.price}</p>
+                      <p><strong>Code:</strong> {selectedProduct.code || "N/A"}</p>
+              <p><strong>Model No:</strong> {selectedProduct.modelNo || "N/A"}</p>
+              <p><strong>Material:</strong> {selectedProduct.material || "N/A"}</p>
                     <p><strong>Stock:</strong> {selectedProduct.stockQuantity}</p>
                     <p><strong>Category:</strong> {selectedProduct.category_name || "N/A"}</p>
                     <p><strong>Description:</strong> {selectedProduct.description || "N/A"}</p>

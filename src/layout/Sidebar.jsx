@@ -94,18 +94,13 @@ const Sidebar = ({ collapsed }) => {
       <div className="sidebar">
         <ul className="menu">
           {menuItems.map((item, index) => (
-            <li
-              key={index}
+            <li  key={index}
               className={`menu-item ${isActive(item.path) ? "active" : ""}`}
-              data-tooltip={collapsed ? item.name : ""}
-            >
-              <div
-                className="menu-link"
+              data-tooltip={collapsed ? item.name : ""} >
+              <div  className="menu-link"
                 onClick={() => {
                   if (item.action) item.action();
-                  else navigate(item.path);
-                }}
-              >
+                  else navigate(item.path);}}>
                 <i className={item.icon}></i>
                 <span className="menu-text">{item.name}</span>
               </div>
