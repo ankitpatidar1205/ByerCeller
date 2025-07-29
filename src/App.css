@@ -19,7 +19,7 @@
 
 body {
   font-family: "Unbanist", sans-serif !important;
-  background-color: #f2f2f2;
+  background-color: #f0f7ff;
 }
 
 a {
@@ -1099,3 +1099,6 @@ svg {
  height: 1rem;
 }
 
+.custom-button{
+   background: linear-gradient(to right, rgb(77, 166, 255), rgb(108, 207, 255));
+}

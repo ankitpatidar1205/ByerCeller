@@ -13,7 +13,7 @@ const Navbar = ({ toggleSidebar }) => {
 
   return (
     <>
-      <nav className="navbar navbar-white bg-white shadow-sm border">
+      <nav className="navbar navbar-white  shadow-sm" style={{backgroundColor:"#1f2a40"}}>
         <div className="container-fluid d-flex justify-content-between align-items-center">
           {/* Left: Logo + Toggle */}
           <div className="d-flex align-items-center gap-3">
@@ -26,11 +26,11 @@ const Navbar = ({ toggleSidebar }) => {
             </button>
           </div>
           <div className="d-flex align-items-center gap-3">
-           <span className="fw-bold"> 👋  Hi,{userRole}</span>
+           <span className="fw-bold text-white"> 👋  Hi,{userRole}</span>
             <div className="dropdown">
               <button  className="btn d-flex align-items-center gap-2 p-0 border-0 bg-transparent " data-bs-toggle="dropdown"
                 aria-expanded="false" >
-                <i className="bi bi-person fs-3 text-secondary"></i>  
+                <i className="bi bi-person fs-3 text-white"></i>  
               </button>
               <ul className="dropdown-menu dropdown-menu-end shadow-sm mt-2">
                 <li>

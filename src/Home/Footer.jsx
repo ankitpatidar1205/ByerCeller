@@ -12,7 +12,11 @@ import {
 
 const Footer = () => {
   return (
-    <footer id="contact" className="bg-gray-900 text-white pt-10 pb-6">
+    <footer
+      id="contact"
+      className="text-white pt-10 pb-6"
+      style={{ backgroundColor: '#1f2a40' }}
+    >
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Info */}
@@ -20,16 +24,24 @@ const Footer = () => {
             <img
               src="https://i.postimg.cc/h4VQcD7D/2-removebg-preview-2.png"
               alt="ElectroSupply Logo"
-              className="h-14  mb-3"
+              className="h-14 mb-3"
             />
             <p className="text-sm text-gray-300">
-              Your trusted source for electrical components, tools, and industrial supplies.
+              Empowering buyers and sellers with smart CRM tools and industrial-grade electrical supplies.
             </p>
             <div className="flex gap-3 mt-4">
-              <a href="#" className="text-white hover:text-primary transition"><FaFacebookF /></a>
-              <a href="#" className="text-white hover:text-primary transition"><FaTwitter /></a>
-              <a href="#" className="text-white hover:text-primary transition"><FaInstagram /></a>
-              <a href="#" className="text-white hover:text-primary transition"><FaPinterestP /></a>
+              <a href="#" className="text-white hover:text-blue-400 transition">
+                <FaFacebookF />
+              </a>
+              <a href="#" className="text-white hover:text-blue-400 transition">
+                <FaTwitter />
+              </a>
+              <a href="#" className="text-white hover:text-blue-400 transition">
+                <FaInstagram />
+              </a>
+              <a href="#" className="text-white hover:text-blue-400 transition">
+                <FaPinterestP />
+              </a>
             </div>
           </div>
 
@@ -38,26 +50,25 @@ const Footer = () => {
             <h6 className="text-lg font-semibold mb-3">Company</h6>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>
-    <Link to="/" className="text-decoration-none text-gray-400">
-      Home
-    </Link>
-  </li>
-  <li>
-    <Link to="/electricalproducts" className="text-decoration-none text-gray-400">
-      Products
-    </Link>
-  </li>
-  <li>
-    <Link to="/aboutus" className="text-decoration-none text-gray-400">
-      About Us
-    </Link>
-  </li>
-  <li>
-    <Link to="/contactus" className="text-decoration-none text-gray-400">
-      Contact Us
-    </Link>
-  </li>
-              
+                <Link to="/" className="text-decoration-none text-gray-400">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/electricalproducts" className="text-decoration-none text-gray-400">
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link to="/aboutus" className="text-decoration-none text-gray-400">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/contactus" className="text-decoration-none text-gray-400">
+                  Contact Us
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -65,25 +76,21 @@ const Footer = () => {
           <div>
             <h6 className="text-lg font-semibold mb-3">Policies</h6>
             <ul className="space-y-2 text-sm text-gray-400">
-               <li>
-    <Link to="/privacypolicy" className="text-decoration-none text-gray-400">
-      Privacy Policy
-    </Link>
-  </li>
-
-           <li>
-    <Link to="/terms" className="text-decoration-none text-gray-400">
-      Terms & Conditions
-    </Link>
-  </li>
-
-           <li>
-    <Link to="/refund" className="text-decoration-none text-gray-400">
-      Refund Policy
-    </Link>
-  </li>
-            
-              
+              <li>
+                <Link to="/privacypolicy" className="text-decoration-none text-gray-400">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="text-decoration-none text-gray-400">
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link to="/refund" className="text-decoration-none text-gray-400">
+                  Refund Policy
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -93,7 +100,7 @@ const Footer = () => {
             <div className="space-y-2 text-sm text-gray-300">
               <p className="flex items-start gap-2">
                 <FaMapMarkerAlt className="text-red-500 mt-1" />
-                456 Powerline Blvd, Houston, TX 77001
+                101 CRM Tower, Tech Business Park, San Jose, CA 95112
               </p>
               <p className="flex items-center gap-2">
                 <FaPhoneAlt className="text-red-500" />
