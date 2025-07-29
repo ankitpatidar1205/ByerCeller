@@ -37,6 +37,7 @@ import SellerRequest from "./Broker/Deals/SellerRequest";
 import SellerdealsDetails from "./Broker/Deals/sellerdealsDetails";
 import BuyerRequest from "./Broker/Deals/BuyerRequest";
 import BuyerRequestDetails from "./Broker/Deals/BuyerRequestDetails";
+import UpdateMarkupPrice from "./Broker/Product/BrokerProduct";
 
 
 
@@ -118,6 +119,7 @@ function App() {
    <Route path="/broker/deal-details/:id" element={ <SellerdealsDetails />}  />
        <Route path="/broker/buyerrequest" element={ <BuyerRequest />} />
             <Route path="/broker/buyer-request-details/:id" element={ <BuyerRequestDetails />}  />
+            <Route path="/broker/products" element={<UpdateMarkupPrice />} />
 
               </Routes>
             </div>

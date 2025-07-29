@@ -10,10 +10,18 @@ const UpdateMarkupPrice = () => {
 
   // Fetch all products on mount
   useEffect(() => {
-    axios.get("/product/getAllProducts")
-      .then((res) => setProducts(res.data))
-      .catch((err) => console.error("Failed to fetch products", err));
+    fetchProducts();
   }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axiosInstance.get(`/product/getAllProducts`);
+      setProducts(response.data.data);
+      // setFilteredProducts(response.data.data); 
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
   const handleSelect = (e) => {
     const id = e.target.value;
