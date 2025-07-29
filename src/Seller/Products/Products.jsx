@@ -123,7 +123,7 @@ const SellerProductes = () => {
                       title="View Details" >
                       <FaEye size={14} />
                     </button>
-                <Link to={`/editproducts/${product.id}`} className="btn btn-sm btn-outline-primary">
+                <Link to={`/seller/editproduct/${product.id}`} className="btn btn-sm btn-outline-primary">
   <FaEdit size={14} />
 </Link>
 

@@ -21,11 +21,11 @@ const SellerOrders = () => {
   const navigate = useNavigate();
   return (
     <div className="container py-4">
-      <h4 className="fw-bold mb-3">Forwarded Orders</h4>
+      <h4 className="fw-bold mb-3">Orders</h4>
 
       <div className="table-responsive">
         <table className="table table-bordered table-striped">
-          <thead className="table-dark">
+          <thead >
             <tr>
               <th>Order ID</th>
               <th>Broker Name</th>
