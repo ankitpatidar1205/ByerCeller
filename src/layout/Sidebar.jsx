@@ -7,12 +7,9 @@ const Sidebar = ({ collapsed }) => {
   const location = useLocation();
   const [role, setRole] = useState(null);
 
-  // useEffect se role ko localStorage se set karna
   useEffect(() => {
-    const storedRole = localStorage.getItem("role"); // e.g. "admin" | "user" | "broker" | "seller"
-    if (storedRole) {
-      setRole(storedRole);
-    }
+    const storedRole = localStorage.getItem("role"); 
+    if (storedRole) setRole(storedRole);
   }, []);
 
   // Admin menu
@@ -24,17 +21,19 @@ const Sidebar = ({ collapsed }) => {
     { name: "All Orders", path: "/orders", icon: "fa-solid fa-cart-shopping" },
     { name: "Manage Users", path: "/users", icon: "fa-solid fa-users" },
     { name: "Manage Inventory", path: "/inventory", icon: "fa-solid fa-warehouse" },
-    { name: "Manage Banner", path: "/bannermanager", icon: "fa-solid fa-image" },
+    { name: "Admin Plans", path: "/AdminPlans", icon: "fa-solid fa-tags" },
     { name: "Report Analytics", path: "/MainReport", icon: "fa-solid fa-chart-line" },
-    { name: "Profile", path: "/Admin-Profile", icon: "fa-solid fa-user-circle" }
+    { name: "Manage Banner", path: "/bannermanager", icon: "fa-solid fa-image" },
+    { name: "Profile", path: "/Admin-Profile", icon: "fa-solid fa-user" },
   ];
 
   // User menu
   const userMenu = [
-    { name: "Dashboard", path: "/UserDashboard", icon: "fa-solid fa-user-circle" },
-    { name: "My Profile", path: "/MyProfile", icon: "fa-solid fa-user-circle" },
-    { name: "My Orders", path: "/myorders", icon: "fa-solid fa-cart-shopping" },
-    { name: "Wishlist", path: "/wishlist", icon: "fa-solid fa-heart" }
+    { name: "Dashboard", path: "/UserDashboard", icon: "fa-solid fa-house-user" },
+    { name: "Product", path: "/UserProduct", icon: "fa-solid fa-box" },
+    { name: "Request Broker", path: "/Request-Broker", icon: "fa-solid fa-handshake" },
+    { name: "My Orders", path: "/MyOrders", icon: "fa-solid fa-cart-shopping" },
+    { name: "My Profile", path: "/MyProfile", icon: "fa-solid fa-user" },
   ];
 
   // Broker menu
@@ -42,7 +41,7 @@ const Sidebar = ({ collapsed }) => {
     { name: "Broker Dashboard", path: "/broker/dashboard", icon: "fa-solid fa-briefcase" },
     { name: "Manage Deals", path: "/broker/deals", icon: "fa-solid fa-handshake" },
     { name: "Reports", path: "/broker/reports", icon: "fa-solid fa-chart-pie" },
-    { name: "Profile", path: "/broker/profile", icon: "fa-solid fa-user-tie" }
+    { name: "Profile", path: "/broker/profile", icon: "fa-solid fa-user-tie" },
   ];
 
   // Seller menu
@@ -51,18 +50,34 @@ const Sidebar = ({ collapsed }) => {
     { name: "Add Products", path: "/seller/addproducts", icon: "fa-solid fa-plus" },
     { name: "My Products", path: "/seller/products", icon: "fa-solid fa-boxes-stacked" },
     { name: "My Orders", path: "/seller/orders", icon: "fa-solid fa-cart-shopping" },
-    { name: "Profile", path: "/seller/profile", icon: "fa-solid fa-user-circle" }
+    { name: "Profile", path: "/seller/profile", icon: "fa-solid fa-user" },
+  ];
+
+  // Common menu (for all roles)
+  const commonMenu = [
+
+    {
+      name: "Logout",
+      path: "/login",
+      icon: "fa-solid fa-right-from-bracket",
+      action: () => {
+        localStorage.clear();
+        navigate("/login");
+      },
+    },
   ];
 
   // Role ke hisaab se menu select karna
-  const menuItems =
+  const roleMenu =
     role === "admin"
       ? adminMenu
       : role === "broker"
       ? brokerMenu
       : role === "seller"
       ? sellerMenu
-      : userMenu; // default = user
+      : userMenu;
+
+  const menuItems = [...roleMenu, ...commonMenu];
 
   const isActive = (path) => location.pathname === path;
 
@@ -76,7 +91,13 @@ const Sidebar = ({ collapsed }) => {
               className={`menu-item ${isActive(item.path) ? "active" : ""}`}
               data-tooltip={collapsed ? item.name : ""}
             >
-              <div className="menu-link" onClick={() => navigate(item.path)}>
+              <div
+                className="menu-link"
+                onClick={() => {
+                  if (item.action) item.action();
+                  else navigate(item.path);
+                }}
+              >
                 <i className={item.icon}></i>
                 <span className="menu-text">{item.name}</span>
               </div>

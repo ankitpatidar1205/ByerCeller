@@ -65,7 +65,7 @@ const Signup = () => {
       <ToastContainer position="top-center" />
       <div className="card shadow-lg rounded-4 border-0 w-100" style={{ maxWidth: '900px' }}>
         <div className="row g-0 flex-column flex-md-row">
-          <div className="col-md-6 p-4 p-md-5 bg-white rounded-top rounded-md-start mt-5">
+          <div className="col-md-12 p-4 p-md-5 bg-white rounded-top rounded-md-start mt-5">
             <h3 className="mb-4 text-primary fw-bold text-center text-md-start">Create Account</h3>
             <form onSubmit={handleSubmit}>
               <div className="row">
@@ -144,14 +144,7 @@ const Signup = () => {
             </p>
           </div>
 
-          <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center bg-light rounded-bottom rounded-md-end">
-            <img
-              src="https://i.postimg.cc/x1hDCY72/9ec3f58b834b966a8b7e5f399aa44692.jpg"
-              alt="Signup Visual"
-              className="img-fluid rounded-bottom rounded-md-end"
-              style={{ objectFit: 'cover', maxHeight: '100%', width: '100%' }}
-            />
-          </div>
+         
         </div>
       </div>
     </div>

@@ -29,6 +29,10 @@ import EditProductForm from "./Componente/Products/EditProduct";
 import MainReport from "./Componente/ReportAnalytics/MainReport";
 import MyProfile from "./UserProfile/MyProfile";
 import UserDashboard from "./UserProfile/Dashboard";
+import UserProduct from "./UserProfile/UserProduct";
+import MyOrders from "./UserProfile/MyOrders";
+import RequestBroker from "./UserProfile/RequestBroker";
+import AdminPlans from "./Componente/AdminPlans/AdminPlans";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -78,10 +82,15 @@ function App() {
                 <Route path="/editproducts/:id" element={<EditProductForm />} />
                 <Route path="/MainReport" element={<MainReport />} />
                 <Route path="/inventory" element={<Inventory />} />
+                <Route path="/AdminPlans" element={<AdminPlans />} />
                 <Route path="/Admin-Profile" element={<AdminProfile />} />
+                
                 {/* user */}
                <Route path="/UserDashboard" element={< UserDashboard/>} />
                <Route path="/MyProfile" element={<MyProfile />} />
+               <Route path="/UserProduct" element={<UserProduct />} />
+               <Route path="/MyOrders" element={<MyOrders />} />
+               <Route path="/Request-Broker" element={<RequestBroker />} />
 
               </Routes>
             </div>
