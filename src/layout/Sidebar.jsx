@@ -39,7 +39,11 @@ const Sidebar = ({ collapsed }) => {
   // Broker menu
   const brokerMenu = [
     { name: "Broker Dashboard", path: "/broker/dashboard", icon: "fa-solid fa-briefcase" },
-    { name: "Manage Deals", path: "/broker/deals", icon: "fa-solid fa-handshake" },
+        { name: "Broker Products", path: "/broker/products", icon: "fa-solid fa-briefcase" },
+    { name: "Buyer Deals", path: "/broker/buyerrequest", icon: "fa-solid fa-handshake" },
+     { name: "Seller Deals", path: "/broker/sellerrequest", icon: "fa-solid fa-handshake" },
+      {name: "Incoming Orders", path: "/broker/buyerorders" ,icon: "fa-solid fa-box-open "},
+      {name: "Orders to Sellers", path: "/orders/forwarded", icon: "bi bi-send"},
     { name: "Reports", path: "/broker/reports", icon: "fa-solid fa-chart-pie" },
     { name: "Profile", path: "/broker/profile", icon: "fa-solid fa-user-tie" },
   ];
@@ -47,8 +51,14 @@ const Sidebar = ({ collapsed }) => {
   // Seller menu
   const sellerMenu = [
     { name: "Seller Dashboard", path: "/seller/dashboard", icon: "fa-solid fa-store" },
+      { name: "Categories", path: "/seller/categories", icon: "fa-solid fa-list" },
+
     { name: "Add Products", path: "/seller/addproducts", icon: "fa-solid fa-plus" },
     { name: "My Products", path: "/seller/products", icon: "fa-solid fa-boxes-stacked" },
+     { name: "Broker Invites", path: "/seller/brokerinvitation", icon: "fa-solid fa-user-circle" },
+    { name: "Orders", path: "/seller/orders", icon: "fa-solid fa-cart-shopping" },
+      { name: "Manage Inventory", path: "/inventory", icon: "fa-solid fa-warehouse" },
+    { name: "Profile", path: "/seller/profile", icon: "fa-solid fa-user-circle" },
     { name: "My Orders", path: "/seller/orders", icon: "fa-solid fa-cart-shopping" },
     { name: "Profile", path: "/seller/profile", icon: "fa-solid fa-user" },
   ];

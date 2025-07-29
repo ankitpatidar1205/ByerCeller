@@ -70,7 +70,7 @@ const CategoriesSection = () => {
                     backgroundImage: `url(${category.image})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    height: '200px',
+                    // height: '200px',
                      borderTopLeftRadius: '20px',
                         borderTopRightRadius: '20px'
                   }}
