@@ -91,7 +91,7 @@ const BannerManager = () => {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary w-100 d-flex align-items-center justify-content-center"
+                className="btn custom-button w-100 d-flex align-items-center justify-content-center"
                 disabled={uploading}
               >
                 <FaUpload className="me-2" />

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AddProduct = () => {
+const SAddProduct = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [form, setForm] = useState({
@@ -213,10 +213,10 @@ const AddProduct = () => {
           </div>
 
           <div className="d-flex justify-content-end gap-2">
-            <button type="button" className="btn btn-outline-secondary">
+            <button type="button" className="btn btn-outline-secondary" onClick={()=> navigate(-1)}>
               Cancel
             </button>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn custom-button">
               Add Product
             </button>
           </div>
@@ -226,4 +226,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default SAddProduct;

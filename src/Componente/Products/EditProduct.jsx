@@ -228,7 +228,7 @@ updatedData.append('material', formData.material);
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
           Cancel
         </button>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn custom-button">
           Update Product
         </button>
       </div>

@@ -9,7 +9,6 @@ const Pricing = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // ✅ Fetch Plans
   useEffect(() => {
     fetchPlans();
   }, []);
@@ -29,19 +28,24 @@ const Pricing = () => {
   return (
     <>
       <Navbar />
-      <div className="container bg-white mt-5 p-4 rounded shadow">
-        
+      <div className="container mt-5 p-4 rounded">
         {/* Page Heading */}
-        <div className="text-center mb-5">
-          <h1 className="fw-bold text-primary"> Pricing Plans</h1>
-          <p className="text-muted fs-5">
+        <div
+          className="text-center mb-5 p-4 rounded-4"
+          style={{
+            background: "linear-gradient(to right, #e3f2fd, #f0f9ff)",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+          }}
+        >
+          <h1 className=" h2 fw-bold text-primary"> Pricing Plans</h1>
+          <p className="text-muted fs-5 mb-0">
             Tailored solutions for <strong>Buyers</strong> & <strong>Sellers</strong>
           </p>
         </div>
 
         {/* Loading / No Data */}
         {loading ? (
-          <p className="text-center">⏳ Loading plans...</p>
+          <p className="text-center fs-5">⏳ Loading plans...</p>
         ) : plans.length === 0 ? (
           <div className="alert alert-info text-center">
             🚫 No plans available. Please create one.
@@ -50,23 +54,40 @@ const Pricing = () => {
           <div className="row">
             {plans.map((plan) => (
               <div key={plan.id} className="col-md-4 mb-4">
-                <div className="card shadow-lg border-0 h-100">
-                  <div className="card-body text-center">
-                    <h2 className="card-title fw-bold">{plan.name}</h2>
-                    <h4 className="text-primary fw-bold">${plan.price}</h4>
-                    <p className="text-muted small mb-2">
-                      <strong>Plan Type:</strong> {plan.billingCycle}
-                    </p>
-                    <p className="text-muted">{plan.description}</p>
-                    <ul className="list-unstyled mt-3 mb-4">
+                <div
+                  className="card h-100 border-0 shadow-sm rounded-4"
+                  style={{ transition: "transform 0.3s ease" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-5px)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}>
+                  <div className="card-body text-center d-flex flex-column">
+                    {/* Plan Name */}
+                    <h2 className="card-title fw-bold text-dark">{plan.name}</h2>
+
+                    {/* Plan Price */}
+                    <h3 className="text-primary fw-bold display-6 mt-2 mb-3">
+                      ₹{plan.price}
+                    </h3>
+
+                    {/* Billing Type */}
+                    <span className="badge bg-info-subtle text-primary mb-2 px-3 py-2 rounded-pill">
+                      {plan.billingCycle}
+                    </span>
+
+                    {/* Description */}
+                    <p className="text-muted small">{plan.description}</p>
+
+                    {/* Features */}
+                    <ul className="list-unstyled text-start mt-3 mb-4 px-4">
                       {plan.features.map((f, i) => (
-                        <li key={i}>✅ {f.trim()}</li>
+                        <li key={i} className="mb-2">
+                          ✅ {f.trim()}
+                        </li>
                       ))}
                     </ul>
 
-                    {/* Request Plan Button */}
-                    <button 
-                      className="btn btn-primary w-100 fw-bold"
+                    {/* Button */}
+                    <button
+                      className="btn custom-button w-100 mt-auto fw-semibold rounded-pill"
                       onClick={() => navigate("/signup")}
                     >
                       Request Plan

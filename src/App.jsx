@@ -51,6 +51,14 @@ import ForwardToSeller from "./Broker/Orders/ForwardToSeller";
 import ForwardedOrders from "./Broker/Orders/ForwardedOrders";
 import BrokerReports from "./Broker/Reports/BrokerReports";
 import BrokerProducts from "./Broker/Product/BrokerProduct";
+import SellerOrders from "./Seller/Orders/Orders";
+import OrderDetails from "./Seller/Orders/OrderDetails";
+import ForwardOrderDetails from "./Broker/Orders/ForwardOrderDetails";
+import SAddProduct from "./Seller/Products/SAddProduct";
+import SellerProductes from "./Seller/Products/Products";
+import SellerProfile from "./Seller/Profile/SellerProfile";
+import BrokerProfile from "./Broker/Profile/BrokerProfile";
+import SEditProductForm from "./Seller/Products/SEditProduct";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -103,6 +111,7 @@ function App() {
                 <Route path="/inventory" element={<Inventory />} />
                 <Route path="/AdminPlans" element={<AdminPlans />} />
                 <Route path="/Admin-Profile" element={<AdminProfile />} />
+                <Route path="/order/details" element={<OrderDetails />} />
                 
                 {/* user */}
                <Route path="/UserDashboard" element={< UserDashboard/>} />
@@ -114,10 +123,12 @@ function App() {
                  {/* Seller */}
                   <Route path="/seller/dashboard" element ={ <SellerDashboard />} />
                   <Route path="/seller/categories" element={<AddCategories />} />
-                   <Route path="/seller/addproducts" element ={ <AddProduct />} />
-                   <Route path="/seller/products" element ={ <Productes />} />
-                   <Route path="/seller/orders" element ={ <Orders />} />
-                  <Route path="/seller/profile" element ={ <AdminProfile />} />
+                   <Route path="/seller/addproducts" element ={ <SAddProduct />} />
+                   <Route path="/seller/editproduct/:id" element={<SEditProductForm />} />
+              <Route path="/seller/products" element ={ <SellerProductes />} />
+           <Route path="/seller/orders" element ={ <SellerOrders />} />
+           <Route path="/seller/orderdetails" element = {<OrderDetails /> } />
+                    <Route path="/seller/profile" element ={ <SellerProfile />} />
                   <Route path="/seller/inventory" element={<Inventory />} />
                   <Route path="/seller/brokerinvitation" element={<BrokerInvitations />} />
                   <Route path="/seller/broker-details" element={<BrokerInvitationDetails />} />
@@ -133,7 +144,10 @@ function App() {
             <Route path="/orders/buyer/:id" element={<BuyerOrderDetails />} />
              <Route path="/orders/forward/:id" element={<ForwardToSeller />} />
             <Route path="/orders/forwarded" element={<ForwardedOrders />} />
+            <Route path="/orders/forwardeddetails/:id" element={<ForwardOrderDetails />} />
             <Route path="/broker/reports" element={<BrokerReports />} />
+            <Route path="/broker/profile" element={<BrokerProfile />} />
+           
 
               </Routes>
             </div>

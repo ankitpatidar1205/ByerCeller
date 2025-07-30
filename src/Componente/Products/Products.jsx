@@ -55,7 +55,7 @@ const Productes = () => {
             <span>Export PDF</span>
           </button> */}
           <Link to="/addproducts">
-            <button className="btn btn-primary d-flex align-items-center gap-2">
+            <button className="btn custom-button custom-button d-flex align-items-center gap-2">
               <FaPlusCircle />
               <span>Add Product</span>
             </button>

@@ -107,7 +107,7 @@ const AdminPlans = () => {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2 className="fw-bold">Manage Plans</h2>
         <button
-          className="btn btn-primary"
+          className="btn custom-button"
           data-bs-toggle="modal"
           data-bs-target="#planModal"
           onClick={() =>
@@ -273,7 +273,7 @@ const AdminPlans = () => {
                 >
                   Cancel
                 </button>
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn custom-button">
                   {formData.id ? "Update Plan" : "Save Plan"}
                 </button>
               </div>

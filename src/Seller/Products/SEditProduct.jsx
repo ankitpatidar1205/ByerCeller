@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import axiosInstance from '../../Utilities/axiosInstance';
 
-const EditProductForm = () => {
+const SEditProductForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
@@ -225,10 +225,12 @@ updatedData.append('material', formData.material);
       </div>
 
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+<Link to="/seller/products">
+        <button type="button" className="btn btn-secondary">
           Cancel
         </button>
-        <button type="submit" className="btn btn-primary">
+        </Link>
+        <button type="submit" className="btn custom-button">
           Update Product
         </button>
       </div>
@@ -237,4 +239,4 @@ updatedData.append('material', formData.material);
   );
 };
 
-export default EditProductForm;
+export default SEditProductForm;

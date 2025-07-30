@@ -3,9 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 
 // Mock seller data
 const mockSellers = [
-  { seller_id: "1", name: "Ahmed Musa", company: "SpareParts LTD" },
-  { seller_id: "2", name: "Zara Khouri", company: "AutoFix Middle East" },
-  { seller_id: "3", name: "Mohamed Said", company: "Truck Solutions" },
+  { seller_id: "1", name: "RX002 yongjia Jill ", company: "YINGJIA MANUFACTURER TRUCKS PARTS COMPANY LIMITED" },
+ 
 ];
 
 // Mock order data  
@@ -18,12 +17,12 @@ const mockOrders = {
     price: 1600,
     status: "Received",
   },
-  "1": {
+  "2": {
     order_id: "2",
-    buyer_name: "Omar Jalil",
-    product_name: "Axle Spacer Ring",
+    buyer_name: "Fadi samarah",
+    product_name: "Steel Zinc Platt Mounting",
     quantity: 10,
-    price: 900,
+    price: 1600,
     status: "Received",
   },
 };
@@ -56,7 +55,7 @@ const ForwardToSeller = () => {
     alert(
       `Order forwarded to ${seller.name} (${seller.company}) for product: ${order.product_name}`
     );
-    navigate("/orders/buyer");
+    navigate("/broker/buyerorders");
   };
 
   if (!order) return <div className="p-4">Loading order...</div>;
@@ -92,7 +91,7 @@ const ForwardToSeller = () => {
         </select>
       </div>
 
-      <button className="btn btn-primary" onClick={handleForward}>
+      <button className="btn custom-button" onClick={handleForward}>
         Forward Order
       </button>
     </div>

@@ -113,7 +113,7 @@ const Login = () => {
                 </div>
             
 
-              <button type="submit" className="btn btn-primary w-100 rounded-pill">
+              <button type="submit" className="btn custom-button w-100 rounded-pill">
                 Login
               </button>
             </form>
@@ -122,7 +122,7 @@ const Login = () => {
             <div className="d-flex justify-content-center gap-2 mb-4 mt-3 flex-wrap">
               <button
                 type="button"
-                className={`btn ${roleSelected === "admin" ? "btn-primary" : "btn-outline-primary"} rounded-pill`}
+                className={`btn ${roleSelected === "admin" ? "custom-button" : "btn-outline-primary"} rounded-pill`}
                 onClick={() => setRole("admin")}
               >
                 Admin

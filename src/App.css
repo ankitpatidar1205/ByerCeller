@@ -19,7 +19,7 @@
 
 body {
   font-family: "Unbanist", sans-serif !important;
-  background-color: #f2f2f2;
+  background-color: #f0f7ff;
 }
 
 a {
@@ -86,12 +86,12 @@ main {
   margin-bottom: 20px;
 }
 
-.login-container .btn-primary {
+.login-container .custom-button {
   background-color: #578e7e;
   border-color: #578e7e;
 }
 
-.login-container .btn-primary:hover {
+.login-container .custom-button:hover {
   background-color: #578e7e;
   border-color: #578e7e;
 }
@@ -1099,3 +1099,6 @@ svg {
  height: 1rem;
 }
 
+.custom-button{
+   background: linear-gradient(to right, rgb(77, 166, 255), rgb(108, 207, 255));
+}

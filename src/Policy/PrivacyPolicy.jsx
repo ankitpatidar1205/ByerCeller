@@ -46,7 +46,7 @@ const PrivacyPolicy = () => {
             By using our website, you agree to this Privacy Policy. We may update this policy from time to time,
             so please review it periodically.
           </p>
-          <a href="/contactus" className="btn btn-primary rounded-pill px-4">
+          <a href="/contactus" className="btn custom-button rounded-pill px-4">
             Contact Us
           </a>
         </div>
