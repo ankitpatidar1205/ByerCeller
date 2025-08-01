@@ -13,21 +13,21 @@ import { useNavigate } from "react-router-dom";
 // Categorize IOne : buyer 
 
 const mockBuyerDeals = [
-  {
-    id: 201,
-    buyer_name: "Fadi samarah",
-    company: "BASAMCO company limited ",
+  // {
+  //   id: 201,
+  //   buyer_name: "Fadi samarah",
+  //   company: "BASAMCO company limited ",
 
-    phone: "001234567890",
-    category: "Trucks spare parts",
-    status: "Pending",
-    product: {
-      name: "Steel Zinc Platt Mounting",
-      code: "25005",
-      quantity: 20,
-      price: "¥1,760.00",
-    },
-  },
+  //   phone: "001234567890",
+  //   category: "Trucks spare parts",
+  //   status: "Pending",
+  //   product: {
+  //     name: "Steel Zinc Platt Mounting",
+  //     code: "25005",
+  //     quantity: 20,
+  //     price: "¥1,760.00",
+  //   },
+  // },
 
 ];
 

@@ -12,11 +12,11 @@ const BrokerDashboard = () => {
 
       {/* Stat Cards */}
       <div className="row g-3 mb-4">
-        <StatCard title="Buyers" value="1" icon="fa-users" color="primary" />
-        <StatCard title="Sellers" value="1" icon="fa-store" color="success" />
+        <StatCard title="Buyers" value="0" icon="fa-users" color="primary" />
+        <StatCard title="Sellers" value="0" icon="fa-store" color="success" />
         {/* <StatCard title="Total Sales" value="¥35200" icon="fa-dollar-sign" color="info" /> */}
-        <StatCard title="Seller Requests" value="1" icon="fa-arrow-down" color="warning" />
-        <StatCard title="Buyer Requests" value="1" icon="fa-arrow-up" color="danger" />
+        <StatCard title="Seller Requests" value="0" icon="fa-arrow-down" color="warning" />
+        <StatCard title="Buyer Requests" value="0" icon="fa-arrow-up" color="danger" />
       </div>
 
       {/* Charts */}

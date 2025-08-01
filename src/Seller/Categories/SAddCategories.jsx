@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../../Utilities/axiosInstance';
 import {  FaEdit, FaTrash,} from "react-icons/fa";
-const AddCategories = () => {
+const SAddCategories = () => {
   const [categories, setCategories] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,19 +11,19 @@ const AddCategories = () => {
   const [showModal, setShowModal] = useState(false);
 
   // Fetch all categories
-  const fetchCategories = async () => {
-    try {
-      const res = await axiosInstance.get(`/category/getAllCategories`);
-      setCategories(res.data?.data || []);
-      setFilteredCategories(res.data?.data || []);
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    }
-  };
+  // const fetchCategories = async () => {
+  //   try {
+  //     const res = await axiosInstance.get(`/category/getAllCategories`);
+  //     setCategories(res.data?.data || []);
+  //     setFilteredCategories(res.data?.data || []);
+  //   } catch (error) {
+  //     console.error('Error fetching categories:', error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+  // useEffect(() => {
+  //   fetchCategories();
+  // }, []);
 
   // Handle search
   const handleSearch = (e) => {
@@ -62,7 +62,7 @@ const AddCategories = () => {
 
       setShowModal(false);
       resetForm();
-      fetchCategories();
+      // fetchCategories();
     } catch (err) {
       console.error('Error saving category:', err);
     }
@@ -227,4 +227,4 @@ const AddCategories = () => {
   );
 };
 
-export default AddCategories;
+export default SAddCategories;

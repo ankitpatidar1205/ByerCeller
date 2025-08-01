@@ -8,24 +8,24 @@ const BuyerOrderDetails = () => {
 
   // Static mock data for now
   const order = {
-    orderId: id,
-    createdAt: "2025-07-27",
-    status: "Processing", // or "Completed", "Received"
-    buyer: {
-      name: "Fadi Samarah",
-      company: "BASAMCO Company Limited",
-      phone: "00972598361988",
-      category: "Trucks spare parts",
-      address: "48 Al Ram, City Ramallah, Jerusalem, Palestine 🇵🇸",
-    },
-    product: {
-      name: "Steel Zinc Platt Mounting",
-      code: "25005",
-      quantity: 20,
-      price: 1760,
-      currency: "¥",
-    },
-    notes: "This customer can see all the categorized parts of trucks.",
+    // orderId: id,
+    // createdAt: "2025-07-27",
+    // status: "Processing", // or "Completed", "Received"
+    // buyer: {
+    //   name: "Fadi Samarah",
+    //   company: "BASAMCO Company Limited",
+    //   phone: "00972598361988",
+    //   category: "Trucks spare parts",
+    //   address: "48 Al Ram, City Ramallah, Jerusalem, Palestine 🇵🇸",
+    // },
+    // product: {
+    //   name: "Steel Zinc Platt Mounting",
+    //   code: "25005",
+    //   quantity: 20,
+    //   price: 1760,
+    //   currency: "¥",
+    // },
+    // notes: "This customer can see all the categorized parts of trucks.",
   };
 
   const totalPrice = order.product.quantity * order.product.price;

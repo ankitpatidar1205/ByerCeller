@@ -10,27 +10,27 @@ import {
 
 // Mock Data
 const mockDeal = {
-  id: 101,
-  seller_name: "RX002 yongjia Jill",
-    company: "YINGJIA MANUFACTURER TRUCKS PARTS COMPANY LIMITED",
-  phone: "0086158613121",
+  // id: 101,
+  // seller_name: "RX002 yongjia Jill",
+  //   company: "YINGJIA MANUFACTURER TRUCKS PARTS COMPANY LIMITED",
+  // phone: "0086158613121",
 
-  request_date: "2025-07-26",
-  status: "Sent",
-  address: "2401 , pingshan , Shenzhen city , Dongguan province , China ",
-  notes: "Requested urgent shipping of parts.",
+  // request_date: "2025-07-26",
+  // status: "Sent",
+  // address: "2401 , pingshan , Shenzhen city , Dongguan province , China ",
+  // notes: "Requested urgent shipping of parts.",
 };
 
 // Mock Products
 const mockProducts = [
-  {
-    id: 1,
-    name: "Steel Zinc Platt Mounting",
-    code: "25005",
-    quantity: 20,
-    basePrice: 1600,
-    markup: 10,
-  },
+  // {
+  //   id: 1,
+  //   name: "Steel Zinc Platt Mounting",
+  //   code: "25005",
+  //   quantity: 20,
+  //   basePrice: 1600,
+  //   markup: 10,
+  // },
   // {
   //   id: 2,
   //   name: "Brake Disc Plate",

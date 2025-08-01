@@ -6,31 +6,9 @@ const MyOrders = () => {
 
   // Dummy Orders Data
   const orders = [
-    {
-      id: "ORD1001",
-      product: "iPhone 14 Pro Max 256GB",
-      date: "2025-07-20",
-      status: "Delivered",
-      price: "$1,299",
-      address: "48 Al Ram, Ramallah, Palestine",
-    },
-    {
-      id: "ORD1002",
-      product: "Samsung Galaxy S24 Ultra",
-      date: "2025-07-22",
-      status: "Shipped",
-      price: "¥1,199",
-      address: "Shenzhen, China",
-    },
-    {
-      id: "ORD1003",
-      product: "MacBook Pro 16-inch M3",
-      date: "2025-07-25",
-      status: "Pending",
-      price: "$2,499",
-      address: "New York, USA",
-    },
+
   ];
+  
 
   return (
     <>

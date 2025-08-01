@@ -3,16 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 // Mock forwarded orders
 const forwardedOrders = [
-  {
-    order_id: "1",
-    buyer_name: "KHALIL HISHAM ABDALLAH SHWAIKI",
-    product_name: "Steel Zinc Platt Mounting",
-    quantity: 20,
-    total_price: 32000,
-    seller_name: "Steel Zinc Platt Mounting",
-    company: " HK KANDIVAN INTERNATIONAL TRADING COMPANY LIMITED ",
-    status: "accepted",
-  },
+  
   
 ];
 
@@ -38,7 +29,13 @@ const SellerOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {forwardedOrders.map((order) => (
+            { forwardedOrders.length === 0 ? (
+              <tr>
+                <td colSpan="8" className="text-center">No forwarded orders found.</td>
+              </tr>
+            ) : (
+            forwardedOrders.map((order) => (
+              
               <tr key={order.order_id}>
                 <td>{order.order_id}</td>
                 <td>{order.buyer_name}</td>
@@ -56,7 +53,7 @@ const SellerOrders = () => {
                   </button>
                 </td>
               </tr>
-            ))}
+           ) ))}
           </tbody>
         </table>
       </div>

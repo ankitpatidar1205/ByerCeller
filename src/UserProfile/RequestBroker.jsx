@@ -9,11 +9,13 @@ const RequestBroker = () => {
     notes: "",
   });
 
+  const orders = [];
+
   // Dummy broker list
   const brokers = [
-    { id: "BR001", name: "Ahmed Trading Broker" },
-    { id: "BR002", name: "Global Parts Broker" },
-    { id: "BR003", name: "Yongjia Broker Services" },
+    // { id: "BR001", name: "Ahmed Trading Broker" },
+    // { id: "BR002", name: "Global Parts Broker" },
+    // { id: "BR003", name: "Yongjia Broker Services" },
   ];
 
   const handleChange = (e) => {
@@ -134,22 +136,27 @@ const RequestBroker = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>REQ101</td>
-                  <td>Ahmed Trading Broker</td>
-                  <td>Truck Engine Part</td>
-                  <td>50</td>
-                  <td><span className="badge bg-info">In Progress</span></td>
-                  <td>2025-07-26</td>
-                </tr>
-                <tr>
-                  <td>REQ100</td>
-                  <td>Global Parts Broker</td>
-                  <td>iPhone 14 Pro Max</td>
-                  <td>20</td>
-                  <td><span className="badge bg-success">Completed</span></td>
-                  <td>2025-07-22</td>
-                </tr>
+               {
+                orders.length === 0 ? (
+                  <tr>
+                    <td colSpan="6" className="text-center">No past requests found.</td>
+                  </tr>
+                ) : (
+                  orders.map((order) => (
+                    <tr key={order.id}>
+                      <td>{order.id}</td>
+                      <td>{order.broker}</td>
+                      <td>{order.product}</td>
+                      <td>{order.quantity}</td>
+                      <td>
+                        <span className={`badge ${order.status === "Completed" ? "bg-success" : "bg-warning text-dark"}`}>
+                          {order.status}
+                        </span>
+                      </td>
+                      <td>{order.date}</td>
+                    </tr>
+                  ))
+                ) }
               </tbody>
             </table>
           </div>

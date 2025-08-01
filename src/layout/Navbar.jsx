@@ -19,7 +19,7 @@ const Navbar = ({ toggleSidebar }) => {
           <div className="d-flex align-items-center gap-3">
 
                     <Link to="/">
-              <img  src="https://i.postimg.cc/C1qfJ36B/Whats-App-Image-2025-07-29-at-19-23-57-7a0f5cac-removebg-preview.png"  alt="logo"  className="h-10" />
+              <img  src="https://i.ibb.co/8DqZ6ZvS/image.png"   alt="logo"  className="h-10" style={{ background : "transparent"}}/>
             </Link>
             <button   className="btn btn-outline-secondary d-lg-none"    onClick={toggleSidebar} >
               <i className="bi bi-list fs-4"></i>

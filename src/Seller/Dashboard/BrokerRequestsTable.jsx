@@ -1,10 +1,10 @@
 import React from 'react';
 
 const data = [
-  { name: 'John Doe', company: 'Prime Brokers Inc.', date: '2023-10-27', status: 'Pending' },
-  { name: 'Jane Smith', company: 'Global Trading', date: '2023-10-26', status: 'Connected' },
-  { name: 'Sam Wilson', company: 'Elite Commodities', date: '2023-10-25', status: 'Pending' },
-  { name: 'Emily Brown', company: 'Prestige Partners', date: '2023-10-24', status: 'Declined' },
+  // { name: 'John Doe', company: 'Prime Brokers Inc.', date: '2023-10-27', status: 'Pending' },
+  // { name: 'Jane Smith', company: 'Global Trading', date: '2023-10-26', status: 'Connected' },
+  // { name: 'Sam Wilson', company: 'Elite Commodities', date: '2023-10-25', status: 'Pending' },
+  // { name: 'Emily Brown', company: 'Prestige Partners', date: '2023-10-24', status: 'Declined' },
 ];
 
 const BrokerRequestsTable = () => (

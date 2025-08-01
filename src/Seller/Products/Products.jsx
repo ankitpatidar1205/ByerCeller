@@ -9,34 +9,34 @@ const SellerProductes = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [deleteProduct, setDeleteProduct] = useState(null);
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, []);
 
-  const fetchProducts = async () => {
-    try {
-      const response = await axiosInstance.get(`/product/getAllProducts`);
-      setProducts(response.data.data);
-      setFilteredProducts(response.data.data);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
+  // const fetchProducts = async () => {
+  //   try {
+  //     const response = await axiosInstance.get(`/product/getAllProducts`);
+  //     setProducts(response.data.data);
+  //     setFilteredProducts(response.data.data);
+  //   } catch (error) {
+  //     console.error("Error fetching products:", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    const filtered = products.filter((product) =>
-      product?.name?.toLowerCase()?.includes(searchTerm.toLowerCase().trim()) ||
-      product?.sku?.toLowerCase()?.includes(searchTerm.toLowerCase().trim())
-    );
-    setFilteredProducts(filtered);
-  }, [searchTerm, products]);
+  // useEffect(() => {
+  //   const filtered = products.filter((product) =>
+  //     product?.name?.toLowerCase()?.includes(searchTerm.toLowerCase().trim()) ||
+  //     product?.sku?.toLowerCase()?.includes(searchTerm.toLowerCase().trim())
+  //   );
+  //   setFilteredProducts(filtered);
+  // }, [searchTerm, products]);
 
 
   const handleDeleteProduct = async () => {
     try {
       await axiosInstance.delete(`/product/deleteProduct/${deleteProduct}`);
       setDeleteProduct(null);
-      fetchProducts(); // Refresh product list
+      // fetchProducts(); // Refresh product list
     } catch (error) {
       console.error("Error deleting product:", error);
     }

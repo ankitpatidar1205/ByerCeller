@@ -112,8 +112,12 @@ const UserProduct = () => {
                   <p className="text-muted small mb-1">
                     <strong>Model:</strong> {product?.modelNo || "N/A"}
                   </p>
-                  <p className="text-muted small mb-3">
+                  <p className="text-muted small mb-1">
                     <strong>Material:</strong> {product?.material || "N/A"}
+                  </p>
+
+                   <p className="text-muted small mb-3">
+                    <strong>Category:</strong> {product?.category_name || "N/A"}
                   </p>
 
                   <div className="mt-auto d-flex justify-content-between">
