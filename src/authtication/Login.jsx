@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './Login.css'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BaseUrl from '../Utilities/BaseUrl';
@@ -75,87 +76,88 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="d-flex justify-content-center align-items-center vh-100 bg-light px-3">
-        <ToastContainer />
-        <div className="card shadow-lg rounded-4 border-0 w-100" style={{ maxWidth: "600px" }}>
-          <div className="card-body p-4">
-            <h3 className="mb-4 text-primary fw-bold text-center">Welcome Back</h3>
-            <p className="text-muted text-center">Choose a role or update credentials to login</p>
+      {/* <Navbar /> */}
+  <div className=" d-flex justify-content-center align-items-center vh-100">
+  <ToastContainer />
+  <div className="card login-card shadow-lg border-0">
+    <div className="card-body p-4 p-md-5">
+      <h2 className="login-title text-center mb-3">Welcome Back 👋</h2>
+      <p className="text-muted text-center mb-4">Choose a role or login with your credentials</p>
 
-            {/* Login Form */}
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label fw-bold">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  className="form-control"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="Enter email"
-                />
-              </div>
-
-          
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label fw-bold">Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    className="form-control"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter password"
-                  />
-                </div>
-            
-
-              <button type="submit" className="btn custom-button w-100 rounded-pill">
-                Login
-              </button>
-            </form>
-            
-               {/* Role Buttons */}
-            <div className="d-flex justify-content-center gap-2 mb-4 mt-3 flex-wrap">
-              <button
-                type="button"
-                className={`btn ${roleSelected === "admin" ? "custom-button" : "btn-outline-primary"} rounded-pill`}
-                onClick={() => setRole("admin")}
-              >
-                Admin
-              </button>
-              <button
-                type="button"
-                className={`btn ${roleSelected === "user" ? "btn-success" : "btn-outline-success"} rounded-pill`}
-                onClick={() => setRole("user")}
-              >
-                Buyer 
-              </button>
-              <button
-                type="button"
-                className={`btn ${roleSelected === "seller" ? "btn-warning" : "btn-outline-warning"} rounded-pill`}
-                onClick={() => setRole("seller")}
-              >
-                Seller
-              </button>
-              <button
-                type="button"
-                className={`btn ${roleSelected === "broker" ? "btn-info" : "btn-outline-info"} rounded-pill`}
-                onClick={() => setRole("broker")}
-              >
-                Broker
-              </button>
-            </div>
-              <p className="mt-4 text-center text-muted">
-              Don't have an account? <Link to="/signup">Register</Link>
-            </p>
-          </div>
+      {/* Login Form */}
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label htmlFor="email" className="form-label fw-semibold">Email</label>
+          <input
+            type="email"
+            id="email"
+            className="form-control custom-input"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            placeholder="Enter your email"
+          />
         </div>
+
+        <div className="mb-4">
+          <label htmlFor="password" className="form-label fw-semibold">Password</label>
+          <input
+            type="password"
+            id="password"
+            className="form-control custom-input"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <button type="submit" className="btn login-btn w-100 rounded-pill">
+          Login
+        </button>
+      </form>
+
+      {/* Role Buttons */}
+      <div className="role-buttons d-flex justify-content-center gap-2 gap-md-3 mt-4 flex-wrap">
+        <button
+          type="button"
+          className={`btn role-btn ${roleSelected === "admin" ? "selected-admin" : "outline-admin"}`}
+          onClick={() => setRole("admin")}
+        >
+          Admin
+        </button>
+        <button
+          type="button"
+          className={`btn role-btn ${roleSelected === "user" ? "selected-user" : "outline-user"}`}
+          onClick={() => setRole("user")}
+        >
+          Buyer
+        </button>
+        <button
+          type="button"
+          className={`btn role-btn ${roleSelected === "seller" ? "selected-seller" : "outline-seller"}`}
+          onClick={() => setRole("seller")}
+        >
+          Seller
+        </button>
+        <button
+          type="button"
+          className={`btn role-btn ${roleSelected === "broker" ? "selected-broker" : "outline-broker"}`}
+          onClick={() => setRole("broker")}
+        >
+          Broker
+        </button>
       </div>
-      <Footer />
+
+      <p className="signup-text mt-4 text-center">
+        Don’t have an account? <Link to="/signup" className="signup-link">Register</Link>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+      {/* <Footer /> */}
     </>
   );
 };

@@ -65,7 +65,7 @@ const Pricing = () => {
 
                     {/* Plan Price */}
                     <h3 className="text-primary fw-bold display-6 mt-2 mb-3">
-                      ₹{plan.price}
+                      ¥{plan.price}
                     </h3>
 
                     {/* Billing Type */}

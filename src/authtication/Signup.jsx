@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './Login.css';
 import BaseUrl from '../Utilities/BaseUrl';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Home/Navbar';
@@ -60,95 +61,98 @@ const Signup = () => {
 
   return (
    <>
-   <Navbar/>
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-light px-3">
-      <ToastContainer position="top-center" />
-      <div className="card shadow-lg rounded-4 border-0 w-100" style={{ maxWidth: '900px' }}>
-        <div className="row g-0 flex-column flex-md-row">
-          <div className="col-md-12 p-4 p-md-5 bg-white rounded-top rounded-md-start mt-5">
-            <h3 className="mb-4 text-primary fw-bold text-center text-md-start">Create Account</h3>
-            <form onSubmit={handleSubmit}>
-              <div className="row">
-                <div className="col-md-6 mb-3">
-                  <label htmlFor="firstName" className="form-label">First Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter first name"
-                  />
-                </div>
-                <div className="col-md-6 mb-3">
-                  <label htmlFor="lastName" className="form-label">Last Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter last name"
-                  />
-                </div>
-              </div>
+   {/* <Navbar/> */}
+<div className="signup-container d-flex justify-content-center align-items-center ">
+  <ToastContainer position="top-center" />
+  <div className="card signup-card shadow-lg border-0">
+    <div className="row g-0 flex-column flex-md-row">
+      <div className="col-12 p-4 p-md-5 bg-white signup-card">
+        <h2 className="signup-title mb-3 text-center text-md-start">Create Account</h2>
+        <p className="text-muted text-center text-md-start mb-4">
+          Fill in your details to get started 🚀
+        </p>
 
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">Email address</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="Enter your email"
-                />
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="password" className="form-label">Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                  placeholder="Create password"
-                />
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  required
-                  placeholder="Re-enter password"
-                />
-              </div>
-
-              <button type="submit" className="btn custom-button w-100 rounded-pill">
-                Sign Up
-              </button>
-            </form>
-
-            <p className="mt-4 text-center text-muted">
-              Already have an account? <Link to="/login">Login</Link>
-            </p>
+        <form onSubmit={handleSubmit}>
+          <div className="row">
+            <div className="col-md-6 mb-3">
+              <label htmlFor="firstName" className="form-label fw-semibold">First Name</label>
+              <input
+                type="text"
+                className="form-control custom-input"
+                id="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+                placeholder="Enter first name"
+              />
+            </div>
+            <div className="col-md-6 mb-3">
+              <label htmlFor="lastName" className="form-label fw-semibold">Last Name</label>
+              <input
+                type="text"
+                className="form-control custom-input"
+                id="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+                placeholder="Enter last name"
+              />
+            </div>
           </div>
 
-         
-        </div>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label fw-semibold">Email Address</label>
+            <input
+              type="email"
+              className="form-control custom-input"
+              id="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label fw-semibold">Password</label>
+            <input
+              type="password"
+              className="form-control custom-input"
+              id="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              placeholder="Create password"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="confirmPassword" className="form-label fw-semibold">Confirm Password</label>
+            <input
+              type="password"
+              className="form-control custom-input"
+              id="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+              placeholder="Re-enter password"
+            />
+          </div>
+
+          <button type="submit" className="btn signup-btn w-100 rounded-pill">
+            Sign Up
+          </button>
+        </form>
+
+        <p className="mt-4 text-center signup-text">
+          Already have an account? <Link to="/login" className="signup-link">Login</Link>
+        </p>
       </div>
     </div>
-    <Footer/>
+  </div>
+</div>
+
+    {/* <Footer/> */}
    </>
   );
 };
