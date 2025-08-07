@@ -59,6 +59,7 @@ import SellerProfile from "./Seller/Profile/SellerProfile";
 import BrokerProfile from "./Broker/Profile/BrokerProfile";
 import SEditProductForm from "./Seller/Products/SEditProduct";
 import SAddCategories from "./Seller/Categories/SAddCategories";
+import AddUser from "./Componente/Users/AddUser";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -103,6 +104,7 @@ function App() {
                 <Route path="/categories" element={<AddCategories />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/users" element={<Users />} />
+                <Route path="/AddUser" element={<AddUser />} />
                 <Route path="/bannermanager" element={<BannerManager />} />
                 <Route path="/products" element={<Productes />} />
                 <Route path="/addproducts" element={<AddProduct />} />

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { FaTrash, FaEye, FaUsers, FaUserTie, FaUser, FaHandshake } from "react-icons/fa";
+import { FaTrash, FaEye, FaUsers, FaUserTie, FaUser, FaHandshake, FaPlusCircle, FaEdit } from "react-icons/fa";
 import axiosInstance from "../../Utilities/axiosInstance";
 import Loader from "../../Loader/Loader";
+import { Link } from "react-router-dom";
 
 const Users = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -59,8 +60,8 @@ const Users = () => {
   const filteredUsers = tabFilteredUsers.filter(
     (user) =>
       `${user.firstName} ${user.lastName}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.role?.toLowerCase().includes(searchTerm.toLowerCase())
+      user?.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user?.role?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Pagination
@@ -82,8 +83,8 @@ const Users = () => {
         <div className="col-md-3">
           <div className="card shadow-sm text-center border-primary">
             <div className="card-body">
-              <FaUsers size={24} className="text-primary mb-2" />
-              <h6>Total Users</h6>
+   
+              <h6 className="fw-bold">Total Users</h6>
               <h4>{totalUsers}</h4>
             </div>
           </div>
@@ -91,8 +92,8 @@ const Users = () => {
         <div className="col-md-3">
           <div className="card shadow-sm text-center border-success">
             <div className="card-body">
-              <FaUser size={24} className="text-success mb-2" />
-              <h6>Total Buyers</h6>
+           
+              <h6 className="fw-bold">Total Buyers</h6>
               <h4>{totalBuyers}</h4>
             </div>
           </div>
@@ -100,8 +101,8 @@ const Users = () => {
         <div className="col-md-3">
           <div className="card shadow-sm text-center border-warning">
             <div className="card-body">
-              <FaUserTie size={24} className="text-warning mb-2" />
-              <h6>Total Sellers</h6>
+            
+              <h6 className="fw-bold">Total Sellers</h6>
               <h4>{totalSellers}</h4>
             </div>
           </div>
@@ -109,8 +110,8 @@ const Users = () => {
         <div className="col-md-3">
           <div className="card shadow-sm text-center border-danger">
             <div className="card-body">
-              <FaHandshake size={24} className="text-danger mb-2" />
-              <h6>Total Brokers</h6>
+           
+              <h6 className="fw-bold">Total Brokers</h6>
               <h4>{totalBrokers}</h4>
             </div>
           </div>
@@ -122,24 +123,19 @@ const Users = () => {
         <li className="nav-item">
           <button
             className={`nav-link ${activeTab === "buyer" ? "active" : ""}`}
-            onClick={() => { setActiveTab("buyer"); setCurrentPage(1); }}
-          >
+            onClick={() => { setActiveTab("buyer"); setCurrentPage(1); }}>
             Buyers
           </button>
         </li>
         <li className="nav-item">
-          <button
-            className={`nav-link ${activeTab === "seller" ? "active" : ""}`}
-            onClick={() => { setActiveTab("seller"); setCurrentPage(1); }}
-          >
+          <button  className={`nav-link ${activeTab === "seller" ? "active" : ""}`}
+            onClick={() => { setActiveTab("seller"); setCurrentPage(1); }}>
             Sellers
           </button>
         </li>
         <li className="nav-item">
-          <button
-            className={`nav-link ${activeTab === "broker" ? "active" : ""}`}
-            onClick={() => { setActiveTab("broker"); setCurrentPage(1); }}
-          >
+          <button  className={`nav-link ${activeTab === "broker" ? "active" : ""}`}
+            onClick={() => { setActiveTab("broker"); setCurrentPage(1); }}>
             Brokers
           </button>
         </li>
@@ -147,23 +143,22 @@ const Users = () => {
 
       {/* Search Bar */}
       <div className="row mb-3">
-        <div className="col-md-6">
-          <div className="input-group">
-            <span className="input-group-text bg-white">
-              <i className="bi bi-search"></i>
-            </span>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search users..."
-              value={searchTerm}
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-                setCurrentPage(1);
-              }}
-            />
-          </div>
-        </div>
+     <div className="col-md-12">
+  <div className="d-flex align-items-center justify-content-between gap-3">
+    {/* Search Input */}
+    <div className="input-group w-100 me-3">
+      <span className="input-group-text bg-white"> <i className="bi bi-search"></i></span>
+      <input  type="text"  className="form-control"  placeholder="Search users..."  value={searchTerm}
+        onChange={(e) => {setSearchTerm(e.target.value);  setCurrentPage(1);}}/>
+    </div>
+
+    {/* Add Product Button */}
+   <Link to="/AddUser"> <button className="btn custom-button d-flex align-items-center gap-2 white-space-nowrap">
+      <FaPlusCircle />
+      <span>Add User</span>
+    </button></Link>
+  </div>
+</div>
       </div>
 
       {/* Table */}
@@ -197,6 +192,9 @@ const Users = () => {
                     <td>{user.role}</td>
                     <td>
                       <div className="d-flex gap-2">
+                       <Link to="/">  <button  className="btn btn-sm btn-outline-primary me-2" >
+                             <FaEdit size={14} />
+                         </button></Link>
                         <button
                           className="btn btn-sm btn-outline-primary"
                           title="View User"
@@ -251,23 +249,12 @@ const Users = () => {
       )}
 
       {/* Modal */}
-      <div
-        className="modal fade"
-        id="userModal"
-        tabIndex="-1"
-        aria-labelledby="userModalLabel"
-        aria-hidden="true"
-      >
+      <div className="modal fade"  id="userModal"  tabIndex="-1"  aria-labelledby="userModalLabel"  aria-hidden="true" >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="userModalLabel">User Details</h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+              <button type="button" className="btn-close"  data-bs-dismiss="modal"  aria-label="Close"></button>
             </div>
             {selectedUser && (
               <div className="modal-body">
@@ -278,9 +265,7 @@ const Users = () => {
               </div>
             )}
             <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
+              <button  type="button"  className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
