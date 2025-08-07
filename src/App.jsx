@@ -105,6 +105,7 @@ function App() {
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/AddUser" element={<AddUser />} />
+                <Route path="/AddUser/:id" element={<AddUser />} />
                 <Route path="/bannermanager" element={<BannerManager />} />
                 <Route path="/products" element={<Productes />} />
                 <Route path="/addproducts" element={<AddProduct />} />

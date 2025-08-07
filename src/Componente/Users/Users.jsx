@@ -192,7 +192,7 @@ const Users = () => {
                     <td>{user.role}</td>
                     <td>
                       <div className="d-flex gap-2">
-                       <Link to="/">  <button  className="btn btn-sm btn-outline-primary me-2" >
+                       <Link to={`/AddUser/${user.id}`}>  <button  className="btn btn-sm btn-outline-primary me-2" >
                              <FaEdit size={14} />
                          </button></Link>
                         <button

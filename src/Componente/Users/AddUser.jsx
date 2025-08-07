@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import BaseUrl from '../../Utilities/BaseUrl';
+import axiosInstance from '../../Utilities/axiosInstance';
 
 const AddUser = () => {
+  const { id } = useParams(); // extract ID from URL
+  console.log(id)
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -16,38 +21,58 @@ const AddUser = () => {
     role: 'buyer',
   });
 
-  const navigate = useNavigate();
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  useEffect(() => {
+    if (id) {
+      const fetchUserProfile = async () => {
+        try {
+          const response = await axiosInstance.get(`/user/getUserById/${id}`);
+          const data = response.data.data;
+          setFormData({
+            firstName: data.firstName || '',
+            lastName: data.lastName || '',
+            email: data.email || '',
+            mobileNumber: data.mobileNumber || '',
+            password: '',
+            confirmPassword: '',
+            role: data.role || 'buyer',
+          });
+        } catch (error) {
+          toast.error("Failed to fetch user data");
+        }
+      };
+
+      fetchUserProfile();
+    }
+  }, [id]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (formData.password !== formData.confirmPassword) {
       toast.error('Passwords do not match');
       return;
     }
 
     try {
-      const response = await axios.post(`${BaseUrl}/user/signUp`, formData);
-      toast.success(response.data.message || 'Signup successful');
-
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        mobileNumber: '',
-        password: '',
-        confirmPassword: '',
-        role: 'buyer',
-      });
+      if (id) {
+        // Edit mode
+        const response = await axiosInstance.patch(`/user/editProfile/${id}`, formData);
+        toast.success(response.data.message || 'User updated successfully');
+      } else {
+        // Create mode
+        const response = await axios.post(`${BaseUrl}/user/signUp`, formData);
+        toast.success(response.data.message || 'User created successfully');
+      }
 
       setTimeout(() => {
         navigate('/users');
       }, 2000);
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Signup failed');
+      toast.error(error.response?.data?.message || 'Operation failed');
     }
   };
 
@@ -55,7 +80,7 @@ const AddUser = () => {
     <>
       <ToastContainer position="top-center" />
       <div className="container mt-5">
-        <h2 className="mb-4">Create Account</h2>
+        <h2 className="mb-4">{id ? 'Edit User' : 'Create Account'}</h2>
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-md-6 mb-3">
@@ -96,18 +121,20 @@ const AddUser = () => {
               placeholder="Enter your email"
             />
           </div>
+
           <div className="mb-3">
             <label htmlFor="mobileNumber" className="form-label">Mobile Number</label>
             <input
               type="number"
               className="form-control"
-              id="email"
+              id="mobileNumber"
               value={formData.mobileNumber}
               onChange={handleChange}
               required
               placeholder="Enter your Mobile Number"
             />
           </div>
+
           <div className="mb-3">
             <label htmlFor="password" className="form-label">Password</label>
             <input
@@ -150,7 +177,7 @@ const AddUser = () => {
           </div>
 
           <button type="submit" className="btn btn-primary w-100">
-            Sign Up
+            {id ? 'Update User' : 'Sign Up'}
           </button>
         </form>
       </div>
