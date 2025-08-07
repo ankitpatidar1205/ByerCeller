@@ -11,6 +11,7 @@ const UserProducts = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
   const pageSize = 10;
 
   useEffect(() => {
@@ -88,189 +89,216 @@ const UserProducts = () => {
 
   return (
     <>
-      <div>
-        <div className="container-fluid mt-2">
-          <div className="row p-4">
-            <div className="col-lg-3">
-              <div className="card shadow-sm" style={{ borderRadius: '20px' }}>
-                <div className="card-body">
-                  <h2 className="h4 fw-semibold mb-4">Filter Products</h2>
-                  <div className="mb-4">
-                    <h3 className="h6 fw-semibold mb-3">Categories</h3>
-                    {categories.map((category, index) => (
-                      <div className="form-check mb-2" key={index}>
-                        <input className="form-check-input"
-                          type="checkbox"
-                          checked={selectedCategories.includes(category.name)}
-                          onChange={() => toggleCategory(category.name)}
-                          id={`category${index}`}
-                        />
-                        <label className="form-check-label ms-2" htmlFor={`category${index}`}>
-                          {category.name}
-                        </label>
-                      </div>
-                    ))}
-                  </div>
+      <div className="container-fluid mt-2">
+        <div className="row p-lg-4 p-md-3 p-2">
+          {/* Mobile Filter Button - Only visible on small screens */}
+          <div className="d-lg-none d-flex mb-3">
+            <button 
+              className="btn btn-primary w-100 rounded-pill"
+              onClick={() => setShowMobileFilters(!showMobileFilters)}
+            >
+              {showMobileFilters ? 'Hide Filters' : 'Show Filters'}
+            </button>
+          </div>
+
+          {/* Sidebar - Hidden on mobile unless toggled */}
+          <div 
+            className={`col-lg-3 ${showMobileFilters ? 'd-block' : 'd-none'} d-lg-block`}
+            style={{ 
+              top: "80px", 
+              height: "fit-content",
+              position: window.innerWidth >= 992 ? "sticky" : "static"
+            }}
+          >
+            <div className="card shadow-sm mb-3" style={{ borderRadius: '20px' }}>
+              <div className="card-body">
+                <h2 className="h4 fw-semibold mb-4">Filter Products</h2>
+                <div className="mb-4">
+                  <h3 className="h6 fw-semibold mb-3">Categories</h3>
+                  {categories.map((category, index) => (
+                    <div className="form-check mb-2" key={index}>
+                      <input className="form-check-input"
+                        type="checkbox"
+                        checked={selectedCategories.includes(category.name)}
+                        onChange={() => toggleCategory(category.name)}
+                        id={`category${index}`}
+                      />
+                      <label className="form-check-label ms-2" htmlFor={`category${index}`}>
+                        {category.name}
+                      </label>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="col-lg-9">
-              <div className="row mb-4 g-3">
-                <div className="col-md-8">
-                  <div className="input-group">
-                    <span className="input-group-text bg-white rounded-pill me-2">
-                      <i className="bi bi-search text-muted"></i>
-                    </span>
-                    <input
-                      type="text"
-                      className="form-control py-2 rounded-pill"
-                      placeholder="Search products..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <select
-                    className="form-select rounded-pill"
-                    value={sortOption}
-                    onChange={(e) => setSortOption(e.target.value)}
-                  >
-                    <option value="">Sort by</option>
-                    <option value="az">Name: A to Z</option>
-                    <option value="za">Name: Z to A</option>
-                    <option value="low">Price: Low to High</option>
-                    <option value="high">Price: High to Low</option>
-                  </select>
+          {/* Main Content */}
+          <div className="col-lg-9">
+            {/* Search and Sort - Sticky on large screens */}
+            <div 
+              className="row mb-4 g-3 position-sticky bg-white py-2" 
+              style={{ 
+                top: "75px", 
+                zIndex: 10,
+                position: window.innerWidth >= 992 ? "sticky" : "static"
+              }}
+            >
+              <div className="col-md-8 col-12">
+                <div className="input-group">
+                  <span className="input-group-text bg-white rounded-pill me-2">
+                    <i className="bi bi-search text-muted"></i>
+                  </span>
+                  <input
+                    type="text"
+                    className="form-control py-2 rounded-pill"
+                    placeholder="Search products..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
                 </div>
               </div>
+              <div className="col-md-4 col-12">
+                <select
+                  className="form-select rounded-pill"
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                >
+                  <option value="">Sort by</option>
+                  <option value="az">Name: A to Z</option>
+                  <option value="za">Name: Z to A</option>
+                  <option value="low">Price: Low to High</option>
+                  <option value="high">Price: High to Low</option>
+                </select>
+              </div>
+            </div>
 
-              <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                {paginatedProducts?.length > 0 ? (
-                  paginatedProducts.map((product, idx) => (
-                    <div className="col" key={product.id}>
-                      <Link to={`/UserProductDetail/${product.id}`} style={{ textDecoration: 'none' }}>
+            {/* Products Grid */}
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
+              {paginatedProducts?.length > 0 ? (
+                paginatedProducts.map((product) => (
+                  <div className="col" key={product.id}>
+                    <Link to={`/UserProductDetail/${product.id}`} style={{ textDecoration: 'none' }}>
+                      <div
+                        className="card h-100 shadow-sm"
+                        style={{
+                          borderRadius: "20px",
+                          transition: "all 0.3s",
+                        }}
+                      >
                         <div
-                          className="card h-100 shadow-sm"
+                          className="card-img-top"
                           style={{
-                            borderRadius: "20px",
-                            transition: "all 0.3s",
+                            height: '14rem',
+                            backgroundImage: `url('${product.image[0]}')`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            borderTopLeftRadius: '20px',
+                            borderTopRightRadius: '20px',
+                          }}
+                        />
+                        <div
+                          className="card-body d-flex flex-column"
+                          style={{
+                            backgroundColor: '#e3f2fd',
+                            borderBottomLeftRadius: '20px',
+                            borderBottomRightRadius: '20px',
                           }}
                         >
-                          <div
-                            className="card-img-top"
+                          <span
+                            className="px-3 py-1 mb-2"
                             style={{
-                              height: '14rem',
-                              backgroundImage: `url('${product.image[0]}')`,
-                              backgroundSize: 'cover',
-                              backgroundPosition: 'center',
-                              borderTopLeftRadius: '20px',
-                              borderTopRightRadius: '20px',
-                            }}
-                          />
-                          <div
-                            className="card-body d-flex flex-column"
-                            style={{
-                              backgroundColor: '#e3f2fd',
-                              borderBottomLeftRadius: '20px',
-                              borderBottomRightRadius: '20px',
+                              backgroundColor: '#1976d2',
+                              color: 'white',
+                              borderRadius: '50px',
+                              fontSize: '0.75rem',
+                              display: 'inline-block',
+                              fontWeight: '600'
                             }}
                           >
-                            <span
-                              className="px-3 py-1 mb-2"
+                            {product.category_name}
+                          </span>
+
+                          <h5 className="fw-bold mb-2 text-dark">
+                            {product?.name?.slice(0, 60)}{product?.name?.length > 60 ? "..." : ""}
+                          </h5>
+
+                          <p className="text-muted mb-3 flex-grow-1" style={{ fontSize: '0.9rem' }}>
+                            {product.description.length > 100
+                              ? product.description.slice(0, 100) + "..."
+                              : product.description}
+                          </p>
+
+                          <div className="d-flex justify-content-between align-items-center">
+                            <span className="fw-bold text-primary">¥{product.price}</span>
+                            <button
+                              className="btn btn-sm"
                               style={{
-                                backgroundColor: '#1976d2',
+                                backgroundColor: '#64b5f6',
                                 color: 'white',
-                                borderRadius: '50px',
-                                fontSize: '0.75rem',
-                                display: 'inline-block',
-                                fontWeight: '600'
+                                borderRadius: '999px',
+                                padding: '5px 15px',
+                                fontSize: '0.8rem',
+                                fontWeight: '500'
                               }}
                             >
-                              {product.category_name}
-                            </span>
-
-                            <h5 className="fw-bold mb-2 text-dark">
-                              {product?.name?.slice(0, 60)}{product?.name?.length > 60 ? "..." : ""}
-                            </h5>
-
-                            <p className="text-muted mb-3 flex-grow-1" style={{ fontSize: '0.9rem' }}>
-                              {product.description.length > 100
-                                ? product.description.slice(0, 100) + "..."
-                                : product.description}
-                            </p>
-
-                            <div className="d-flex justify-content-between align-items-center">
-                              <span className="fw-bold text-primary">¥{product.price}</span>
-                              <button
-                                className="btn btn-sm"
-                                style={{
-                                  backgroundColor: '#64b5f6',
-                                  color: 'white',
-                                  borderRadius: '999px',
-                                  padding: '5px 15px',
-                                  fontSize: '0.8rem',
-                                  fontWeight: '500'
-                                }}
-                              >
-                                View
-                              </button>
-                            </div>
+                              View
+                            </button>
                           </div>
                         </div>
-                      </Link>
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-center"><Loader /></p>
-                )}
-              </div>
+                      </div>
+                    </Link>
+                  </div>
+                ))
+              ) : (
+                <div className="col-12 text-center">
+                  <Loader />
+                </div>
+              )}
+            </div>
 
-              {/* Pagination */}
-              <div className="d-flex justify-content-between align-items-center mt-4 small text-muted">
-                <div>
-                  Showing {filteredProducts.length === 0 ? 0 : (currentPage - 1) * pageSize + 1}
-                  {" "}to{" "}
-                  {Math.min(currentPage * pageSize, filteredProducts.length)}
-                  {" "}of {filteredProducts.length} results
-                </div>
-                <div>
-                  <nav>
-                    <ul className="pagination pagination-sm mb-0">
-                      <li className={`page-item${currentPage === 1 ? " disabled" : ""}`}>
-                        <button
-                          className="page-link"
-                          onClick={() => handlePageChange(currentPage - 1)}
-                          disabled={currentPage === 1}
-                        >
-                          Previous
-                        </button>
-                      </li>
-                      {[...Array(totalPages)].map((_, i) => (
-                        <li key={i} className={`page-item${currentPage === i + 1 ? " active" : ""}`}>
-                          <button
-                            className="page-link"
-                            onClick={() => handlePageChange(i + 1)}
-                          >
-                            {i + 1}
-                          </button>
-                        </li>
-                      ))}
-                      <li className={`page-item${currentPage === totalPages ? " disabled" : ""}`}>
-                        <button
-                          className="page-link"
-                          onClick={() => handlePageChange(currentPage + 1)}
-                          disabled={currentPage === totalPages}
-                        >
-                          Next
-                        </button>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
+            {/* Pagination - Responsive */}
+            <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center mt-4 small text-muted">
+              <div className="mb-2 mb-sm-0">
+                Showing {filteredProducts.length === 0 ? 0 : (currentPage - 1) * pageSize + 1}
+                {" "}to{" "}
+                {Math.min(currentPage * pageSize, filteredProducts.length)}
+                {" "}of {filteredProducts.length} results
               </div>
-              {/* End Pagination */}
+              <div>
+                <nav>
+                  <ul className="pagination pagination-sm mb-0">
+                    <li className={`page-item${currentPage === 1 ? " disabled" : ""}`}>
+                      <button
+                        className="page-link"
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}
+                      >
+                        Previous
+                      </button>
+                    </li>
+                    {[...Array(totalPages)].map((_, i) => (
+                      <li key={i} className={`page-item${currentPage === i + 1 ? " active" : ""}`}>
+                        <button
+                          className="page-link"
+                          onClick={() => handlePageChange(i + 1)}
+                        >
+                          {i + 1}
+                        </button>
+                      </li>
+                    ))}
+                    <li className={`page-item${currentPage === totalPages ? " disabled" : ""}`}>
+                      <button
+                        className="page-link"
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                      >
+                        Next
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
             </div>
           </div>
         </div>

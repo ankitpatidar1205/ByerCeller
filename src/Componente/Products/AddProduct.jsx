@@ -111,7 +111,7 @@ const [categoryImage, setCategoryImage] = useState(null); // Remove editingCateg
   };
 
   return (
-    <div className="p-5">
+    <div className="p-3">
       <ToastContainer />
       <div className="mb-4 text-center text-md-start">
         <h2 className="fw-bold">Add New Product</h2>
