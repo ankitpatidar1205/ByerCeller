@@ -12,6 +12,7 @@ const Signup = () => {
     firstName: '',
     lastName: '',
     email: '',
+    mobileNumber:'',
     password: '',
     confirmPassword: '',
     role: 'buyer', // default role
@@ -35,6 +36,7 @@ const Signup = () => {
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: formData.email,
+      mobileNumber: formData.mobileNumber,
       password: formData.password,
       role: formData.role, // role send in payload
     };
@@ -47,6 +49,7 @@ const Signup = () => {
         firstName: '',
         lastName: '',
         email: '',
+        mobileNumber:'',
         password: '',
         confirmPassword: '',
         role: 'buyer',
@@ -113,7 +116,18 @@ const Signup = () => {
                     placeholder="Enter your email"
                   />
                 </div>
-
+               <div className="mb-3">
+                  <label htmlFor="number" className="form-label fw-semibold">Mobile Number</label>
+                  <input
+                    type="number"
+                    className="form-control custom-input"
+                    id="mobileNumber"
+                    value={formData.mobileNumber}
+                    onChange={handleChange}
+                    required
+                    placeholder="Enter your Mobile Number"
+                  />
+                </div>
                 <div className="mb-3">
                   <label htmlFor="password" className="form-label fw-semibold">Password</label>
                   <input

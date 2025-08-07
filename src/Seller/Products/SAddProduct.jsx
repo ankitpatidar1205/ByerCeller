@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import axiosInstance from '../../Utilities/axiosInstance';
-import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState, useEffect } from "react";
+import axiosInstance from "../../Utilities/axiosInstance";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SAddProduct = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [categoryName, setCategoryName] = useState("");
+  const [categoryImage, setCategoryImage] = useState(null);
   const [form, setForm] = useState({
-    name: '',
-    price: '',
-    sku: '',
-    categoryId: '',
-    stockQuantity: '',
-    description: '',
+    name: "",
+    price: "",
+    sku: "",
+    categoryId: "",
+    stockQuantity: "",
+    description: "",
     image: [],
-    modelNo: '',
-    code: '',
-    material: '',
+    modelNo: "",
+    code: "",
+    material: "",
   });
 
   useEffect(() => {
@@ -32,13 +35,13 @@ const SAddProduct = () => {
       const res = await axiosInstance.get(`/category/getAllCategories`);
       setCategories(res.data?.data || []);
     } catch (error) {
-      console.error('Error fetching categories:', error);
+      console.error("Error fetching categories:", error);
     }
   };
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === 'image') {
+    if (name === "image") {
       setForm({ ...form, image: Array.from(files) });
     } else {
       setForm({ ...form, [name]: value });
@@ -61,22 +64,55 @@ const SAddProduct = () => {
     formData.append('material', form.material);
  
     form.image.forEach((image) => {
-      formData.append('image', image);
+      formData.append("image", image);
     });
 
     try {
-      const response = await axiosInstance.post(`/product/createProduct`, formData);
-      toast.success('Product successfully added!', {
-        position: 'top-center',
+      const response = await axiosInstance.post(
+        `/product/createProduct`,
+        formData
+      );
+      toast.success("Product successfully added!", {
+        position: "top-center",
         autoClose: 2000,
       });
       setTimeout(() => navigate('/seller/products'), 2000); // wait for toast before redirect
     } catch (error) {
-      console.error('Error creating product:', error);
-      toast.error('Error creating product', {
-        position: 'top-center',
+      console.error("Error creating product:", error);
+      toast.error("Error creating product", {
+        position: "top-center",
         autoClose: 3000,
       });
+    }
+  };
+
+  const resetForm = () => {
+    setCategoryName("");
+    setCategoryImage(null);
+    // Remove setEditingCategory(null);
+  };
+
+  const handleAddOrUpdate = async (e) => {
+    e.preventDefault();
+
+    if (!categoryName) {
+      alert("Please enter category name");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("name", categoryName);
+    if (categoryImage) formData.append("image", categoryImage);
+
+    try {
+      // Always add category, never update
+      await axiosInstance.post(`/category/createCategory`, formData);
+
+      setShowModal(false);
+      resetForm();
+      fetchCategories();
+    } catch (err) {
+      console.error("Error saving category:", err);
     }
   };
 
@@ -115,7 +151,8 @@ const SAddProduct = () => {
             </div>
           </div>
 
-          <div className="row mb-3">
+          <div className="row mb-3 align-items-end">
+            {/* SKU Field */}
             <div className="col-md-6">
               <label className="form-label">SKU *</label>
               <input
@@ -127,10 +164,21 @@ const SAddProduct = () => {
                 required
               />
             </div>
+
+            {/* Category Field with Add Button */}
             <div className="col-md-6">
-              <label className="form-label">Category *</label>
+              <div className="d-flex justify-content-between align-items-center">
+                <label className="form-label mb-0">Category *</label>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-outline-primary"
+                  onClick={() => setShowModal(true)}
+                >
+                  + Add
+                </button>
+              </div>
               <select
-                className="form-select"
+                className="form-select mt-2"
                 name="categoryId"
                 value={form.categoryId}
                 onChange={handleChange}
@@ -145,38 +193,39 @@ const SAddProduct = () => {
               </select>
             </div>
           </div>
-<div className="row mb-3">
-  <div className="col-md-4">
-    <label className="form-label">Model No</label>
-    <input
-      type="text"
-      className="form-control"
-      name="modelNo"
-      value={form.modelNo}
-      onChange={handleChange}
-    />
-  </div>
-  <div className="col-md-4">
-    <label className="form-label">Code</label>
-    <input
-      type="text"
-      className="form-control"
-      name="code"
-      value={form.code}
-      onChange={handleChange}
-    />
-  </div>
-  <div className="col-md-4">
-    <label className="form-label">Material</label>
-    <input
-      type="text"
-      className="form-control"
-      name="material"
-      value={form.material}
-      onChange={handleChange}
-    />
-  </div>
-</div>
+
+          <div className="row mb-3">
+            <div className="col-md-4">
+              <label className="form-label">Model No</label>
+              <input
+                type="text"
+                className="form-control"
+                name="modelNo"
+                value={form.modelNo}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-4">
+              <label className="form-label">Code</label>
+              <input
+                type="text"
+                className="form-control"
+                name="code"
+                value={form.code}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-4">
+              <label className="form-label">Material</label>
+              <input
+                type="text"
+                className="form-control"
+                name="material"
+                value={form.material}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
 
           <div className="mb-3">
             <label className="form-label">Stock Quantity *</label>
@@ -217,7 +266,11 @@ const SAddProduct = () => {
           </div>
 
           <div className="d-flex justify-content-end gap-2">
-            <button type="button" className="btn btn-outline-secondary" onClick={()=> navigate(-1)}>
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={() => navigate(-1)}
+            >
               Cancel
             </button>
             <button type="submit" className="btn custom-button">
@@ -226,6 +279,65 @@ const SAddProduct = () => {
           </div>
         </form>
       </div>
+      {showModal && (
+        <div className="modal show fade d-block" tabIndex="-1">
+          <div className="modal-dialog modal-lg">
+            <div className="modal-content">
+              <form onSubmit={handleAddOrUpdate}>
+                <div className="modal-header">
+                  <h5 className="modal-title">Add New Category</h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    onClick={() => {
+                      setShowModal(false);
+                      resetForm();
+                    }}
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  <div className="row g-3">
+                    <div className="col-md-6">
+                      <label className="form-label">Category Name</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={categoryName}
+                        onChange={(e) => setCategoryName(e.target.value)}
+                        placeholder="Enter category name"
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <label className="form-label">Category Image</label>
+                      <input
+                        type="file"
+                        className="form-control"
+                        onChange={(e) => setCategoryImage(e.target.files[0])}
+                        accept="image/*"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => {
+                      setShowModal(false);
+                      resetForm();
+                    }}
+                  >
+                    Cancel
+                  </button>
+                  <button type="submit" className="btn custom-button">
+                    Add Category
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

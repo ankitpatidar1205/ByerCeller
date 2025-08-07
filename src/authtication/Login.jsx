@@ -145,6 +145,9 @@ const Login = () => {
       <p className="signup-text mt-4 text-center">
         Don’t have an account? <Link to="/signup" className="signup-link">Register</Link>
       </p>
+<Link to="/forgotpassword" className="text-center d-block mt-2">
+      <p className='text-center signup-link cursor-pointer'>Forgot Password</p>
+      </Link>
     </div>
   </div>
 </div>

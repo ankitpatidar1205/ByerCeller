@@ -59,6 +59,9 @@ import SellerProfile from "./Seller/Profile/SellerProfile";
 import BrokerProfile from "./Broker/Profile/BrokerProfile";
 import SEditProductForm from "./Seller/Products/SEditProduct";
 import SAddCategories from "./Seller/Categories/SAddCategories";
+import ForgotPassword from "./authtication/ForgotPassword";
+import ResetPassword from "./authtication/ResetPassword";
+import AddUser from "./Componente/Users/AddUser";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -69,7 +72,7 @@ function App() {
     setIsSidebarCollapsed((prev) => !prev);
   };
   const location = useLocation();
-  const hideLayout = location.pathname === "/" || location.pathname === "/electricalproducts"  || location.pathname === "/contactus" || location.pathname === "/productpage" || location.pathname==="/pricing" || location.pathname === "/shoppingcart" || location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/aboutus" || location.pathname === "/privacypolicy" || location.pathname === "/terms" || location.pathname === "/refund" || location.pathname.startsWith("/productpage" );
+  const hideLayout = location.pathname === "/" || location.pathname === "/electricalproducts"  || location.pathname === "/contactus" || location.pathname === "/productpage" || location.pathname==="/pricing" || location.pathname === "/shoppingcart" || location.pathname === "/login" || location.pathname === "/forgotpassword" || location.pathname === "/resetpassword" || location.pathname === "/signup" || location.pathname === "/aboutus" || location.pathname === "/privacypolicy" || location.pathname === "/terms" || location.pathname === "/refund" || location.pathname.startsWith("/productpage" );
   return (
     <>
       <ScrollToTop />
@@ -79,6 +82,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="/electricalproducts" element={<ElectricalProducts />} />
           <Route path="/shoppingcart" element={<ShoppingCart />} />
           <Route path="/productpage/:id" element={<ProductPage />} />
@@ -103,6 +108,8 @@ function App() {
                 <Route path="/categories" element={<AddCategories />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/users" element={<Users />} />
+                <Route path="/AddUser" element={<AddUser />} />
+                <Route path="/AddUser/:id" element={<AddUser />} />
                 <Route path="/bannermanager" element={<BannerManager />} />
                 <Route path="/products" element={<Productes />} />
                 <Route path="/addproducts" element={<AddProduct />} />

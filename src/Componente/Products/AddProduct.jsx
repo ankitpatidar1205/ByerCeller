@@ -7,6 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 const AddProduct = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+const [categoryName, setCategoryName] = useState('');
+const [categoryImage, setCategoryImage] = useState(null); // Remove editingCategory state
+
   const [form, setForm] = useState({
     name: '',
     price: '',
@@ -76,6 +80,36 @@ const AddProduct = () => {
     }
   };
 
+   const resetForm = () => {
+    setCategoryName('');
+    setCategoryImage(null);
+    // Remove setEditingCategory(null);
+  };
+
+  const handleAddOrUpdate = async (e) => {
+    e.preventDefault();
+
+    if (!categoryName) {
+      alert('Please enter category name');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('name', categoryName);
+    if (categoryImage) formData.append('image', categoryImage);
+
+    try {
+      // Always add category, never update
+      await axiosInstance.post(`/category/createCategory`, formData);
+
+      setShowModal(false);
+      resetForm();
+      fetchCategories();
+    } catch (err) {
+      console.error('Error saving category:', err);
+    }
+  };
+
   return (
     <div className="p-5">
       <ToastContainer />
@@ -111,36 +145,49 @@ const AddProduct = () => {
             </div>
           </div>
 
-          <div className="row mb-3">
-            <div className="col-md-6">
-              <label className="form-label">SKU *</label>
-              <input
-                type="text"
-                className="form-control"
-                name="sku"
-                value={form.sku}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="col-md-6">
-              <label className="form-label">Category *</label>
-              <select
-                className="form-select"
-                name="categoryId"
-                value={form.categoryId}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select Category</option>
-                {categories.map((cat) => (
-                  <option key={cat.id} value={cat.id}>
-                    {cat.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
+        <div className="row mb-3 align-items-end">
+  {/* SKU Field */}
+  <div className="col-md-6">
+    <label className="form-label">SKU *</label>
+    <input
+      type="text"
+      className="form-control"
+      name="sku"
+      value={form.sku}
+      onChange={handleChange}
+      required
+    />
+  </div>
+
+  {/* Category Field with Add Button */}
+  <div className="col-md-6">
+    <div className="d-flex justify-content-between align-items-center">
+      <label className="form-label mb-0">Category *</label>
+      <button
+        type="button"
+        className="btn btn-sm btn-outline-primary"
+        onClick={() => setShowModal(true)}
+      >
+        + Add
+      </button>
+    </div>
+    <select
+      className="form-select mt-2"
+      name="categoryId"
+      value={form.categoryId}
+      onChange={handleChange}
+      required
+    >
+      <option value="">Select Category</option>
+      {categories.map((cat) => (
+        <option key={cat.id} value={cat.id}>
+          {cat.name}
+        </option>
+      ))}
+    </select>
+  </div>
+</div>
+ 
 <div className="row mb-3">
   <div className="col-md-4">
     <label className="form-label">Model No</label>
@@ -222,6 +269,68 @@ const AddProduct = () => {
           </div>
         </form>
       </div>
+      {showModal && (
+  <div className="modal show fade d-block" tabIndex="-1">
+    <div className="modal-dialog modal-lg">
+      <div className="modal-content">
+        <form onSubmit={handleAddOrUpdate}>
+          <div className="modal-header">
+            <h5 className="modal-title">
+              Add New Category
+            </h5>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={() => {
+                setShowModal(false);
+                resetForm();
+              }}
+            ></button>
+          </div>
+          <div className="modal-body">
+            <div className="row g-3">
+              <div className="col-md-6">
+                <label className="form-label">Category Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={categoryName}
+                  onChange={(e) => setCategoryName(e.target.value)}
+                  placeholder="Enter category name"
+                />
+              </div>
+              <div className="col-md-6">
+                <label className="form-label">Category Image</label>
+                <input
+                  type="file"
+                  className="form-control"
+                  onChange={(e) => setCategoryImage(e.target.files[0])}
+                  accept="image/*"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => {
+                setShowModal(false);
+                resetForm();
+              }}
+            >
+              Cancel
+            </button>
+            <button type="submit" className="btn custom-button">
+              Add Category
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
