@@ -121,13 +121,12 @@ const UserProduct = () => {
                   </p>
 
                   <div className="mt-auto d-flex justify-content-between">
-                    <button
+                   <Link to={`/productpage/${product.id}`}>  <button
                       className="btn btn-sm btn-outline-secondary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#productDetailModal"
-                      onClick={() => setSelectedProduct(product)} >
+                    
+                      >
                       <FaEye /> 
-                    </button>
+                    </button></Link>
                   </div>
                 </div>
               </div>

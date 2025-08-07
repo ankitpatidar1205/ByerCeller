@@ -19,10 +19,10 @@ const ReportsTable = () => {
 
   // Dummy stats
   const summary = [
-    { title: "Total Buyers", count: 120, icon: <FaUsers />, color: "primary" },
-    { title: "Total Sellers", count: 35, icon: <FaStore />, color: "success" },
-    { title: "Total Brokers", count: 15, icon: <FaHandshake />, color: "warning" },
-    { title: "Total Orders", count: 450, icon: <FaBoxOpen />, color: "danger" },
+    { title: "Total Buyers", count: 11, icon: <FaUsers />, color: "primary" },
+    { title: "Total Sellers", count: 1, icon: <FaStore />, color: "success" },
+    { title: "Total Brokers", count: 1, icon: <FaHandshake />, color: "warning" },
+    { title: "Total Orders", count: 0, icon: <FaBoxOpen />, color: "danger" },
   ];
 
   // Dummy Bar Chart Data

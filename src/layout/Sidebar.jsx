@@ -29,7 +29,7 @@ const Sidebar = ({ collapsed }) => {
 
   // User menu
   const userMenu = [
-    { name: "Dashboard", path: "/UserDashboard", icon: "fa-solid fa-house-user" },
+    { name: "Dashboard", path: "/buyer/dashboard", icon: "fa-solid fa-house-user" },
     { name: "Product", path: "/UserProduct", icon: "fa-solid fa-box" },
     { name: "Request Broker", path: "/Request-Broker", icon: "fa-solid fa-handshake" },
     { name: "My Orders", path: "/MyOrders", icon: "fa-solid fa-cart-shopping" },
@@ -51,11 +51,10 @@ const Sidebar = ({ collapsed }) => {
   // Seller menu
   const sellerMenu = [
     { name: " Dashboard", path: "/seller/dashboard", icon: "fa-solid fa-store" },
-      { name: "Categories", path: "/seller/categories", icon: "fa-solid fa-list" },
-
+    { name: "Categories", path: "/seller/categories", icon: "fa-solid fa-list" },
     { name: "Add Products", path: "/seller/addproducts", icon: "fa-solid fa-plus" },
     { name: "My Products", path: "/seller/products", icon: "fa-solid fa-boxes-stacked" },
-     { name: "Broker Invites", path: "/seller/brokerinvitation", icon: "fa-solid fa-user-circle" },
+    { name: "Broker Invites", path: "/seller/brokerinvitation", icon: "fa-solid fa-user-circle" },
     { name: "Orders", path: "/seller/orders", icon: "fa-solid fa-cart-shopping" },
     { name: "Profile", path: "/seller/profile", icon: "fa-solid fa-user-circle" },
   

@@ -1,6 +1,6 @@
 
 import  { useEffect, useState } from "react";
-import {  FaEye } from "react-icons/fa";
+import {  FaEye, FaTrash } from "react-icons/fa";
 import axiosInstance from "../../Utilities/axiosInstance";
 const RecentOrders = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -84,9 +84,16 @@ const RecentOrders = () => {
                           onClick={() => setSelectedUser(user)} data-bs-toggle="modal" data-bs-target="#userModal">
                           <FaEye size={14} />
                         </button>
-                       
+                        <button
+                                                 className="btn btn-sm btn-outline-danger"
+                                                 title="Delete User"
+                                                 onClick={() => handleDelete(user.id)}
+                                               >
+                                                 <FaTrash size={14} />
+                                               </button>
                       </div>
                     </td>
+                    
                   </tr>
                 ))
               ) : (
