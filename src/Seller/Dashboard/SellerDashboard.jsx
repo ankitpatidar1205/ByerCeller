@@ -1,43 +1,44 @@
-import React from 'react';
-// import StatCard from './StatCard';
+import React, { useEffect, useState } from 'react';
+import StatCard from './StatsPCards';
 import RevenueChart from './RevenueChart';
 import BrokerRequestChart from './BrokerRequestChart';
-// import BrokerRequestsTable from './BrokerRequestsTable';
-import StatCard from './StatsPCards';
-
+import axiosInstance from '../../Utilities/axiosInstance';
 
 const SellerDashboard = () => {
+  const [dashboardData, setDashboardData] = useState({
+    totalProducts: 0,
+    totalCategories: 0,
+  });
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('user'));
+    const sellerId = userData?.id;
+
+    if (sellerId) {
+      axiosInstance
+        .get(`/dashboardOverview/getDashboardSeller/${sellerId}`)
+        .then((res) => {
+          if (res.data.status) {
+            const { totalProducts, totalCategories } = res.data;
+            setDashboardData({
+              totalProducts: totalProducts.count,
+              totalCategories: totalCategories.count,
+            });
+          }
+        })
+        .catch((err) => {
+          console.error('Error fetching seller dashboard:', err);
+        });
+    }
+  }, []);
+
   return (
     <div className="container-fluid p-4">
       <div className="row g-3 mb-4">
-          <StatCard
-        title="Total Products"
-        value="0"
-        // subtitle="↑ 100% from last month"
-        iconClass="fas fa-box"
-        color="primary"
-      />
-      <StatCard
-        title="Active Deals"
-        value="0"
-        // subtitle="↑ 1 new deals"
-        iconClass="fas fa-handshake"
-        color="danger"
-      />
-      <StatCard
-        title="Connected Brokers"
-        value="0"
-        // subtitle="↑1 more from last month"
-        iconClass="fas fa-user-friends"
-        color="warning"
-      />
-      <StatCard
-        title="Total Revenue"
-        value="0"
-        // subtitle="↑ $3,200 from last month"
-        iconClass="fas fa-dollar-sign"
-        color="success"
-      />
+        <StatCard  title="Total Products"  value={dashboardData?.totalProducts}  iconClass="fas fa-box"  color="primary"/>
+        <StatCard  title="Total Categories"  value={dashboardData?.totalCategories}  iconClass="fas fa-list"  color="info"/>
+        <StatCard title="Orders" value="0" iconClass="fas fa-shopping-cart"  color="danger" />
+        <StatCard  title="Users"  value="0"  iconClass="fas fa-users"  color="success"/>
       </div>
 
       <div className="row">
@@ -48,8 +49,6 @@ const SellerDashboard = () => {
           <BrokerRequestChart />
         </div>
       </div>
-
-      {/* <BrokerRequestsTable /> */}
     </div>
   );
 };

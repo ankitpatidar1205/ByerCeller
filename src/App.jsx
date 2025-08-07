@@ -64,6 +64,7 @@ import ResetPassword from "./authtication/ResetPassword";
 import AddUser from "./Componente/Users/AddUser";
 import UserProductDetail from "./UserProfile/UserProductDetail";
 import UserCart from "./UserProfile/UserCart";
+import Setting from "./UserProfile/Setting";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -130,6 +131,7 @@ function App() {
                <Route path="/UserProductDetail/:id" element={<UserProductDetail />} />
                <Route path="/MyOrders" element={<MyOrders />} />
                <Route path="/Request-Broker" element={<RequestBroker />} />
+               <Route path="/setting" element={<Setting />} />
 
                  {/* Seller */}
                 <Route path="/seller/dashboard" element ={ <SellerDashboard />} />

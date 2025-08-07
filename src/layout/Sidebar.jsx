@@ -35,6 +35,7 @@ const Sidebar = ({ collapsed }) => {
     { name: "My Orders", path: "/MyOrders", icon: "fa-solid fa-box"  },
     { name: "Request Broker", path: "/Request-Broker", icon: "fa-solid fa-handshake" },
     { name: "My Profile", path: "/MyProfile", icon: "fa-solid fa-user" },
+    { name: "Setting", path: "/setting", icon: "fa-solid fa-gear" }
   ];
 
   // Broker menu

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../Utilities/axiosInstance";
-
+import Loader from "../Loader/Loader";
 const MyProfile = () => {
   const [user, setUser] = useState(null);
   const [editMode, setEditMode] = useState(false);
@@ -68,13 +68,13 @@ const MyProfile = () => {
     }
   };
 
-  if (loading) return <div>Loading profile...</div>;
+  if (loading) return <div><Loader/></div>;
   if (!user) return <div>Failed to load profile.</div>;
 
   return (
     <div className="card shadow-sm rounded p-4 mb-4">
-      <h4 className="mb-4 fw-bold">My Profile</h4>
-
+      <h4 className="mb-2 mt-2 fw-bold">My Profile</h4>
+   
       <div className="row g-3">
         <div className="col-md-6">
           <label className="form-label">First Name</label>
