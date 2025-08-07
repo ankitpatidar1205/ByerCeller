@@ -26,6 +26,9 @@ const SAddProduct = () => {
   useEffect(() => {
     fetchCategories();
   }, []);
+  // Get sellerId from localStorage
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const sellerId = user.id;
 
   const fetchCategories = async () => {
     try {
@@ -49,16 +52,17 @@ const SAddProduct = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("name", form.name);
-    formData.append("price", form.price);
-    formData.append("sku", form.sku);
-    formData.append("categoryId", form.categoryId);
-    formData.append("stockQuantity", form.stockQuantity);
-    formData.append("description", form.description);
-    formData.append("modelNo", form.modelNo);
-    formData.append("code", form.code);
-    formData.append("material", form.material);
-
+    formData.append('name', form.name);
+    formData.append('price', form.price);
+    formData.append('sku', form.sku);
+    formData.append('categoryId', form.categoryId);
+    formData.append('stockQuantity', form.stockQuantity);
+    formData.append('description', form.description);
+    formData.append('modelNo', form.modelNo);
+    formData.append('code', form.code);
+    formData.append('sellerId', sellerId);
+    formData.append('material', form.material);
+ 
     form.image.forEach((image) => {
       formData.append("image", image);
     });
@@ -72,7 +76,7 @@ const SAddProduct = () => {
         position: "top-center",
         autoClose: 2000,
       });
-      setTimeout(() => navigate("/products"), 2000); // wait for toast before redirect
+      setTimeout(() => navigate('/seller/products'), 2000); // wait for toast before redirect
     } catch (error) {
       console.error("Error creating product:", error);
       toast.error("Error creating product", {

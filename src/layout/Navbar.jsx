@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import logo from '../assets/image-removebg-preview.png'
 const Navbar = ({ toggleSidebar }) => {
   const navigate = useNavigate();
   // ✅ Extract user data from localStorage
@@ -19,7 +19,7 @@ const Navbar = ({ toggleSidebar }) => {
           <div className="d-flex align-items-center gap-3">
 
                     <Link to="/">
-              <img  src="https://i.ibb.co/8DqZ6ZvS/image.png"   alt="logo"  className="h-10" style={{ background : "transparent"}}/>
+              <img  src={logo}   alt="logo"  className="h-10" style={{ background : "transparent"}}/>
             </Link>
             <button   className="btn btn-outline-secondary d-lg-none"    onClick={toggleSidebar} >
               <i className="bi bi-list fs-4"></i>

@@ -25,8 +25,8 @@ const Login = () => {
     setRoleSelected(role);
     if (role === "admin") {
       setFormData({ email: "admin@example.com", password: "1234" });
-    } else if (role === "user") {
-      setFormData({ email: "ankit@gmail.com", password: "1234" });
+    } else if (role === "buyer") {
+      setFormData({ email: "buyer@gmail.com", password: "1234" });
     } else if (role === "seller") {
       setFormData({ email: "seller@gmail.com", password: "1234" });
     } else if (role === "broker") {
@@ -36,23 +36,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (roleSelected === "seller" || roleSelected === "broker") {
-      // Dummy login
-      localStorage.setItem("role", roleSelected);
-      localStorage.setItem("token", "dummy-token");
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ email: formData.email, role: roleSelected })
-      );
-
-      toast.success(`${roleSelected} login successful!`, { position: "top-center" });
-      setTimeout(() => {
-        navigate(`/${roleSelected}/dashboard`);
-      }, 1200);
-      return;
-    }
-
     // Admin/User API login
     try {
       const response = await axios.post(`${BaseUrl}/user/login`, formData);
@@ -63,10 +46,20 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify(response.data.data));
 
       toast.success("Login successful!", { position: "top-center" });
-      setTimeout(() => {
-        if (role === "admin") navigate("/admin/dashboard");
-        else navigate("/UserDashboard");
-      }, 1200);
+   setTimeout(() => {
+  if (role === "admin") {
+    navigate("/admin/dashboard");
+  } else if (role === "buyer") {
+    navigate("/buyer/dashboard");
+  } else if (role === "seller") {
+    navigate("/seller/dashboard");
+  } else if (role === "broker") {
+    navigate("/broker/dashboard");
+  } else {
+    navigate("/login"); // fallback agar role match na ho
+  }
+}, 1200);
+
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed", {
         position: "top-center",
@@ -128,8 +121,8 @@ const Login = () => {
         </button>
         <button
           type="button"
-          className={`btn role-btn ${roleSelected === "user" ? "selected-user" : "outline-user"}`}
-          onClick={() => setRole("user")}
+          className={`btn role-btn ${roleSelected === "buyer" ? "selected-user" : "outline-user"}`}
+          onClick={() => setRole("buyer")}
         >
           Buyer
         </button>

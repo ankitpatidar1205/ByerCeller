@@ -3,6 +3,7 @@ import axiosInstance from "../../Utilities/axiosInstance";
 import { Modal, Button, Form } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const Inventory = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [inventory, setInventory] = useState([]);
@@ -10,6 +11,8 @@ const Inventory = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [newStockQuantity, setNewStockQuantity] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
   useEffect(() => {
     fetchInventory();
@@ -20,12 +23,12 @@ const Inventory = () => {
       item?.name?.toLowerCase()?.includes(searchTerm.toLowerCase())
     );
     setFilteredInventory(filtered);
+    setCurrentPage(1); // Reset to first page on search
   }, [searchTerm, inventory]);
 
   const fetchInventory = async () => {
     try {
       const response = await axiosInstance.get(`/product/getAllInventoryProducts`);
-      console.log(response.data);
       setInventory(response.data.data || []);
       setFilteredInventory(response.data.data || []);
     } catch (error) {
@@ -33,12 +36,11 @@ const Inventory = () => {
     }
   };
 
-const getStockStatus = (stock) => {
-  if (stock > 15) return { label: "In Stock", badge: "success" };
-  if (stock > 0 && stock <= 15) return { label: "Low Stock", badge: "warning" };
-  if (stock === 0) return { label: "Out of Stock", badge: "danger" };
-};
-
+  const getStockStatus = (stock) => {
+    if (stock > 15) return { label: "In Stock", badge: "success" };
+    if (stock > 0 && stock <= 15) return { label: "Low Stock", badge: "warning" };
+    if (stock === 0) return { label: "Out of Stock", badge: "danger" };
+  };
 
   const handleOpenModal = (product) => {
     setSelectedProduct(product);
@@ -56,7 +58,7 @@ const getStockStatus = (stock) => {
       await axiosInstance.patch(`/product/updateProduct/${selectedProduct.id}`, {
         stockQuantity: parseInt(newStockQuantity)
       });
-       toast.success("Inventory updated successfully!", {
+      toast.success("Inventory updated successfully!", {
         position: "top-right",
         autoClose: 1500,
       });
@@ -67,9 +69,20 @@ const getStockStatus = (stock) => {
     }
   };
 
+  // Pagination logic
+  const totalPages = Math.ceil(filteredInventory.length / pageSize);
+  const paginatedInventory = filteredInventory.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="p-4">
-      <ToastContainer/>
+      <ToastContainer />
       <div className="row align-items-center justify-content-between mb-3">
         <div className="col">
           <h2 className="h4 fw-bold mb-3">Inventory</h2>
@@ -98,11 +111,11 @@ const getStockStatus = (stock) => {
             </tr>
           </thead>
           <tbody>
-            {filteredInventory.map((item, idx) => {
+            {paginatedInventory.map((item, idx) => {
               const { label, badge } = getStockStatus(item.stockQuantity);
 
               return (
-                <tr key={idx}>
+                <tr key={item.id || idx}>
                   <td>
                     <div className="d-flex align-items-center gap-2">
                       <div
@@ -147,7 +160,44 @@ const getStockStatus = (stock) => {
 
       <div className="d-flex justify-content-between align-items-center mt-3 small text-muted">
         <div>
-          Showing 1 to {filteredInventory.length} of {filteredInventory.length} results
+          Showing {filteredInventory.length === 0 ? 0 : (currentPage - 1) * pageSize + 1}
+          {" "}to{" "}
+          {Math.min(currentPage * pageSize, filteredInventory.length)}
+          {" "}of {filteredInventory.length} results
+        </div>
+        <div>
+          <nav>
+            <ul className="pagination pagination-sm mb-0">
+              <li className={`page-item${currentPage === 1 ? " disabled" : ""}`}>
+                <button
+                  className="page-link"
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  Previous
+                </button>
+              </li>
+              {[...Array(totalPages)].map((_, i) => (
+                <li key={i} className={`page-item${currentPage === i + 1 ? " active" : ""}`}>
+                  <button
+                    className="page-link"
+                    onClick={() => handlePageChange(i + 1)}
+                  >
+                    {i + 1}
+                  </button>
+                </li>
+              ))}
+              <li className={`page-item${currentPage === totalPages ? " disabled" : ""}`}>
+                <button
+                  className="page-link"
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                </button>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
 

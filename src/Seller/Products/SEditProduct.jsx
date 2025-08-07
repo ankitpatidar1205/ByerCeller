@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axiosInstance from '../../Utilities/axiosInstance';
 
 const SEditProductForm = () => {
@@ -15,14 +15,17 @@ const SEditProductForm = () => {
     description: '',
     image: null,
       modelNo: '',
-  code: '',
-  material: '',
+     code: '',
+     material: '',
   });
 
   useEffect(() => {
     fetchCategories();
     fetchProductById();
   }, []);
+  // Get sellerId from localStorage
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const sellerId = user.id;
 
   const fetchCategories = async () => {
     try {
@@ -49,6 +52,8 @@ const SEditProductForm = () => {
   modelNo: product.modelNo || '',
   code: product.code || '',
   material: product.material || '',
+  sellerId: product.sellerId || '',
+  
 });
 
     } catch (error) {
@@ -73,6 +78,7 @@ const SEditProductForm = () => {
       updatedData.append('price', formData.price);
       updatedData.append('sku', formData.sku);
       updatedData.append('categoryId', formData.categoryId); // Important
+      updatedData.append('sellerId', sellerId);
       updatedData.append('stockQuantity', formData.quantity); // Match backend key
       updatedData.append('description', formData.description);
 updatedData.append('modelNo', formData.modelNo);
@@ -90,7 +96,7 @@ updatedData.append('material', formData.material);
       });
 
       alert('Product updated successfully!');
-      navigate('/products');
+      navigate('/seller/products');
     } catch (error) {
       console.error('Error updating product:', error);
       alert('Failed to update product');
@@ -225,11 +231,9 @@ updatedData.append('material', formData.material);
       </div>
 
       <div className="modal-footer">
-<Link to="/seller/products">
-        <button type="button" className="btn btn-secondary">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
           Cancel
         </button>
-        </Link>
         <button type="submit" className="btn custom-button">
           Update Product
         </button>

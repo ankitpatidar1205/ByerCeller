@@ -1,45 +1,68 @@
 import React, { useEffect, useState } from "react";
-import { FaFilePdf, FaPlusCircle, FaEye, FaEdit, FaTrash, FaSearch, FaTimes, } from "react-icons/fa";
+import { FaFilePdf, FaPlusCircle, FaEye, FaEdit, FaTrash, FaSearch, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axiosInstance from "../../Utilities/axiosInstance";
+
 const SellerProductes = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [deleteProduct, setDeleteProduct] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, []);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+// Get sellerId from localStorage
+const user = JSON.parse(localStorage.getItem("user") || "{}");
+const sellerId = user.id;
 
-  // const fetchProducts = async () => {
-  //   try {
-  //     const response = await axiosInstance.get(`/product/getAllProducts`);
-  //     setProducts(response.data.data);
-  //     setFilteredProducts(response.data.data);
-  //   } catch (error) {
-  //     console.error("Error fetching products:", error);
-  //   }
-  // };
+const fetchProducts = async () => {
+  try {
+    const response = await axiosInstance.get(`/product/getAllProducts`);
+    const allProducts = response.data?.data || [];
+    console.log(allProducts)
+    const sellerProducts = allProducts.filter(
+      (product) => String(product.sellerId) === String(sellerId)
+    );
+      console.log(sellerProducts)
+    setProducts(sellerProducts);
+    setFilteredProducts(sellerProducts);
 
-  // useEffect(() => {
-  //   const filtered = products.filter((product) =>
-  //     product?.name?.toLowerCase()?.includes(searchTerm.toLowerCase().trim()) ||
-  //     product?.sku?.toLowerCase()?.includes(searchTerm.toLowerCase().trim())
-  //   );
-  //   setFilteredProducts(filtered);
-  // }, [searchTerm, products]);
-
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+};
+  useEffect(() => {
+    const filtered = products.filter((product) =>
+      product?.name?.toLowerCase()?.includes(searchTerm.toLowerCase().trim()) ||
+      product?.sku?.toLowerCase()?.includes(searchTerm.toLowerCase().trim())
+    );
+    setFilteredProducts(filtered);
+    setCurrentPage(1); // Reset to first page on search
+  }, [searchTerm, products]);
 
   const handleDeleteProduct = async () => {
     try {
       await axiosInstance.delete(`/product/deleteProduct/${deleteProduct}`);
       setDeleteProduct(null);
-      // fetchProducts(); // Refresh product list
+      fetchProducts(); // Refresh product list
     } catch (error) {
       console.error("Error deleting product:", error);
     }
+  };
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredProducts.length / pageSize);
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   };
 
   return (
@@ -69,10 +92,19 @@ const SellerProductes = () => {
             <span className="input-group-text bg-white border-end-0">
               <FaSearch className="text-muted" />
             </span>
-            <input   type="text"   className="form-control border-start-0"   placeholder="Search by name, ID or SKU..."
-              value={searchTerm}   onChange={(e) => setSearchTerm(e.target.value)}  />
+            <input
+              type="text"
+              className="form-control border-start-0"
+              placeholder="Search by name, ID or SKU..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
             {searchTerm && (
-              <button   className="btn btn-outline-secondary"   type="button"   onClick={() => setSearchTerm("")} >
+              <button
+                className="btn btn-outline-secondary"
+                type="button"
+                onClick={() => setSearchTerm("")}
+              >
                 <FaTimes />
               </button>
             )}
@@ -80,56 +112,76 @@ const SellerProductes = () => {
         </div>
       </div>
 
-   <div className="card shadow-sm border-0">
-  <div className="card-body">
-    <h5 className="card-title mb-3">Products</h5>
-    <div className="table-responsive">
-      <table className="table table-bordered table-hover align-middle text-nowrap mb-0">
-        <thead className="table-light">
-          <tr>
-            <th className="py-3 ps-4">SL</th>
-            <th className="py-3">PRODUCT NAME</th>
-            <th className="py-3">PRICE</th>
-            <th className="py-3">Model No</th>
-            <th className="py-3">Material</th>
-            <th className="py-3">IMAGE</th>
-            <th className="py-3 pe-4 text-end">ACTIONS</th>
-          </tr>
-        </thead>
-        <tbody className="bg-white">
-          {filteredProducts?.length > 0 ? (
-            filteredProducts?.map((product, index) => (
-              <tr key={product.id}>
-                <td className="ps-4 fw-semibold">{index + 1}</td>
-              <td>{product?.name?.slice(0, 40)}{product?.name?.length > 100 ? "..." : ""}</td>
-
-                <td>${product?.price}</td>
-                <td>{product?.modelNo}</td>
-                <td>{product?.material || "N/A"}</td>
-                <td>
-                  {product?.image && product.image.length > 0 ? (
-                    <img src={product.image[0]}  alt="Product"  style={{ width: "60px", height: "60px", objectFit: "cover", }}
-                      className="rounded border" />
-                  ) : (
-                    <span className="text-muted">No Image</span>
-                  )}
-                </td>
-                <td className="pe-4 text-end">
-                  <div className="d-flex justify-content-end gap-2">
-                    <button className="btn btn-sm btn-outline-secondary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#productDetailModal"
-                      onClick={() => setSelectedProduct(product)}
-                      title="View Details" >
-                      <FaEye size={14} />
-                    </button>
-                <Link to={`/seller/editproduct/${product.id}`} className="btn btn-sm btn-outline-primary">
-  <FaEdit size={14} />
-</Link>
-
-                   
-                          <button  className="btn btn-sm btn-outline-danger"  data-bs-toggle="modal"
-                            data-bs-target="#deleteProductModal" onClick={() => setDeleteProduct(product.id)}  title="Delete" >
+      <div className="card shadow-sm border-0">
+        <div className="card-body">
+          <h5 className="card-title mb-3">Products</h5>
+          <div className="table-responsive">
+            <table className="table table-bordered table-hover align-middle text-nowrap mb-0">
+              <thead className="table-light">
+                <tr>
+                  <th className="py-3 ps-4">SL</th>
+                  <th className="py-3">PRODUCT NAME</th>
+                  <th className="py-3">PRICE</th>
+                  <th className="py-3">Model No</th>
+                  <th className="py-3">Material</th>
+                  <th className="py-3">IMAGE</th>
+                  <th className="py-3 pe-4 text-end">ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white">
+                {paginatedProducts?.length > 0 ? (
+                  paginatedProducts?.map((product, index) => (
+                    <tr key={product.id}>
+                      <td className="ps-4 fw-semibold">
+                        {(currentPage - 1) * pageSize + index + 1}
+                      </td>
+                      <td>
+                        {product?.name?.slice(0, 40)}
+                        {product?.name?.length > 100 ? "..." : ""}
+                      </td>
+                      <td>¥{product?.price}</td>
+                      <td>{product?.modelNo}</td>
+                      <td>{product?.material || "N/A"}</td>
+                      <td>
+                        {product?.image && product.image.length > 0 ? (
+                          <img
+                            src={product.image[0]}
+                            alt="Product"
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              objectFit: "cover",
+                            }}
+                            className="rounded border"
+                          />
+                        ) : (
+                          <span className="text-muted">No Image</span>
+                        )}
+                      </td>
+                      <td className="pe-4 text-end">
+                        <div className="d-flex justify-content-end gap-2">
+                          <button
+                            className="btn btn-sm btn-outline-secondary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#productDetailModal"
+                            onClick={() => setSelectedProduct(product)}
+                            title="View Details"
+                          >
+                            <FaEye size={14} />
+                          </button>
+                          <Link
+                            to={`/seller/editproduct/${product.id}`}
+                            className="btn btn-sm btn-outline-primary"
+                          >
+                            <FaEdit size={14} />
+                          </Link>
+                          <button
+                            className="btn btn-sm btn-outline-danger"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteProductModal"
+                            onClick={() => setDeleteProduct(product.id)}
+                            title="Delete"
+                          >
                             <FaTrash size={14} />
                           </button>
                         </div>
@@ -141,16 +193,60 @@ const SellerProductes = () => {
                     <td colSpan="8" className="text-center py-5">
                       <FaSearch size={48} className="text-muted mb-3" />
                       <h5 className="fw-semibold">No products found</h5>
-                      <p className="text-muted">Try adjusting your search or filter criteria</p>
+                      <p className="text-muted">
+                        Try adjusting your search or filter criteria
+                      </p>
                     </td>
                   </tr>
                 )}
               </tbody>
             </table>
           </div>
+          {/* Pagination */}
+          <div className="d-flex justify-content-between align-items-center mt-3 small text-muted">
+            <div>
+              Showing {filteredProducts.length === 0 ? 0 : (currentPage - 1) * pageSize + 1}
+              {" "}to{" "}
+              {Math.min(currentPage * pageSize, filteredProducts.length)}
+              {" "}of {filteredProducts.length} results
+            </div>
+            <div>
+              <nav>
+                <ul className="pagination pagination-sm mb-0">
+                  <li className={`page-item${currentPage === 1 ? " disabled" : ""}`}>
+                    <button
+                      className="page-link"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                    >
+                      Previous
+                    </button>
+                  </li>
+                  {[...Array(totalPages)].map((_, i) => (
+                    <li key={i} className={`page-item${currentPage === i + 1 ? " active" : ""}`}>
+                      <button
+                        className="page-link"
+                        onClick={() => handlePageChange(i + 1)}
+                      >
+                        {i + 1}
+                      </button>
+                    </li>
+                  ))}
+                  <li className={`page-item${currentPage === totalPages ? " disabled" : ""}`}>
+                    <button
+                      className="page-link"
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                    >
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
         </div>
       </div>
-
 
       {/* View Product Modal */}
       <div className="modal fade" id="productDetailModal" tabIndex="-1" aria-hidden="true">
@@ -187,7 +283,10 @@ const SellerProductes = () => {
                   <div className="col-12">
                     <h4 className="fw-bold mt-4">{selectedProduct.name}</h4>
                     <p><strong>ID:</strong> {selectedProduct.id}</p>
-                    <p><strong>Price:</strong> ${selectedProduct.price}</p>
+                    <p><strong>Price:</strong> ¥{selectedProduct.price}</p>
+                    <p><strong>Code:</strong> {selectedProduct.code || "N/A"}</p>
+                    <p><strong>Model No:</strong> {selectedProduct.modelNo || "N/A"}</p>
+                    <p><strong>Material:</strong> {selectedProduct.material || "N/A"}</p>
                     <p><strong>Stock:</strong> {selectedProduct.stockQuantity}</p>
                     <p><strong>Category:</strong> {selectedProduct.category_name || "N/A"}</p>
                     <p><strong>Description:</strong> {selectedProduct.description || "N/A"}</p>

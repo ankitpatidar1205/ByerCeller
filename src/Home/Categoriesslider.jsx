@@ -64,7 +64,7 @@ const Categoriesslider = () => {
     <section className="py-10" style={{ backgroundColor: "#f0f7ff" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl font-bold text-gray-800 mb-6 mt-4" style={{color:"#0d47a1"}}>
-          Browse by Categories
+        ALL CATEGORIES
         </h2>
 
         <div

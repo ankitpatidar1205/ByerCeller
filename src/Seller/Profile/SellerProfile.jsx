@@ -1,159 +1,134 @@
 import React, { useEffect, useState } from "react";
-
-import { Modal, Button } from "react-bootstrap";
-import Loader from "../../Loader/Loader";
 import axiosInstance from "../../Utilities/axiosInstance";
 
-
 const SellerProfile = () => {
-  const [profile, setProfile] = useState({
+  const [user, setUser] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false);
 
-  const userData = JSON.parse(localStorage.getItem("user"));
-  const userId = userData?.id;
-
-  const fetchProfile = async () => {
-    try {
-    //   const res = await axiosInstance.get(`/user/getUserById/${userId}`);
-    //   const data = res.data?.data;
-
-      setProfile({
-        firstName:  "Seller",
-        lastName: "last Name",
-        email:  "seller@example.com",
-        password: "",
-      });
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching profile:", error);
-      setLoading(false);
-    }
-  };
-
+  // Fetch user profile
   useEffect(() => {
-    fetchProfile();
+    const fetchUserProfile = async () => {
+      try {
+        const userData = JSON.parse(localStorage.getItem("user"));
+        if (userData && userData.id) {
+          const response = await axiosInstance.get(`/user/getUserById/${userData.id}`);
+          setUser(response.data.data);
+          setFormData({
+            firstName: response.data.data.firstName || "",
+            lastName: response.data.data.lastName || "",
+            email: response.data.data.email || "",
+            password: "", // Leave password blank for security
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserProfile();
   }, []);
 
   const handleChange = (e) => {
-    setProfile({ ...profile, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleUpdate = async () => {
-    const updatedData = {
-      firstName: profile.firstName,
-      lastName: profile.lastName,
-      email: profile.email,
-    };
-
-    if (profile.password.trim() !== "") {
-      updatedData.password = profile.password;
-    }
-
+  const handleSave = async () => {
     try {
-      await axiosInstance.patch(`/user/editProfile/${userId}`, updatedData, {
-        headers: { "Content-Type": "application/json" },
-      });
-      alert("Profile updated successfully ✅");
-      setShowModal(false);
-      fetchProfile();
+      const userData = JSON.parse(localStorage.getItem("user"));
+      const response = await axiosInstance.patch(`/user/editProfile/${userData.id}`, formData);
+      alert("Profile updated successfully");
+      setUser(response.data.data);
+      setEditMode(false);
     } catch (error) {
       console.error("Error updating profile:", error);
-      alert("Something went wrong ❌");
+      alert("Something went wrong while updating.");
     }
   };
 
-  if (loading) return <div className="p-4"><Loader /></div>;
+  if (loading) return <div>Loading profile...</div>;
+  if (!user) return <div>Failed to load profile.</div>;
 
   return (
-    <div className="container py-4">
-      <h2 className="mb-4 fw-bold"> Profile</h2>
-      <div className="card p-4 shadow-sm">
-        <div className="row align-items-center">
-          
-          <div className="col-md-9">
-            <div className="row mb-2">
-              <div className="col-md-6">
-                <strong>First Name:</strong> {profile.firstName}
-              </div>
-              <div className="col-md-6">
-                <strong>Last Name:</strong> {profile.lastName}
-              </div>
-            </div>
-            <div className="mb-2">
-              <strong>Email:</strong> {profile.email}
-            </div>
-            <Button variant="primary" onClick={() => setShowModal(true)}>
-              Edit Profile
-            </Button>
-          </div>
+    <div className="card shadow-sm rounded p-4 mb-4">
+      <h4 className="mb-4 fw-bold">My Profile</h4>
+
+      <div className="row g-3">
+        <div className="col-md-6">
+          <label className="form-label">First Name</label>
+          <input
+            type="text"
+            className="form-control"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            disabled={!editMode}
+          />
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">Last Name</label>
+          <input
+            type="text"
+            className="form-control"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            disabled={!editMode}
+          />
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">Email</label>
+          <input
+            type="email"
+            className="form-control"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            disabled={!editMode}
+          />
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">Password</label>
+          <input
+            type="password"
+            className="form-control"
+            name="password"
+            placeholder="Enter new password"
+            value={formData.password}
+            onChange={handleChange}
+            disabled={!editMode}
+          />
         </div>
       </div>
 
-      {/* MODAL */}
-      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Profile</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form className="row g-3">
-            <div className="col-md-6">
-              <label className="form-label">First Name</label>
-              <input
-                type="text"
-                className="form-control"
-                name="firstName"
-                value={profile.firstName}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-md-6">
-              <label className="form-label">Last Name</label>
-              <input
-                type="text"
-                className="form-control"
-                name="lastName"
-                value={profile.lastName}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-md-12">
-              <label className="form-label">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                name="email"
-                value={profile.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-md-12">
-              <label className="form-label">New Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                value={profile.password}
-                onChange={handleChange}
-                placeholder="Leave blank to keep unchanged"
-              />
-            </div>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Cancel
-          </Button>
-          <Button variant="success" onClick={handleUpdate}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <div className="mt-4">
+        {!editMode ? (
+          <button className="btn custom-button" onClick={() => setEditMode(true)}>
+            Edit Profile
+          </button>
+        ) : (
+          <>
+            <button className="btn btn-success me-2" onClick={handleSave}>
+              Save Changes
+            </button>
+            <button className="btn btn-secondary" onClick={() => setEditMode(false)}>
+              Cancel
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 };

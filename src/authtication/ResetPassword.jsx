@@ -23,13 +23,13 @@ const ResetPassword = () => {
     }
 
     try {
-      const response = await fetch(`${BaseUrl}auth/resetPassword`, {
+      const response = await fetch(`${BaseUrl}/user/resetPassword`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          token: token,
+          resetToken: token,
           newPassword: password,
           confirmPassword: confirmPassword,
         }),

@@ -37,7 +37,6 @@ import SellerRequest from "./Broker/Deals/SellerRequest";
 import SellerdealsDetails from "./Broker/Deals/sellerdealsDetails";
 import BuyerRequest from "./Broker/Deals/BuyerRequest";
 import BuyerRequestDetails from "./Broker/Deals/BuyerRequestDetails";
-import UpdateMarkupPrice from "./Broker/Product/BrokerProduct";
 
 
 import UserProduct from "./UserProfile/UserProduct";
@@ -62,6 +61,7 @@ import SEditProductForm from "./Seller/Products/SEditProduct";
 import SAddCategories from "./Seller/Categories/SAddCategories";
 import ForgotPassword from "./authtication/ForgotPassword";
 import ResetPassword from "./authtication/ResetPassword";
+import AddUser from "./Componente/Users/AddUser";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -108,6 +108,7 @@ function App() {
                 <Route path="/categories" element={<AddCategories />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/users" element={<Users />} />
+                <Route path="/AddUser" element={<AddUser />} />
                 <Route path="/bannermanager" element={<BannerManager />} />
                 <Route path="/products" element={<Productes />} />
                 <Route path="/addproducts" element={<AddProduct />} />
@@ -119,7 +120,7 @@ function App() {
                 <Route path="/order/details" element={<OrderDetails />} />
                 
                 {/* user */}
-               <Route path="/UserDashboard" element={< UserDashboard/>} />
+               <Route path="/buyer/dashboard" element={< UserDashboard/>} />
                <Route path="/MyProfile" element={<MyProfile />} />
                <Route path="/UserProduct" element={<UserProduct />} />
                <Route path="/MyOrders" element={<MyOrders />} />
@@ -127,14 +128,13 @@ function App() {
 
                  {/* Seller */}
                   <Route path="/seller/dashboard" element ={ <SellerDashboard />} />
-                  <Route path="/seller/categories" element={<SAddCategories />} />
+                   <Route path="/seller/categories" element={<SAddCategories />} />
                    <Route path="/seller/addproducts" element ={ <SAddProduct />} />
                    <Route path="/seller/editproduct/:id" element={<SEditProductForm />} />
-              <Route path="/seller/products" element ={ <SellerProductes />} />
-           <Route path="/seller/orders" element ={ <SellerOrders />} />
-           <Route path="/seller/orderdetails" element = {<OrderDetails /> } />
-                    <Route path="/seller/profile" element ={ <SellerProfile />} />
-                  <Route path="/seller/inventory" element={<Inventory />} />
+                  <Route path="/seller/products" element ={ <SellerProductes />} />
+                  <Route path="/seller/orders" element ={ <SellerOrders />} />
+                  <Route path="/seller/orderdetails" element = {<OrderDetails /> } />
+                   <Route path="/seller/profile" element ={ <SellerProfile />} />
                   <Route path="/seller/brokerinvitation" element={<BrokerInvitations />} />
                   <Route path="/seller/broker-details" element={<BrokerInvitationDetails />} />
 
@@ -153,7 +153,6 @@ function App() {
             <Route path="/broker/reports" element={<BrokerReports />} />
             <Route path="/broker/profile" element={<BrokerProfile />} />
            
-
               </Routes>
             </div>
           </div>

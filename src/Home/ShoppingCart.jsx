@@ -35,6 +35,7 @@ const ShoppingCart = () => {
     try {
       const res = await axiosInstance.get(`/cart/getCartByUserId/${userId}`);
       const data = res.data?.data || [];
+      console.log(data)
       const processedData = data.map((item) => ({
         ...item,
         price: Number(item.price),
@@ -115,9 +116,9 @@ const ShoppingCart = () => {
                             />
                           </div>
                           <div className="col-md-5 mb-3 mb-md-0">
-                            <h3 className="h6 mb-1">{item.name}</h3>
-                            <p className="small text-muted mb-1">{item.description}</p>
-                            <p className="small text-muted mb-0">{item.details}</p>
+                            <h3 className="mb-1 fw-bold">{item?.productName}</h3>
+                         <p className="small text-muted mb-1">
+                       {item?.description.length > 100   ? item.description.substring(0, 100) + "..."  : item.description}   </p>
                             <div className="mt-2">
                               <span className="fw-bold">¥{Number(item.price).toFixed(2)}</span>
                               {item.originalPrice && (
