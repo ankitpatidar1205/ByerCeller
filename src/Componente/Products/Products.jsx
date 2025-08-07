@@ -245,12 +245,12 @@ const Productes = () => {
           <div className="modal-content">
             <div className="modal-header border-0 pb-0">
               <h5 className="modal-title fw-bold">Product Details</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" />
+               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body pt-0">
               {selectedProduct && (
                 <div className="row g-4">
-                  {/* Image Section */}
+                  {/* Image Section */} 
                   <div className="col-12">
                     <h6 className="fw-bold">Images:</h6>
                     <div className="d-flex flex-wrap gap-3">

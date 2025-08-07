@@ -78,7 +78,7 @@ const ShoppingCart = () => {
   return (
     <>
       <CustomNavbar />
-      <div className="p-5 mt-5 py-5">
+      <div className="p-3">
         <div className="d-flex justify-content-between align-items-center mb-4">
           <h1 className="h2">Shopping Cart</h1>
           <Link to="/electricalproducts" className="btn btn-link text-decoration-none">
