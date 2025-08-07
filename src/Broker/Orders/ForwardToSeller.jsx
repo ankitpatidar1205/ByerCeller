@@ -3,28 +3,28 @@ import { useParams, useNavigate } from "react-router-dom";
 
 // Mock seller data
 const mockSellers = [
-  { seller_id: "1", name: "RX002 yongjia Jill ", company: "YINGJIA MANUFACTURER TRUCKS PARTS COMPANY LIMITED" },
+  // { seller_id: "1", name: "RX002 yongjia Jill ", company: "YINGJIA MANUFACTURER TRUCKS PARTS COMPANY LIMITED" },
  
 ];
 
 // Mock order data  
 const mockOrders = {
-  "1": {
-    order_id: "1",
-    buyer_name: "Fadi Samarah",
-    product_name: "Steel Zinc Platt Mounting",
-    quantity: 20,
-    price: 1600,
-    status: "Received",
-  },
-  "2": {
-    order_id: "2",
-    buyer_name: "Fadi samarah",
-    product_name: "Steel Zinc Platt Mounting",
-    quantity: 10,
-    price: 1600,
-    status: "Received",
-  },
+  // "1": {
+  //   order_id: "1",
+  //   buyer_name: "Fadi Samarah",
+  //   product_name: "Steel Zinc Platt Mounting",
+  //   quantity: 20,
+  //   price: 1600,
+  //   status: "Received",
+  // },
+  // "2": {
+  //   order_id: "2",
+  //   buyer_name: "Fadi samarah",
+  //   product_name: "Steel Zinc Platt Mounting",
+  //   quantity: 10,
+  //   price: 1600,
+  //   status: "Received",
+  // },
 };
 
 const ForwardToSeller = () => {

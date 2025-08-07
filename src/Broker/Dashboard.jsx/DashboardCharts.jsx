@@ -13,8 +13,8 @@ const barData = [
 ];
 
 const pieData = [
-  { name: "Buyers", value: 1 },
-  { name: "Sellers", value: 1 },
+  { name: "Buyers", value: 0 },
+  { name: "Sellers", value: 0 },
 ];
 
 const COLORS = ["#007bff", "#28a745"];

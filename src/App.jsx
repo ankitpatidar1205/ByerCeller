@@ -59,6 +59,7 @@ import SellerProductes from "./Seller/Products/Products";
 import SellerProfile from "./Seller/Profile/SellerProfile";
 import BrokerProfile from "./Broker/Profile/BrokerProfile";
 import SEditProductForm from "./Seller/Products/SEditProduct";
+import SAddCategories from "./Seller/Categories/SAddCategories";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -122,7 +123,7 @@ function App() {
 
                  {/* Seller */}
                   <Route path="/seller/dashboard" element ={ <SellerDashboard />} />
-                  <Route path="/seller/categories" element={<AddCategories />} />
+                  <Route path="/seller/categories" element={<SAddCategories />} />
                    <Route path="/seller/addproducts" element ={ <SAddProduct />} />
                    <Route path="/seller/editproduct/:id" element={<SEditProductForm />} />
               <Route path="/seller/products" element ={ <SellerProductes />} />

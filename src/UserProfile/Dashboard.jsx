@@ -3,17 +3,15 @@ import { Link } from "react-router-dom";
 const UserDashboard = () => {
   // Dummy Stats
   const stats = {
-    totalOrders: 12,
-    pendingOrders: 2,
-    shippedOrders: 3,
-    deliveredOrders: 7,
+    totalOrders: 0,
+    pendingOrders: 0,
+    shippedOrders: 0,
+    deliveredOrders: 0,
   };
 
   // Dummy Recent Orders
   const recentOrders = [
-    { id: "ORD1005", product: "Truck Engine Part", date: "2025-07-26", status: "Shipped", price: "¥499" },
-    { id: "ORD1004", product: "iPhone 14 Pro Max", date: "2025-07-25", status: "Delivered", price: "¥1,299" },
-    { id: "ORD1003", product: "Brake Pads", date: "2025-07-24", status: "Pending", price: "¥199" },
+   
   ];
 
   return (
@@ -65,11 +63,16 @@ const UserDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {recentOrders.map((order) => (
-                  <tr key={order.id}>
-                    <td>{order.id}</td>
-                    <td>{order.product}</td>
-                    <td>{order.date}</td>
+                { recentOrders.length === 0 ? (
+                  <tr>
+                    <td colSpan="6" className="text-center">No recent orders found.</td>
+                  </tr>
+                ) : (
+                  recentOrders.map((order) => (
+                    <tr key={order.id}>
+                      <td>{order.id}</td>
+                      <td>{order.product}</td>
+                      <td>{order.date}</td>
                     <td>
                       <span
                         className={`badge ${
@@ -90,8 +93,9 @@ const UserDashboard = () => {
                       </Link>
                     </td>
                   </tr>
+                  )
                 ))}
-              </tbody>
+              </tbody>  
             </table>
           </div>
           <div className="text-end">

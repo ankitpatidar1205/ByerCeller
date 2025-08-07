@@ -8,7 +8,7 @@ const data = {
   labels: ['Pending', 'Connected', 'Declined'],
   datasets: [{
     label: 'Requests',
-    data: [3, 4, 1],
+    data: [0, 0, 0],
     backgroundColor: ['#facc15', '#22c55e', '#ef4444']
   }]
 };

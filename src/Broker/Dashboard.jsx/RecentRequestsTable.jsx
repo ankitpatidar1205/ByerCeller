@@ -2,20 +2,20 @@ import React from 'react';
 
 const RecentRequestsTable = () => {
   const requests = [
-    {
-      type: 'Buyer → Broker',
-      from: 'IONE00972598361988',
-      to: 'IONE008613332800284',
-      company: 'BASAMCO → HK Kandivan',
-      status: 'Accepted',
-    },
-    {
-      type: 'Broker → Seller',
-      from: 'IONE008613332800284',
-      to: 'IONE0086158613121',
-      company: 'HK Kandivan → YINGJIA',
-      status: 'Accepted',
-    },
+    // {
+    //   type: 'Buyer → Broker',
+    //   from: 'IONE00972598361988',
+    //   to: 'IONE008613332800284',
+    //   company: 'BASAMCO → HK Kandivan',
+    //   status: 'Accepted',
+    // },
+    // {
+    //   type: 'Broker → Seller',
+    //   from: 'IONE008613332800284',
+    //   to: 'IONE0086158613121',
+    //   company: 'HK Kandivan → YINGJIA',
+    //   status: 'Accepted',
+    // },
   ];
 
   const buyerRequests = requests.filter(req => req.type === 'Buyer → Broker');

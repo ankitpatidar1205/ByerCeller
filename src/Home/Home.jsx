@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroSection from './HeroSection';
+
 import FeaturedProducts from './FeaturedProducts';
 import Footer from './Footer';
 import CategoriesSection from './CategoriesSection';
@@ -8,13 +8,14 @@ import CustomerTestimonials from './CustomerTestimonials';
 import SubscribeSection from './SubscribeSection';
 import Navbar from './Navbar';
 import Categoriesslider from './Categoriesslider';
+import HeroSection from './HeroSection';
 
 const Home = () => {
   return (
     <>
     <Navbar/>
       <div >
-        {/* <HeroSection /> */}
+        {/* <HeroSection/> */}
         <Categoriesslider/>
         <FeaturedProducts />
         {/* <CategoriesSection /> */}

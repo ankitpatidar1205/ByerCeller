@@ -12,29 +12,29 @@ const SellerDashboard = () => {
       <div className="row g-3 mb-4">
           <StatCard
         title="Total Products"
-        value="8"
-        subtitle="↑ 100% from last month"
+        value="0"
+        // subtitle="↑ 100% from last month"
         iconClass="fas fa-box"
         color="primary"
       />
       <StatCard
         title="Active Deals"
-        value="1"
-        subtitle="↑ 1 new deals"
+        value="0"
+        // subtitle="↑ 1 new deals"
         iconClass="fas fa-handshake"
         color="danger"
       />
       <StatCard
         title="Connected Brokers"
-        value="1"
-        subtitle="↑1 more from last month"
+        value="0"
+        // subtitle="↑1 more from last month"
         iconClass="fas fa-user-friends"
         color="warning"
       />
       <StatCard
         title="Total Revenue"
-        value="3200"
-        subtitle="↑ $3,200 from last month"
+        value="0"
+        // subtitle="↑ $3,200 from last month"
         iconClass="fas fa-dollar-sign"
         color="success"
       />

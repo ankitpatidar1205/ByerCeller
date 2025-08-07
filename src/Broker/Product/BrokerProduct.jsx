@@ -6,34 +6,35 @@ const BrokerProducts = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    fetchBrokerProducts();
-  }, []);
+   const filteredProducts = [];
+  // useEffect(() => {
+  //   fetchBrokerProducts();
+  // }, []);
 
-  const fetchBrokerProducts = async () => {
-    try {
-      const res = await axiosInstance.get("/product/getAllProducts");
-      const updatedProducts = res.data.data.map((product) => ({
-        ...product,
-        markup: 20, // Default markup percentage
-      }));
-      setProducts(updatedProducts);
-    } catch (err) {
-      console.error("Error fetching broker products:", err);
-    }
-  };
+  // const fetchBrokerProducts = async () => {
+  //   try {
+  //     const res = await axiosInstance.get("/product/getAllProducts");
+  //     const updatedProducts = res.data.data.map((product) => ({
+  //       ...product,
+  //       markup: 20, // Default markup percentage
+  //     }));
+  //     setProducts(updatedProducts);
+  //   } catch (err) {
+  //     console.error("Error fetching broker products:", err);
+  //   }
+  // };
 
-  const filteredProducts = products.filter((product) =>
-    product?.name?.toLowerCase()?.includes(searchTerm.toLowerCase().trim())
-  );
-const calculateFinalPrice = (price, markup) => {
-  const numericPrice = parseFloat(price);
-  const numericMarkup = parseFloat(markup);
+  // const filteredProducts = products.filter((product) =>
+  //   product?.name?.toLowerCase()?.includes(searchTerm.toLowerCase().trim())
+  // );
+// const calculateFinalPrice = (price, markup) => {
+//   const numericPrice = parseFloat(price);
+//   const numericMarkup = parseFloat(markup);
 
-  if (isNaN(numericPrice) || isNaN(numericMarkup)) return "N/A";
+//   if (isNaN(numericPrice) || isNaN(numericMarkup)) return "N/A";
 
-  return (numericPrice + numericPrice * (numericMarkup / 100)).toFixed(2);
-};
+//   return (numericPrice + numericPrice * (numericMarkup / 100)).toFixed(2);
+// };
 
 
   const handleClearSearch = () => {

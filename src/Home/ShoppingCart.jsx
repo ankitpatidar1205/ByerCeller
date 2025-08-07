@@ -187,7 +187,7 @@ const ShoppingCart = () => {
                   <div className="border-top pt-3 mt-3">
                     <div className="d-flex justify-content-between align-items-center">
                       <span className="fw-bold">Total</span>
-                      <span className="h4 fw-bold">¥{calculateSubtotal().toFixed(2)}</span>
+                      <span className="h4 fw-bold"> {calculateSubtotal().toFixed(2)}</span>
                     </div>
                   </div>
                 </div>
