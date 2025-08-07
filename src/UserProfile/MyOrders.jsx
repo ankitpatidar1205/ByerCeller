@@ -1,139 +1,75 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Modal, Button } from "react-bootstrap";
+import { FaEye, FaTrash } from "react-icons/fa";
 
-const MyOrders = () => {
-  const [selectedOrder, setSelectedOrder] = useState(null);
-
-  // Dummy Orders Data
-  const orders = [
-
-  ];
-  
+const Orders = () => {
+  const orders = []; // Static empty data for "No orders found" message
+  const showModal = false; // Modal off by default
 
   return (
-    <>
-      <div className="card shadow-sm rounded">
-        <div className="card-body">
-          <h4 className="mb-3 fw-bold">My Orders</h4>
-          {orders.length > 0 ? (
-            <div className="table-responsive">
-              <table className="table table-hover align-middle">
-                <thead className="table-light">
-                  <tr>
-                    <th>Order ID</th>
-                    <th>Product</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {orders.map((order) => (
-                    <tr key={order.id}>
-                      <td>{order.id}</td>
-                      <td>{order.product}</td>
-                      <td>{order.date}</td>
-                      <td>
-                        <span
-                          className={`badge ${
-                            order.status === "Delivered"
-                              ? "bg-success"
-                              : order.status === "Shipped"
-                              ? "bg-info"
-                              : "bg-warning text-dark"
-                          }`}
-                        >
-                          {order.status}
-                        </span>
-                      </td>
-                      <td>{order.price}</td>
-                      <td>
-                        <button
-                          className="btn btn-sm btn-outline-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#orderDetailModal"
-                          onClick={() => setSelectedOrder(order)}
-                        >
-                          View Details
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <div className="text-center py-4">
-              <h5 className="mt-3">You haven't placed any orders yet!</h5>
-              <p className="text-muted">
-                Order section is empty. After placing order, you can track them
-                from here.
-              </p>
-              <Link to="/electricalproducts" className="btn custom-button">
-                Continue Shopping
-              </Link>
-            </div>
-          )}
-        </div>
+    <div className="card p-4">
+      <div className="d-flex justify-content-between mb-4">
+        <h4 className="fw-bold">Orders</h4>
       </div>
 
-      {/* Modal for Order Details */}
-      <div
-        className="modal fade"
-        id="orderDetailModal"
-        tabIndex="-1"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            {selectedOrder && (
-              <>
-                <div className="modal-header">
-                  <h5 className="modal-title">Order Details</h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div className="modal-body">
-                  <p>
-                    <strong>Order ID:</strong> {selectedOrder.id}
-                  </p>
-                  <p>
-                    <strong>Product:</strong> {selectedOrder.product}
-                  </p>
-                  <p>
-                    <strong>Date:</strong> {selectedOrder.date}
-                  </p>
-                  <p>
-                    <strong>Status:</strong> {selectedOrder.status}
-                  </p>
-                  <p>
-                    <strong>Price:</strong> {selectedOrder.price}
-                  </p>
-                  <p>
-                    <strong>Shipping Address:</strong> {selectedOrder.address}
-                  </p>
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                </div>
-              </>
+      <div className="table-responsive shadow-sm">
+        <table className="table table-hover table-bordered align-middle">
+          <thead className="table-light">
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.length === 0 ? (
+              <tr>
+                <td colSpan="6" className="text-center py-3">
+                  No orders found.
+                </td>
+              </tr>
+            ) : (
+              orders.map((order, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>Sample Name</td>
+                  <td>sample@email.com</td>
+                  <td>$100.00</td>
+                  <td>
+                    <span className="badge bg-success">Success</span>
+                  </td>
+                  <td>
+                    <button className="btn btn-sm btn-outline-secondary me-2">
+                      <FaEye size={14} />
+                    </button>
+                    <button className="btn btn-sm btn-danger">
+                      <FaTrash size={14} />
+                    </button>
+                  </td>
+                </tr>
+              ))
             )}
-          </div>
-        </div>
+          </tbody>
+        </table>
       </div>
-    </>
+
+      {/* Empty Modal Placeholder */}
+      <Modal show={showModal} onHide={() => {}} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>Order Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Order details will appear here.</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary">Close</Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   );
 };
 
-export default MyOrders;
+export default Orders;
