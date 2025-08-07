@@ -9,7 +9,7 @@ import {
   FaPhoneAlt,
   FaEnvelope,
 } from 'react-icons/fa';
-
+import logo from '../assets/image-removebg-preview.png'
 const Footer = () => {
   return (
     <footer
@@ -22,7 +22,7 @@ const Footer = () => {
           {/* Brand Info */}
           <div>
             <img
-              src="https://i.postimg.cc/P5jK1nqQ/Whats-App-Image-2025-07-30-at-15-05-38-902587ee.jpg"
+              src={logo}
               alt="ElectroSupply Logo"
               className="h-14 mb-3"
             />
@@ -108,7 +108,7 @@ const Footer = () => {
               </p>
               <p className="flex items-center gap-2">
                 <FaEnvelope className="text-red-500" />
-                support@buyerseller.com
+                support@IONE.com
               </p>
             </div>
 
@@ -125,7 +125,7 @@ const Footer = () => {
         <hr className="border-gray-700 my-6" />
 
         <p className="text-center text-sm text-gray-500">
-          © 2025 Buyerseller. All rights reserved.
+          © 2025 IONE. All rights reserved.
         </p>
       </div>
     </footer>

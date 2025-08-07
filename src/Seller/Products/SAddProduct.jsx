@@ -23,6 +23,9 @@ const SAddProduct = () => {
   useEffect(() => {
     fetchCategories();
   }, []);
+  // Get sellerId from localStorage
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const sellerId = user.id;
 
   const fetchCategories = async () => {
     try {
@@ -54,6 +57,7 @@ const SAddProduct = () => {
     formData.append('description', form.description);
     formData.append('modelNo', form.modelNo);
     formData.append('code', form.code);
+    formData.append('sellerId', sellerId);
     formData.append('material', form.material);
  
     form.image.forEach((image) => {
@@ -66,7 +70,7 @@ const SAddProduct = () => {
         position: 'top-center',
         autoClose: 2000,
       });
-      setTimeout(() => navigate('/products'), 2000); // wait for toast before redirect
+      setTimeout(() => navigate('/seller/products'), 2000); // wait for toast before redirect
     } catch (error) {
       console.error('Error creating product:', error);
       toast.error('Error creating product', {

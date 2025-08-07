@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../Utilities/axiosInstance';
 import Search from './Search';
-
+import logo from '../assets/image-removebg-preview.png'
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [redirectPath, setRedirectPath] = useState("/login");
@@ -17,11 +17,19 @@ const Navbar = () => {
     const token = localStorage.getItem("token");
     const userData = JSON.parse(localStorage.getItem("user"));
     if (token && userData?.role) {
-      if (userData.role === "admin") {
-        setRedirectPath("/admin/dashboard");
-      } else if (userData.role === "user") {
-        setRedirectPath("/profilepage");
-      }
+     if (userData.role === "admin") {
+  setRedirectPath("/admin/dashboard");
+} else if (userData.role === "buyer") {
+  setRedirectPath("/buyer/dashboard");
+} else if (userData.role === "seller") {
+  setRedirectPath("/seller/dashboard");
+} 
+else if (userData.role === "broker") {
+  setRedirectPath("/broker/dashboard");
+} else {
+  setRedirectPath("/login");
+}
+
     } else {
       setRedirectPath("/login");
     }
@@ -63,7 +71,7 @@ const Navbar = () => {
           {/* Logo - Left Side */}
           <div className="flex-shrink-0">
             <Link to="/">
-              <img  src="https://i.ibb.co/8DqZ6ZvS/image.png"  alt="logo"  className="h-14 " />
+              <img  src={logo} alt="logo"  className="h-14 " />
             </Link>
           </div>
 
@@ -103,7 +111,7 @@ const Navbar = () => {
             {/* Mobile menu button */}
             <div className="md:hidden">
               <button  onClick={toggleMenu}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none"
+                className="inline-flex items-center bg-white justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none"
                 aria-expanded="false" >
                 <span className="sr-only">Open main menu</span>
                 {isMenuOpen ? (
