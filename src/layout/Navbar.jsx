@@ -27,7 +27,7 @@ if (user?.role === "buyer") {
 
   return (
     <>
-      <nav className="navbar navbar-white  shadow-sm" style={{backgroundColor:"#1f2a40"}}>
+      <nav className="navbar navbar-white  shadow-sm flex-nowrap" style={{backgroundColor:"#1f2a40"}}>
         <div className="container-fluid d-flex justify-content-between align-items-center">
           {/* Left: Logo + Toggle */}
           <div className="d-flex align-items-center gap-3">
@@ -35,8 +35,8 @@ if (user?.role === "buyer") {
                     <Link to="/">
               <img  src={logo}   alt="logo"  className="h-10" style={{ background : "transparent"}}/>
             </Link>
-            <button   className="btn btn-outline-secondary d-lg-none"    onClick={toggleSidebar} >
-              <i className="bi bi-list fs-4"></i>
+            <button   className="btn btn-outline-light d-lg-none me-2"    onClick={toggleSidebar} >
+              <i className="bi bi-list fs-4 text-white "></i>
             </button>
           </div>
           <div className="d-flex align-items-center gap-3">
