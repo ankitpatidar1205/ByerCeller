@@ -79,8 +79,8 @@ const AddUser = () => {
   return (
     <>
       <ToastContainer position="top-center" />
-      <div className="container mt-5">
-        <h2 className="mb-4">{id ? 'Edit User' : 'Create Account'}</h2>
+      <div className="p-3">
+        <h2 className="mb-4 fw-bold">{id ? 'Edit User' : 'Create Account'}</h2>
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-md-6 mb-3">

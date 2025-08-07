@@ -74,7 +74,7 @@ const Users = () => {
     <div className="p-4">
       {/* Title */}
       <div className="mb-3">
-        <h3 className="fw-bold">User Management</h3>
+        <h2 className="h4 fw-bold">User Management</h2>
         <p className="text-muted mb-0">Manage all registered users</p>
       </div>
 
@@ -155,7 +155,7 @@ const Users = () => {
     {/* Add Product Button */}
    <Link to="/AddUser"> <button className="btn custom-button d-flex align-items-center gap-2 white-space-nowrap">
       <FaPlusCircle />
-      <span>Add User</span>
+      <span className="text-nowrap">Add User</span>
     </button></Link>
   </div>
 </div>
