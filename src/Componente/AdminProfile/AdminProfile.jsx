@@ -9,6 +9,8 @@ const AdminProfile = () => {
     lastName: "",
     email: "",
     password: "",
+    mobileNumber: "",
+    role: "",
   });
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -26,6 +28,8 @@ const AdminProfile = () => {
         lastName: data.lastName || "",
         email: data.email || "",
         password: "", // Do not pre-fill password
+        mobileNumber: data.mobileNumber || "",
+        role: data.role || "",
       });
       setLoading(false);
     } catch (error) {
@@ -44,9 +48,11 @@ const AdminProfile = () => {
 
   const handleUpdate = async () => {
     const updatedData = {
-      firstName: profile.firstName ,
+      firstName: profile.firstName,
       lastName: profile.lastName,
       email: profile.email,
+      mobileNumber: profile.mobileNumber,
+      role: profile.role,
     };
 
     if (profile.password.trim() !== "") {
@@ -82,6 +88,12 @@ const AdminProfile = () => {
         </div>
         <div className="mb-3">
           <strong>Email:</strong> {profile.email}
+        </div>
+        <div className="mb-3">
+          <strong>Mobile Number:</strong> {profile.mobileNumber}
+        </div>
+        <div className="mb-3">
+          <strong>Role:</strong> {profile.role}
         </div>
         <Button variant="primary" onClick={() => setShowModal(true)}>
           Edit Profile
@@ -123,6 +135,26 @@ const AdminProfile = () => {
                 name="email"
                 value={profile.email}
                 onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-12">
+              <label className="form-label">Mobile Number</label>
+              <input
+                type="text"
+                className="form-control"
+                name="mobileNumber"
+                value={profile.mobileNumber}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-12">
+              <label className="form-label">Role</label>
+              <input
+                type="text"
+                className="form-control"
+                name="role"
+                value={profile.role}
+                disabled
               />
             </div>
             <div className="col-md-12">
