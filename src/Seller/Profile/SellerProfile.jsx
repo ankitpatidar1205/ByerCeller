@@ -10,6 +10,8 @@ const SellerProfile = () => {
     lastName: "",
     email: "",
     password: "",
+    mobileNumber: "",
+    role: "",
   });
 
   // Fetch user profile
@@ -25,6 +27,8 @@ const SellerProfile = () => {
             lastName: response.data.data.lastName || "",
             email: response.data.data.email || "",
             password: "", // Leave password blank for security
+            mobileNumber: response.data.data.mobileNumber || "",
+            role: response.data.data.role || "",
           });
         }
       } catch (error) {
@@ -48,7 +52,13 @@ const SellerProfile = () => {
   const handleSave = async () => {
     try {
       const userData = JSON.parse(localStorage.getItem("user"));
-      const response = await axiosInstance.patch(`/user/editProfile/${userData.id}`, formData);
+      // Always send role and mobileNumber in PATCH
+      const patchData = {
+        ...formData,
+        role: formData.role,
+        mobileNumber: formData.mobileNumber,
+      };
+      const response = await axiosInstance.patch(`/user/editProfile/${userData.id}`, patchData);
       alert("Profile updated successfully");
       setUser(response.data.data);
       setEditMode(false);
@@ -109,6 +119,27 @@ const SellerProfile = () => {
             value={formData.password}
             onChange={handleChange}
             disabled={!editMode}
+          />
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">Mobile Number</label>
+          <input
+            type="text"
+            className="form-control"
+            name="mobileNumber"
+            value={formData.mobileNumber}
+            onChange={handleChange}
+            disabled={!editMode}
+          />
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">Role</label>
+          <input
+            type="text"
+            className="form-control"
+            name="role"
+            value={formData.role}
+            disabled
           />
         </div>
       </div>

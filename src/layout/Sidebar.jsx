@@ -31,19 +31,20 @@ const Sidebar = ({ collapsed }) => {
   const userMenu = [
     { name: "Dashboard", path: "/buyer/dashboard", icon: "fa-solid fa-house-user" },
     { name: "Product", path: "/UserProduct", icon: "fa-solid fa-box" },
+    { name: "My Cart", path: "/UserCart", icon: "fa-solid fa-cart-shopping" },
+    { name: "My Orders", path: "/MyOrders", icon: "fa-solid fa-box"  },
     { name: "Request Broker", path: "/Request-Broker", icon: "fa-solid fa-handshake" },
-    { name: "My Orders", path: "/MyOrders", icon: "fa-solid fa-cart-shopping" },
     { name: "My Profile", path: "/MyProfile", icon: "fa-solid fa-user" },
   ];
 
   // Broker menu
   const brokerMenu = [
     { name: " Dashboard", path: "/broker/dashboard", icon: "fa-solid fa-briefcase" },
-        { name: " Products", path: "/broker/products", icon: "fa-solid fa-briefcase" },
+    { name: " Products", path: "/broker/products", icon: "fa-solid fa-briefcase" },
     { name: "Buyer Deals", path: "/broker/buyerrequest", icon: "fa-solid fa-handshake" },
-     { name: "Seller Deals", path: "/broker/sellerrequest", icon: "fa-solid fa-handshake" },
-      {name: " Orders", path: "/broker/buyerorders" ,icon: "fa-solid fa-box-open "},
-      {name: "Orders to Sellers", path: "/orders/forwarded", icon: "bi bi-send"},
+    { name: "Seller Deals", path: "/broker/sellerrequest", icon: "fa-solid fa-handshake" },
+    {name: " Orders", path: "/broker/buyerorders" ,icon: "fa-solid fa-box-open "},
+    {name: "Orders to Sellers", path: "/orders/forwarded", icon: "bi bi-send"},
     { name: "Reports", path: "/broker/reports", icon: "fa-solid fa-chart-pie" },
     { name: "Profile", path: "/broker/profile", icon: "fa-solid fa-user-tie" },
   ];

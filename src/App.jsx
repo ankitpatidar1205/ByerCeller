@@ -62,6 +62,8 @@ import SAddCategories from "./Seller/Categories/SAddCategories";
 import ForgotPassword from "./authtication/ForgotPassword";
 import ResetPassword from "./authtication/ResetPassword";
 import AddUser from "./Componente/Users/AddUser";
+import UserProductDetail from "./UserProfile/UserProductDetail";
+import UserCart from "./UserProfile/UserCart";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -124,31 +126,33 @@ function App() {
                <Route path="/buyer/dashboard" element={< UserDashboard/>} />
                <Route path="/MyProfile" element={<MyProfile />} />
                <Route path="/UserProduct" element={<UserProduct />} />
+               <Route path="/UserCart" element={<UserCart />} />
+               <Route path="/UserProductDetail/:id" element={<UserProductDetail />} />
                <Route path="/MyOrders" element={<MyOrders />} />
                <Route path="/Request-Broker" element={<RequestBroker />} />
 
                  {/* Seller */}
-                  <Route path="/seller/dashboard" element ={ <SellerDashboard />} />
-                   <Route path="/seller/categories" element={<SAddCategories />} />
-                   <Route path="/seller/addproducts" element ={ <SAddProduct />} />
-                   <Route path="/seller/editproduct/:id" element={<SEditProductForm />} />
-                  <Route path="/seller/products" element ={ <SellerProductes />} />
-                  <Route path="/seller/orders" element ={ <SellerOrders />} />
-                  <Route path="/seller/orderdetails" element = {<OrderDetails /> } />
-                   <Route path="/seller/profile" element ={ <SellerProfile />} />
-                  <Route path="/seller/brokerinvitation" element={<BrokerInvitations />} />
-                  <Route path="/seller/broker-details" element={<BrokerInvitationDetails />} />
+                <Route path="/seller/dashboard" element ={ <SellerDashboard />} />
+                <Route path="/seller/categories" element={<SAddCategories />} />
+                <Route path="/seller/addproducts" element ={ <SAddProduct />} />
+                <Route path="/seller/editproduct/:id" element={<SEditProductForm />} />
+               <Route path="/seller/products" element ={ <SellerProductes />} />
+               <Route path="/seller/orders" element ={ <SellerOrders />} />
+               <Route path="/seller/orderdetails" element = {<OrderDetails /> } />
+                <Route path="/seller/profile" element ={ <SellerProfile />} />
+               <Route path="/seller/brokerinvitation" element={<BrokerInvitations />} />
+               <Route path="/seller/broker-details" element={<BrokerInvitationDetails />} />
 
                   {/* Broker  */}
-           <Route path="/broker/dashboard" element={ <BrokerDashboard />} />  
-           <Route path="/broker/sellerrequest" element={ <SellerRequest />} />
-           <Route path="/broker/deal-details/:id" element={ <SellerdealsDetails />}  />
+             <Route path="/broker/dashboard" element={ <BrokerDashboard />} />  
+             <Route path="/broker/sellerrequest" element={ <SellerRequest />} />
+            <Route path="/broker/deal-details/:id" element={ <SellerdealsDetails />}  />
             <Route path="/broker/buyerrequest" element={ <BuyerRequest />} />
             <Route path="/broker/buyer-request-details/:id" element={ <BuyerRequestDetails />}  />
             <Route path="/broker/products" element={<BrokerProducts />} />
             <Route path="/broker/buyerorders" element={<BuyerOrders />} />
             <Route path="/orders/buyer/:id" element={<BuyerOrderDetails />} />
-             <Route path="/orders/forward/:id" element={<ForwardToSeller />} />
+            <Route path="/orders/forward/:id" element={<ForwardToSeller />} />
             <Route path="/orders/forwarded" element={<ForwardedOrders />} />
             <Route path="/orders/forwardeddetails/:id" element={<ForwardOrderDetails />} />
             <Route path="/broker/reports" element={<BrokerReports />} />
